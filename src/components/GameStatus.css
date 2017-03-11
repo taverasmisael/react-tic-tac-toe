@@ -1,5 +1,23 @@
 .GameStatus {
-  float: left;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
   flex: 1 0;
+}
+
+@media (min-width: 720px) {
+  .GameStatus {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  .GameStatus__current-player {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 0;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+  }
+  .GameStatus__current-player__player {
+    font-size: 5em;
+  }
 }
