@@ -14,17 +14,33 @@ html {
 }
 
 .btn {
+  --text-shadow-color: #888;
+  color: white;
   padding: 1em;
   border-radius: 0.2em;
+  text-shadow: 0px 1px 0px var(--text-shadow-color);
   text-transform: uppercase;
   font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .btn.btn--big {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .btn.btn--warn {
-  background: #F44336;
-  color: white;
+  --text-shadow-color: #d32f2f;
+  background: #f44336;
+}
+
+.btn.btn--success {
+  background: #03a9f4;
+  --text-shadow-color: #0288D1;
+}
+
+.text--success {
+  color: #03a9f4
+}
+
+.text--warn {
+  color: #d32f2f
 }
