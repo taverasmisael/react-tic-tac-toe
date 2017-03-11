@@ -1,0 +1,5 @@
+.GameStatus {
+  float: left;
+  padding: 1.5rem;
+  flex: 1 0;
+}

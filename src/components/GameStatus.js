@@ -1,9 +1,11 @@
 import React from 'react';
 
+import './GameStatus.css';
+
 const GameStatus = ({currentPlayer, onResetGame}) => (
-  <div className="game-status">
+  <div className="GameStatus">
     <p className="current-player">Current Player: {currentPlayer}</p>
-    <button onClick={() => onResetGame()}>Restart Game!</button>
+    <button class="btn btn--warn btn--big" onClick={() => onResetGame()}>Restart Game!</button>
   </div>
 )
 GameStatus.propTypes = {
