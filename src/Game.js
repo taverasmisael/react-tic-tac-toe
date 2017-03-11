@@ -39,7 +39,7 @@ export default class Game extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const isWinner = this.checkForWinner(nextState.board);
     const shouldUpdate = !(isWinner && this.state.winningOffset);
-    if (isWinner && this.state.winningOffset === 0) this.state.winningOffset = 1;
+    if (isWinner && this.state.winningOffset === 0) this.setState({winningOffset: 1});
     return shouldUpdate;
   }
 
