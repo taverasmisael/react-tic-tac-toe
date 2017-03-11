@@ -1,0 +1,29 @@
+.board {
+    display: flex;
+    width: 600px;
+    height: 600px;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.board .square {
+    height: 200px;
+    width: 200px;
+    border: 5px solid rgba(0, 0, 0, 0.8);
+    border-collapse: collapse;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    line-height: 1;
+    transition: all 150ms ease-in;
+}
+
+.board .square:hover {
+    cursor: pointer;
+    background-color: #80cd92;
+}
+.board .square.square--winner {
+  background: #4CAF50;
+  color: white;
+}
