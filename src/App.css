@@ -1,0 +1,10 @@
+.game {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 2rem;
+}
+.game:after {
+  content: "";
+  display: table;
+  clear: both;
+}
