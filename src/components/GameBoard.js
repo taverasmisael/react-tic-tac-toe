@@ -1,22 +1,34 @@
-import React from 'react';
+import React from "react";
 
-import './GameBoard.css'
+import "./GameBoard.css";
 
-const GameBoard = ({board, winner, onSelectSquare}) => {
-  const BoardSquares = board.map((square, index) => {
-    const squareClass = winner.findIndex(el => el === index) >= 0 ? 'GameBoard__square GameBoard__square--winner' : 'GameBoard__square'
-    return (<div key={index} onClick={() => onSelectSquare(index)} className={squareClass}>{square}</div>)
-  });
-  return (        
-    <div className="GameBoard">
-      { BoardSquares }
+const GameBoard = ({ board, winner, onSelectSquare }) => {
+  const BoardSquares = board.map((square, index) => (
+    <div
+      key={index}
+      onClick={() => onSelectSquare(index)}
+      className={generateSquareClass(winner, index)}
+    >
+      {square}
     </div>
-  )
-}
+  ));
+  return (
+    <div className="GameBoard">
+      {BoardSquares}
+    </div>
+  );
+};
 
 GameBoard.propTypes = {
+  winner: React.PropTypes.array,
   board: React.PropTypes.array.isRequired,
-  winner: React.PropTypes.array.isRequired,
   onSelectSquare: React.PropTypes.func.isRequired
+};
+
+function generateSquareClass(winner, index) {
+  const baseClase = "GameBoard__square";
+  return winner && winner.findIndex(el => el === index) >= 0
+    ? `${baseClase} ${baseClase}--winner`
+    : baseClase;
 }
 export default GameBoard;

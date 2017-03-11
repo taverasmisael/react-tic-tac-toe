@@ -14,7 +14,7 @@ export default class Game extends Component {
       board: ["", "", "", "", "", "", "", "", ""],
       modified: false,
       winningOffset: 0,
-      winner: []
+      winner: undefined
     };
 
     this.PopAudio = undefined;
@@ -31,12 +31,11 @@ export default class Game extends Component {
           onSelectSquare={square => this.setValue(square)}
         />
         <GameStatus
-          winner={Boolean(this.state.winner.length)}
+          winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
           onResetGame={() => this.setState(this.InitialState)}
         />
-        <audio id="PopAudio" src="assets/Bubble_Pop.org.mp3" type="audio/mp3">
-        </audio>
+        <audio id="PopAudio" src="assets/Bubble_Pop.org.mp3" type="audio/mp3" />
       </div>
     );
   }
@@ -45,7 +44,7 @@ export default class Game extends Component {
   }
 
   setValue(square) {
-    if (!this.state.winner.length) this.setState(this.UpdateGameStatus(square));
+    if (!this.state.winner) this.setState(this.UpdateGameStatus(square));
   }
 
   UpdateGameStatus(squareIndex) {
@@ -64,8 +63,8 @@ export default class Game extends Component {
       }
     });
 
-    newState.winner = this.checkForWinner(newState.board) || [];
-    if (newState.winner.length)
+    newState.winner = this.checkForWinner(newState.board);
+    if (newState.winner)
       newState.currentTurn = this.SwitchPlayers(newState.currentTurn);
     return newState;
   }
