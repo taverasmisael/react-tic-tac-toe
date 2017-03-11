@@ -29,6 +29,7 @@ export default class Game extends Component {
           onSelectSquare={square => this.setValue(square)}
         />
         <GameStatus
+          winner={Boolean(this.state.winner.length)}
           currentPlayer={this.state.currentTurn}
           onResetGame={() => this.setState(this.InitialState)}
         />
