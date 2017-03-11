@@ -17,6 +17,8 @@ export default class Game extends Component {
       winner: []
     };
 
+    this.PopAudio = undefined;
+
     this.state = this.InitialState;
   }
 
@@ -33,6 +35,8 @@ export default class Game extends Component {
           currentPlayer={this.state.currentTurn}
           onResetGame={() => this.setState(this.InitialState)}
         />
+        <audio id="PopAudio" src="assets/Bubble_Pop.org.mp3" type="audio/mp3">
+        </audio>
       </div>
     );
   }
@@ -42,6 +46,10 @@ export default class Game extends Component {
     const shouldUpdate = !(isWinner && this.state.winningOffset);
     if (isWinner && this.state.winningOffset === 0) this.setState({winningOffset: 1});
     return shouldUpdate;
+  }
+
+  componentDidMount() {
+    this.PopAudio = document.querySelector('#PopAudio');
   }
 
   setValue(square) {
@@ -56,6 +64,7 @@ export default class Game extends Component {
       if (currentSquareAvailable) {
         newState.modified = true;
         newState.currentTurn = this.SwitchPlayers(this.state.currentTurn);
+        this.PlayPopEffect();
         return this.state.currentTurn;
       } else {
         newState.modified = false;
@@ -103,5 +112,10 @@ export default class Game extends Component {
     const { PLAYER_TWO_SYMBOL, PLAYER_ONE_SYMBOL } = this.state;
 
     return PlayerOneIsPlaying ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
+  }
+
+  PlayPopEffect() {
+    this.PopAudio.currentTime = 0;
+    this.PopAudio.play();
   }
 }
