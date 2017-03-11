@@ -1,29 +1,42 @@
-.board {
-    display: flex;
-    width: 600px;
-    height: 600px;
-    flex-flow: row wrap;
-    justify-content: flex-start;
+.GameBoard {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+.GameBoard .GameBoard__square {
+  width: 33.3333%;
+  border: 0.03em solid rgba(0, 0, 0, 0.5);
+  border-collapse: collapse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  line-height: 1;
+  transition: all 150ms ease-in;
 }
 
-.board .square {
-    height: 200px;
-    width: 200px;
-    border: 5px solid rgba(0, 0, 0, 0.8);
-    border-collapse: collapse;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 6rem;
-    line-height: 1;
-    transition: all 150ms ease-in;
+.GameBoard .GameBoard__square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
-.board .square:hover {
-    cursor: pointer;
-    background-color: #80cd92;
+.GameBoard .GameBoard__square:hover {
+  cursor: pointer;
+  background-color: #80cd92;
 }
-.board .square.square--winner {
+
+.GameBoard .GameBoard__square.GameBoard__square--winner {
   background: #4CAF50;
   color: white;
+}
+
+@media (min-width: 720px) {
+    .GameBoard {
+        width: 49%;
+    }
+    .GameBoard .GameBoard__square {
+      width: 32%;
+    }
 }

@@ -4,11 +4,11 @@ import './GameBoard.css'
 
 const GameBoard = ({board, winner, onSelectSquare}) => {
   const BoardSquares = board.map((square, index) => {
-    const squareClass = winner.findIndex(el => el === index) >= 0 ? 'square square--winner' : 'square'
+    const squareClass = winner.findIndex(el => el === index) >= 0 ? 'GameBoard__square GameBoard__square--winner' : 'GameBoard__square'
     return (<div key={index} onClick={() => onSelectSquare(index)} className={squareClass}>{square}</div>)
   });
   return (        
-    <div className="board">
+    <div className="GameBoard">
       { BoardSquares }
     </div>
   )
