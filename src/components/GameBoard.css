@@ -12,6 +12,7 @@
     2px 0 0 0 #888 inset, 
     0 2px 0 0 #888 inset;
   border-collapse: collapse;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,16 +26,14 @@
   display: block;
   padding-bottom: 100%;
 }
-
-.GameBoard .GameBoard__square:hover {
-  cursor: pointer;
-  background-color: #80cd92;
+.GameBoard .GameBoard__square:hover:not(:empty) {
+  cursor: not-allowed;
 }
-
+.GameBoard .GameBoard__square:hover:empty,
 .GameBoard .GameBoard__square.GameBoard__square--winner {
-  color: #4CAF50;
+  background-color: #81D4FA;
+  color: white;
 }
-
 @media (min-width: 720px) {
     .GameBoard {
         width: 49%;
