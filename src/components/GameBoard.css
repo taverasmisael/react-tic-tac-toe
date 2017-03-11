@@ -6,7 +6,11 @@
 }
 .GameBoard .GameBoard__square {
   width: 33.3333%;
-  border: 0.03em solid rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 0 0 0 #888, 
+    0 2px 0 0 #888, 
+    2px 2px 0 0 #888,
+    2px 0 0 0 #888 inset, 
+    0 2px 0 0 #888 inset;
   border-collapse: collapse;
   display: flex;
   align-items: center;
@@ -28,8 +32,7 @@
 }
 
 .GameBoard .GameBoard__square.GameBoard__square--winner {
-  background: #4CAF50;
-  color: white;
+  color: #4CAF50;
 }
 
 @media (min-width: 720px) {
