@@ -8,7 +8,7 @@ const GameStatus = ({currentPlayer, onResetGame, winner}) => (
       <span className="GameStatus__cururent-player__label">{ winner  ? 'El ganador es' : 'Es el turno de' }:</span>
       <span className={computeCurrentPlayerClasses(winner)}>{ currentPlayer }</span>
     </p>
-    <button className="btn btn--big btn--warn">{winner ? 'Nueva Partida' : 'Reiniciar Partida'}</button>
+    <button className="btn btn--big btn--warn" onClick={() => onResetGame()}>{winner ? 'Nueva Partida' : 'Reiniciar Partida'}</button>
   </div>
 )
 GameStatus.propTypes = {
