@@ -40,20 +40,12 @@ export default class Game extends Component {
       </div>
     );
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    const isWinner = this.checkForWinner(nextState.board);
-    const shouldUpdate = !(isWinner && this.state.winningOffset);
-    if (isWinner && this.state.winningOffset === 0) this.setState({winningOffset: 1});
-    return shouldUpdate;
-  }
-
   componentDidMount() {
     this.PopAudio = document.querySelector('#PopAudio');
   }
 
   setValue(square) {
-    this.setState(this.UpdateGameStatus(square));
+    if (!this.state.winner.length) this.setState(this.UpdateGameStatus(square));
   }
 
   UpdateGameStatus(squareIndex) {
