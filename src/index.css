@@ -1,14 +1,30 @@
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-body {
-    font-family: Fira Code, Roboto Mono, monospace;
+html {
+  font-family: Fira Code, Roboto Mono, monospace;
+}
+
+.btn {
+  padding: 1em;
+  border-radius: 0.2em;
+  text-transform: uppercase;
+  font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn.btn--big {
+    font-weight: bolder;
+}
+
+.btn.btn--warn {
+  background: #F44336;
+  color: white;
 }
