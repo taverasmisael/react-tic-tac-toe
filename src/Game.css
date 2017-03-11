@@ -1,9 +1,9 @@
-.game {
+.Game {
   display: flex;
   flex-flow: row wrap;
   padding: 2rem;
 }
-.game:after {
+.Game:after {
   content: "";
   display: table;
   clear: both;

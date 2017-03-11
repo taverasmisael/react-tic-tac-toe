@@ -2,11 +2,9 @@ import React, { Component } from "react";
 
 import GameBoard from "./components/GameBoard";
 import GameStatus from "./components/GameStatus";
-import "./App.css";
+import "./Game.css";
 
-let winningOffset = 0;
-
-class App extends Component {
+export default class Game extends Component {
   constructor(props) {
     super(props);
     this.InitialState = {
@@ -15,6 +13,7 @@ class App extends Component {
       currentTurn: "X",
       board: ["", "", "", "", "", "", "", "", ""],
       modified: false,
+      winningOffset: 0,
       winner: []
     };
 
@@ -23,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="game">
+      <div className="Game">
         <GameBoard
           board={this.state.board}
           winner={this.state.winner}
@@ -39,8 +38,8 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const isWinner = this.checkForWinner(nextState.board);
-    const shouldUpdate = !(isWinner && winningOffset);
-    if (isWinner && winningOffset === 0) winningOffset = 1;
+    const shouldUpdate = !(isWinner && this.state.winningOffset);
+    if (isWinner && this.state.winningOffset === 0) this.state.winningOffset = 1;
     return shouldUpdate;
   }
 
@@ -97,4 +96,3 @@ class App extends Component {
     return PlayerOneIsPlaying ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
   }
 }
-export default App;
