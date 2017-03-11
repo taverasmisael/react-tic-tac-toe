@@ -69,6 +69,10 @@ export default class Game extends Component {
     return newState;
   }
 
+/**
+ * This function checks if any `winningCombo` is present in the board passed as parameter
+ * @param {Array} board
+ */
   checkForWinner(board) {
     const winningCombos = [
       [0, 1, 2],
@@ -90,6 +94,10 @@ export default class Game extends Component {
     });
   }
 
+  /**
+   * This function will switch between returning the oposite player for the one passed
+   * @param {String} currentTurn
+   */
   SwitchPlayers(currentTurn) {
     const PlayerOneIsPlaying = currentTurn === this.state.PLAYER_ONE_SYMBOL;
     const { PLAYER_TWO_SYMBOL, PLAYER_ONE_SYMBOL } = this.state;
