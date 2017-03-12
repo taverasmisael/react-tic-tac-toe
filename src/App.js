@@ -22,18 +22,19 @@ export default class App extends Component {
   }
 
   render() {
-    const toRender = this.state.currentTurn
-      ? <Game
+    return (
+      <div className="App">
+        <Game
           winner={this.state.winner}
           board={this.state.board}
           currentTurn={this.state.currentTurn}
           onSelectSquare={square => this.MakeMovement(square)}
           onResetGame={() => this.setState(this.InitialState)}
         />
-      : <GamePlayerSelect onPlayerSelect={(player) => this.setState({currentTurn: player})} />;
-    return (
-      <div className="App">
-        {toRender}
+        <GamePlayerSelect
+          isVisible={!Boolean(this.state.currentTurn)}
+          onPlayerSelect={player => this.setState({ currentTurn: player })}
+        />
         <audio id="PopAudio" src="assets/Bubble_Pop.org.mp3" type="audio/mp3" />
       </div>
     );

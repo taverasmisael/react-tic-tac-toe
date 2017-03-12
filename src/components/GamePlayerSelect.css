@@ -5,7 +5,14 @@
   height: 100vh;
   position: fixed;
   text-align: center;
+  top: 0;
+  transform: translateY(-100%);
+  transition: all 350ms;
   width: 100vw;
+}
+
+.GamePlayerSelect.GamePlayerSelect--visible {
+  transform: translateY(0);
 }
 
 .GamePlayerSelect__container {
@@ -19,29 +26,42 @@
 
 .GamePlayerSelect__selector {
   display: flex;
+  flex-flow: column nowrap;
   margin: 2rem 0;
+  width: 100%;
 }
-
 .GamePlayerSelect__panel {
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  font-size: 6rem;
-  justify-content: center;
-  margin: 0 0.5rem;
-  line-height: 1;
-  transition: all 150ms ease-in;
-  width: 50%;
+  margin: .5rem 0;
 }
-
-.GamePlayerSelect__panel:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-
 .GamePlayerSelect__panel.btn {
   border-radius: 0;
-  font-size: 10rem;
-  padding: .5em
+  font-size: 5rem;
+  padding: .5em;
+}
+
+
+@media (min-width: 720px) {
+  .GamePlayerSelect__selector {
+    flex-flow: row nowrap;
+    width: auto;
+  }
+  .GamePlayerSelect__panel {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 6rem;
+    justify-content: center;
+    margin: 0 0.5rem;
+    line-height: 1;
+    transition: all 150ms ease-in;
+    width: 50%;
+  }
+  .GamePlayerSelect__panel:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  .GamePlayerSelect__panel.btn {
+    font-size: 10rem;
+  }
 }
