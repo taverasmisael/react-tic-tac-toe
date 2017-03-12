@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Game from "./components/Game";
 import GamePlayerSelect from "./components/GamePlayerSelect";
 
+const AUDIOFX_SRC = 'assets/audio/fx';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,7 @@ export default class App extends Component {
       winner: undefined
     };
 
-    this.PopAudio = undefined;
+    this.FXPlayer = undefined;
 
     this.state = this.InitialState;
   }
@@ -35,13 +37,13 @@ export default class App extends Component {
           isVisible={!Boolean(this.state.currentTurn)}
           onPlayerSelect={player => this.setState({ currentTurn: player })}
         />
-        <audio id="PopAudio" src="assets/Bubble_Pop.org.mp3" type="audio/mp3" />
+        <audio id="FXPlayer" src="assets/audio/fx/pop1.mp3" type="audio/mp3" />
       </div>
     );
   }
 
   componentDidMount() {
-    this.PopAudio = document.querySelector("#PopAudio");
+    this.FXPlayer = document.querySelector("#FXPlayer");
   }
 
   MakeMovement(square) {
@@ -56,7 +58,6 @@ export default class App extends Component {
       if (currentSquareAvailable) {
         newState.modified = true;
         newState.currentTurn = this.SwitchPlayers(this.state.currentTurn);
-        this.PlayPopEffect();
         return this.state.currentTurn;
       } else {
         newState.modified = false;
@@ -65,8 +66,12 @@ export default class App extends Component {
     });
 
     newState.winner = this.CheckForWinner(newState.board);
-    if (newState.winner)
+    if (newState.winner) {
       newState.currentTurn = this.SwitchPlayers(newState.currentTurn);
+      this.PlayWiningEffect();
+    } else {
+      this.PlayPopEffect(newState.currentTurn);
+    }
     return newState;
   }
 
@@ -109,8 +114,19 @@ export default class App extends Component {
     return PlayerOneIsPlaying ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
   }
 
-  PlayPopEffect() {
-    this.PopAudio.currentTime = 0;
-    this.PopAudio.play();
+  PlayPopEffect(player) {
+    if (player === this.state.PLAYER_ONE_SYMBOL) this.FXPlayer.src = `${AUDIOFX_SRC}/pop2.mp3`;
+    if (player === this.state.PLAYER_TWO_SYMBOL) this.FXPlayer.src = `${AUDIOFX_SRC}/pop1.mp3`;
+    this.PlayFx();
+  }
+
+  PlayFx() {
+    this.FXPlayer.currentTime = 0;
+    this.FXPlayer.play();
+  }
+
+  PlayWiningEffect() {
+    this.FXPlayer.src = `${AUDIOFX_SRC}/applause.mp3`;
+    this.PlayFx();
   }
 }
