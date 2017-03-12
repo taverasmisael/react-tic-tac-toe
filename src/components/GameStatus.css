@@ -1,8 +1,11 @@
 .GameStatus {
   padding: 1.5rem 1.5rem 0;
   flex: 1 0;
+  text-align: center;
 }
-
+.GameStatus__current-player {
+  margin-bottom: 1rem;
+}
 @media (min-width: 720px) {
   .GameStatus {
     display: flex;
@@ -16,6 +19,7 @@
     width: 100%;
     text-align: center;
     font-size: 3rem;
+    margin: 0;
   }
   .GameStatus__current-player__player {
     font-size: 5em;
