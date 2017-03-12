@@ -6,8 +6,8 @@
   position: fixed;
   text-align: center;
   top: 0;
-  transform: translateY(-100%);
-  transition: all 350ms;
+  transform: translateY(-300%);
+  transition: all 750ms cubic-bezier(0.69, -0.08, 0.13, 1.02);
   width: 100vw;
 }
 
