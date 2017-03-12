@@ -13,10 +13,14 @@ html {
   font-family: Fira Code, Roboto Mono, monospace;
 }
 
+.flex--spandex {
+  flex: 1 0;
+}
 .btn {
   --text-shadow-color: #888;
   color: white;
   padding: 1em;
+  line-height: 1;
   border-radius: 0.2em;
   text-shadow: 0px 1px 0px var(--text-shadow-color);
   text-transform: uppercase;
