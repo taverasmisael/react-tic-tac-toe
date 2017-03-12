@@ -1,11 +1,13 @@
 .GameBoard {
+  background: white;
   display: flex;
-  width: 100%;
   flex-flow: row wrap;
   justify-content: flex-start;
+  width: 100%;
 }
 .GameBoard .GameBoard__square {
-  width: 33.3333%;
+  align-items: center;
+  background: white;
   box-shadow: 2px 0 0 0 #888, 
     0 2px 0 0 #888, 
     2px 2px 0 0 #888,
@@ -13,11 +15,11 @@
     0 2px 0 0 #888 inset;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 6rem;
+  justify-content: center;
   line-height: 1;
   transition: all 150ms ease-in;
+  width: 33.3333%;
 }
 
 .GameBoard .GameBoard__square:after {

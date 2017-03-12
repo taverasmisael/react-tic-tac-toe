@@ -4,13 +4,14 @@ import "./GameBoard.css";
 
 const GameBoard = ({ board, winner, onSelectSquare }) => {
   const BoardSquares = board.map((square, index) => (
-    <div
+    <button type="button"
+      aria-label={`Cuadro ${index + 1}. Valor: ${square || 'Ninguno'}`}
       key={index}
       onClick={() => onSelectSquare(index)}
       className={generateSquareClass(winner, index)}
     >
       {square}
-    </div>
+    </button>
   ));
   return (
     <div className="GameBoard">
