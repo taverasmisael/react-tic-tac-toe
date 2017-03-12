@@ -1,0 +1,52 @@
+.GamePlayerSelect {
+  background: #4f4f4f;
+  color: white;
+  font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  position: fixed;
+  text-align: center;
+  width: 100vw;
+}
+
+.GamePlayerSelect__container {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  padding: 2rem 0;
+  margin: 2rem 0 0;
+}
+
+.GamePlayerSelect__selector {
+  display: flex;
+  margin: 2rem 0;
+}
+
+.GamePlayerSelect__panel {
+  align-items: center;
+  box-shadow: 2px 0 0 0 #888,
+    0 2px 0 0 #888,
+    2px 2px 0 0 #888,
+    2px 0 0 0 #888 inset,
+    0 2px 0 0 #888 inset;
+  cursor: pointer;
+  display: flex;
+  font-size: 6rem;
+  justify-content: center;
+  margin: 0 0.5rem;
+  line-height: 1;
+  transition: all 150ms ease-in;
+  width: 50%;
+}
+
+.GamePlayerSelect__panel:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.GamePlayerSelect__panel.btn {
+  border-radius: 0;
+  font-size: 10rem;
+  padding: .5em
+}
