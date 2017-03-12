@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 import Game from "./components/Game";
 import GamePlayerSelect from "./components/GamePlayerSelect";
-
-const AUDIOFX_SRC = 'assets/audio/fx';
+import FxPlayer from "./components/FxPlayer";
 
 export default class App extends Component {
   constructor(props) {
@@ -15,10 +14,11 @@ export default class App extends Component {
       board: ["", "", "", "", "", "", "", "", ""],
       modified: false,
       winningOffset: 0,
-      winner: undefined
+      winner: undefined,
+      FX: {
+        currentFX: 'pop1.mp3'
+      }
     };
-
-    this.FXPlayer = undefined;
 
     this.state = this.InitialState;
   }
@@ -37,7 +37,7 @@ export default class App extends Component {
           isVisible={!Boolean(this.state.currentTurn)}
           onPlayerSelect={player => this.setState({ currentTurn: player })}
         />
-        <audio id="FXPlayer" src="assets/audio/fx/pop1.mp3" type="audio/mp3" />
+        <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
       </div>
     );
   }
@@ -68,7 +68,7 @@ export default class App extends Component {
     newState.winner = this.CheckForWinner(newState.board);
     if (newState.winner) {
       newState.currentTurn = this.SwitchPlayers(newState.currentTurn);
-      this.PlayWiningEffect();
+      this.PlayFx('applause.mp3')
     } else {
       this.PlayPopEffect(newState.currentTurn);
     }
@@ -115,18 +115,12 @@ export default class App extends Component {
   }
 
   PlayPopEffect(player) {
-    if (player === this.state.PLAYER_ONE_SYMBOL) this.FXPlayer.src = `${AUDIOFX_SRC}/pop2.mp3`;
-    if (player === this.state.PLAYER_TWO_SYMBOL) this.FXPlayer.src = `${AUDIOFX_SRC}/pop1.mp3`;
-    this.PlayFx();
+    if (player === this.state.PLAYER_ONE_SYMBOL) this.PlayFx('pop2.mp3');
+    if (player === this.state.PLAYER_TWO_SYMBOL) this.PlayFx('pop1.mp3');
   }
 
-  PlayFx() {
+  PlayFx(currentFX) {
     this.FXPlayer.currentTime = 0;
-    this.FXPlayer.play();
-  }
-
-  PlayWiningEffect() {
-    this.FXPlayer.src = `${AUDIOFX_SRC}/applause.mp3`;
-    this.PlayFx();
+    this.setState({FX: {currentFX}}, () => this.FXPlayer.play());
   }
 }
