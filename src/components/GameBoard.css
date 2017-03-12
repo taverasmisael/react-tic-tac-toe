@@ -21,6 +21,9 @@
   transition: all 150ms ease-in;
   width: 33.3333%;
 }
+.GameBoard .GameBoard__square:focus {
+  outline: none;
+}
 
 .GameBoard .GameBoard__square:after {
   content: "";
