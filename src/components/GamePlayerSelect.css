@@ -24,11 +24,6 @@
 
 .GamePlayerSelect__panel {
   align-items: center;
-  box-shadow: 2px 0 0 0 #888,
-    0 2px 0 0 #888,
-    2px 2px 0 0 #888,
-    2px 0 0 0 #888 inset,
-    0 2px 0 0 #888 inset;
   cursor: pointer;
   display: flex;
   font-size: 6rem;
