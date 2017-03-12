@@ -9,13 +9,13 @@ export const GamePlayerSelect = ({ onPlayerSelect }) => (
       <span className="flex--spandex" />
       <div className="GamePlayerSelect__selector">
         <button
-          className="btn btn--big GamePlayerSelect__panel"
+          className="btn btn--big btn--success GamePlayerSelect__panel"
           onClick={() => onPlayerSelect("X")}
         >
           X
         </button>
         <button
-          className="btn btn--big GamePlayerSelect__panel"
+          className="btn btn--big btn--success GamePlayerSelect__panel"
           onClick={() => onPlayerSelect("O")}
         >
           O
