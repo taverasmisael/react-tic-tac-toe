@@ -39,7 +39,7 @@ export default class App extends Component {
         />
         <GamePlayerSelect
           isVisible={!Boolean(this.state.currentTurn)}
-          onPlayerSelect={player => this.setState({ currentTurn: player })}
+          onPlayerSelect={(player) => this.InitGame(player)}
         />
         <FAB text="?" title="Ayuda" onClick={() => this.setState({aboutVisible: true})} />
         <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
@@ -50,6 +50,10 @@ export default class App extends Component {
 
   componentDidMount() {
     this.FXPlayer = document.querySelector("#FXPlayer");
+  }
+
+  InitGame(player) {
+    this.setState(Object.assign({}, this.InitialState, { currentTurn: player }));
   }
 
   MakeMovement(square) {
@@ -75,8 +79,11 @@ export default class App extends Component {
     if (newState.winner) {
       newState.currentTurn = this.SwitchPlayers(newState.currentTurn);
       this.PlayFx('applause.mp3')
-    } else {
+    } else if(this.remainingMoves(newState.board)) {
       this.PlayPopEffect(newState.currentTurn);
+    } else {
+      this.PlayFx('jeer.mp3');
+      newState.currentTurn = '';
     }
     return newState;
   }
@@ -128,5 +135,9 @@ export default class App extends Component {
   PlayFx(currentFX) {
     this.FXPlayer.currentTime = 0;
     this.setState({FX: {currentFX}}, () => this.FXPlayer.play());
+  }
+
+  remainingMoves(board) {
+    return board.filter(square=> !square).length;
   }
 }
