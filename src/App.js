@@ -4,6 +4,8 @@ import Game from "./components/Game";
 import GamePlayerSelect from "./components/GamePlayerSelect";
 import FxPlayer from "./components/FxPlayer";
 
+import AboutModal from './components/About'
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +16,7 @@ export default class App extends Component {
       board: ["", "", "", "", "", "", "", "", ""],
       modified: false,
       winningOffset: 0,
+      aboutVisible: false,
       winner: undefined,
       FX: {
         currentFX: 'pop1.mp3'
@@ -38,6 +41,7 @@ export default class App extends Component {
           onPlayerSelect={player => this.setState({ currentTurn: player })}
         />
         <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
+        <AboutModal isVisible={this.state.aboutVisible} onClose={() => this.setState({aboutVisible: false})}/>
       </div>
     );
   }
