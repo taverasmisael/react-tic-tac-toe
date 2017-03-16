@@ -1,53 +1,62 @@
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 html {
-  font-family: Fira Code, Roboto Mono, monospace;
+    font-family: Fira Code, Roboto Mono, monospace;
 }
 
 .flex--spandex {
-  flex: 1 0;
+    flex: 1 0;
 }
+
 .btn {
-  --text-shadow-color: #888;
-  color: white;
-  padding: 1em;
-  line-height: 1;
-  border-radius: 0.2em;
-  text-shadow: 0px 1px 0px var(--text-shadow-color);
-  text-transform: uppercase;
-  font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --text-shadow-color: #888;
+    color: white;
+    padding: 1em;
+    line-height: 1;
+    border-radius: 0.2em;
+    text-shadow: 0px 1px 0px var(--text-shadow-color);
+    text-transform: uppercase;
+    font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .btn.btn--big {
-  font-weight: bolder;
-}
-.btn.btn--circle {
-  border-radius: 50%;
+    font-weight: bolder;
 }
 
+.btn.btn--circle {
+    border-radius: 50%;
+    height: 1.5em;
+    padding: 0;
+    width: 1.5em;
+}
+
+.btn.btn--transparent {
+  background: transparent;
+  color: #323232;
+}
 .btn.btn--warn {
-  --text-shadow-color: #d32f2f;
-  background: #f44336;
+    --text-shadow-color: #d32f2f;
+    background: #f44336;
 }
 
 .btn.btn--success {
-  background: #03a9f4;
-  --text-shadow-color: #0288D1;
+    background: #03a9f4;
+    --text-shadow-color: #0288D1;
 }
 
 .text--success {
-  color: #03a9f4
+    color: #03a9f4
 }
 
 .text--warn {
-  color: #d32f2f
+    color: #d32f2f
 }
