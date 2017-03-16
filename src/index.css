@@ -12,7 +12,9 @@
 html {
     font-family: Fira Code, Roboto Mono, monospace;
 }
-
+h1, h2, h3, h4 {
+  font-family: Roboto, Helvetica neue, Helvetica, San Francisco, Segoe UI, Open Sans, sans-serif;
+}
 .flex--spandex {
     flex: 1 0;
 }
@@ -41,7 +43,6 @@ html {
 
 .btn.btn--transparent {
   background: transparent;
-  color: #323232;
 }
 .btn.btn--warn {
     --text-shadow-color: #d32f2f;
