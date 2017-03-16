@@ -15,7 +15,8 @@
     0 2px 0 0 #888 inset;
   cursor: pointer;
   display: flex;
-  font-size: 6rem;
+  font-size: 3.5rem;
+  font-size: 6ch;
   justify-content: center;
   line-height: 1;
   transition: all 150ms ease-in;
