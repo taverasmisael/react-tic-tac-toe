@@ -1,5 +1,5 @@
 import React from 'react';
-import './About.css';
+import './AboutModal.css';
 
 export const AboutModal = ({ isVisible, onClose }) => (
   <div className={`AboutModal ${isVisible ? 'AboutModal--is-visible' : ''}`}>

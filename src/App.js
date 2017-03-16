@@ -4,7 +4,7 @@ import Game from "./components/Game";
 import GamePlayerSelect from "./components/GamePlayerSelect";
 import FxPlayer from "./components/FxPlayer";
 
-import AboutModal from './components/About'
+import AboutModal from './components/AboutModal'
 import FAB from './components/FAB'
 
 export default class App extends Component {
