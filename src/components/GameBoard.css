@@ -8,10 +8,10 @@
 .GameBoard .GameBoard__square {
   align-items: center;
   background: white;
-  box-shadow: 2px 0 0 0 #888, 
-    0 2px 0 0 #888, 
+  box-shadow: 2px 0 0 0 #888,
+    0 2px 0 0 #888,
     2px 2px 0 0 #888,
-    2px 0 0 0 #888 inset, 
+    2px 0 0 0 #888 inset,
     0 2px 0 0 #888 inset;
   cursor: pointer;
   display: flex;
@@ -20,6 +20,62 @@
   line-height: 1;
   transition: all 150ms ease-in;
   width: 33.3333%;
+}
+.GameBoard .GameBoard__square:first-child {
+  box-shadow: 2px 0 0 0 #888,
+    0 2px 0 0 #888,
+    2px 2px 0 0 #888,
+    2px 0 0 0 transparent inset,
+    0 2px 0 0 transparent inset;
+}
+.GameBoard .GameBoard__square:nth-child(2n) {
+  box-shadow: 2px 0 0 0 #888,
+    0 2px 0 0 #888,
+    2px 2px 0 0 #888,
+    2px 0 0 0 #888 inset,
+    0 2px 0 0 transparent inset;
+}
+.GameBoard .GameBoard__square:nth-child(3n) {
+  box-shadow: 2px 0 0 0 transparent, /* right */
+    0 2px 0 0 #888,
+    2px 2px 0 0 transparent, /* bottom */
+    2px 0 0 0 #888 inset, /* left */
+    0 2px 0 0 transparent inset;
+}
+.GameBoard .GameBoard__square:nth-child(4n) {
+  box-shadow: 2px 0 0 0 #888, /* right */
+    0 2px 0 0 #888,
+    2px 2px 0 0 transparent, /* bottom */
+    2px 0 0 0 transparent inset, /* left */
+    0 2px 0 0 #888 inset;
+}
+.GameBoard .GameBoard__square:nth-child(6n) {
+  box-shadow: 2px 0 0 0 transparent, /* right */
+    0 2px 0 0 #888,
+    2px 2px 0 0 transparent, /* bottom */
+    2px 0 0 0 #888 inset, /* left */
+    0 2px 0 0 #888 inset;
+}
+.GameBoard .GameBoard__square:nth-child(7n) {
+  box-shadow: 2px 0 0 0 #888, /* right */
+    0 2px 0 0 transparent,
+    2px 2px 0 0 transparent, /* bottom */
+    2px 0 0 0 transparent inset, /* left */
+    0 2px 0 0 #888 inset;
+}
+.GameBoard .GameBoard__square:nth-child(8n) {
+  box-shadow: 2px 0 0 0 #888, /* right */
+    0 2px 0 0 transparent,
+    2px 2px 0 0 transparent, /* bottom */
+    2px 0 0 0 #888 inset, /* left */
+    0 2px 0 0 #888 inset;
+}
+.GameBoard .GameBoard__square:nth-child(9n) {
+  box-shadow: 2px 0 0 0 transparent, /* right */
+    0 2px 0 0 transparent,
+    2px 2px 0 0 transparent, /* bottom */
+    2px 0 0 0 #888 inset, /* left */
+    0 2px 0 0 #888 inset;
 }
 .GameBoard .GameBoard__square:focus {
   outline: none;
