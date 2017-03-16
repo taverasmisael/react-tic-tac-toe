@@ -37,11 +37,11 @@ export default class App extends Component {
           onSelectSquare={square => this.MakeMovement(square)}
           onResetGame={() => this.setState(this.InitialState)}
         />
-        <GamePlayerSelect
+        {/*<GamePlayerSelect
           isVisible={!Boolean(this.state.currentTurn)}
           onPlayerSelect={player => this.setState({ currentTurn: player })}
-        />
-        <FAB text="?" onClick={() => this.setState({aboutVisible: true})} />
+        />*/}
+        <FAB text="?" title="Ayuda" onClick={() => this.setState({aboutVisible: true})} />
         <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
         <AboutModal isVisible={this.state.aboutVisible} onClose={() => this.setState({aboutVisible: false})}/>
       </div>

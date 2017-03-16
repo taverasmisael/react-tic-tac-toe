@@ -1,8 +1,8 @@
 import React from 'react'
-import './About.css'
+import './FAB.css'
 
-export const FAB = ({onClick, text}) => (
-  <button className="FAB" type="button" onClick={() => onClick()}>
+export const FAB = ({onClick, text, title}) => (
+  <button title={title} className="FAB btn btn--circle btn--success" type="button" onClick={() => onClick()}>
     {text}
   </button>
 )
@@ -11,5 +11,6 @@ export default FAB;
 
 FAB.propTypes = {
   onClick: React.PropTypes.func.isRequired,
-  text: React.PropTypes.string.isRequired
+  text: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired
 }

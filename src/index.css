@@ -30,6 +30,9 @@ html {
 .btn.btn--big {
   font-weight: bolder;
 }
+.btn.btn--circle {
+  border-radius: 50%;
+}
 
 .btn.btn--warn {
   --text-shadow-color: #d32f2f;
