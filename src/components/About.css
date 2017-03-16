@@ -1,0 +1,34 @@
+.AboutModal {
+  background: #90A4AE;
+  border-radius: .2em;
+  box-shadow: 10px 10px 0px rgba(0,0,0,0.6);
+  height: 100%;
+  left: 0;
+  padding: 1rem .25rem;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+.AboutModal__btn-close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 1.25rem;
+  border: 1px solid;
+}
+
+.AboutModal__content {
+  left: 50%;
+  position: relative;
+  top: 10%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+.AboutModal__content__block {
+  background: #fff;
+  border-radius: .2em;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
