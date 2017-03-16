@@ -46,8 +46,8 @@ export const AboutModal = ({ isVisible, onClose }) => (
                 <td>13-MISM-1-075</td>
               </tr>
               <tr>
-                <td></td>
-                <td></td>
+                <td>Kelvin Maria Matos</td>
+                <td>11-SISN-1-107</td>
               </tr>
             </tbody>
           </table>
