@@ -5,6 +5,7 @@ import GamePlayerSelect from "./components/GamePlayerSelect";
 import FxPlayer from "./components/FxPlayer";
 
 import AboutModal from './components/About'
+import FAB from './components/FAB'
 
 export default class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export default class App extends Component {
           isVisible={!Boolean(this.state.currentTurn)}
           onPlayerSelect={player => this.setState({ currentTurn: player })}
         />
+        <FAB text="?" onClick={() => this.setState({aboutVisible: true})} />
         <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
         <AboutModal isVisible={this.state.aboutVisible} onClose={() => this.setState({aboutVisible: false})}/>
       </div>
