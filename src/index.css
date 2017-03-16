@@ -72,16 +72,21 @@ table {
   max-width: 100%;
   background: white;
   margin-bottom: .25em;
+  border-collapse: collapse;
 }
 
 th,
 td {
-  padding: .25em;
+  padding: 1em .5em;
   text-align: left;
 }
 td.is--numeric {
   text-align: right;
 }
+th,
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
 tbody {
-  color: rgba(0,0,0,. 7)
+  color: rgba(0,0,0, .7)
 }
