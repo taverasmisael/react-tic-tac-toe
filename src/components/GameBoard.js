@@ -10,7 +10,13 @@ const GameBoard = ({ board, winner, onSelectSquare }) => {
       onClick={() => onSelectSquare(index)}
       className={generateSquareClass(winner, index)}
     >
-      {square}
+      <div className="container">
+        <div className="wrapper">
+          <div className="content">
+            {square}
+          </div>
+        </div>
+      </div>
     </button>
   ));
   return (
@@ -26,10 +32,18 @@ GameBoard.propTypes = {
   onSelectSquare: React.PropTypes.func.isRequired
 };
 
+const positionClasses = [
+  'GameBoard__square--top GameBoard__square--left', 'GameBoard__square--top GameBoard__square--middle', 'GameBoard__square--top GameBoard__square--right',
+  'GameBoard__square--center GameBoard__square--left', 'GameBoard__square--center GameBoard__square--middle', 'GameBoard__square--center GameBoard__square--right',
+  'GameBoard__square--bottom GameBoard__square--left', 'GameBoard__square--bottom GameBoard__square--middle', 'GameBoard__square--bottom GameBoard__square--right',
+]
+
 function generateSquareClass(winner, index) {
-  const baseClase = "GameBoard__square";
+  const baseClass = 'GameBoard__square'
+  const posClass = positionClasses[index]
+  const fullClass = `${baseClass} ${posClass}`
   return winner && winner.findIndex(el => el === index) >= 0
-    ? `${baseClase} ${baseClase}--winner`
-    : baseClase;
+    ? `${fullClass} ${baseClass}--winner`
+    : fullClass;
 }
 export default GameBoard;
