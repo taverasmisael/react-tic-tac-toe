@@ -2,7 +2,7 @@ import React from 'react'
 import './FAB.css'
 
 export const FAB = ({onClick, text, title}) => (
-  <button title={title} className="FAB btn btn--circle btn--success" type="button" onClick={() => onClick()}>
+  <button title={title} className="FAB btn btn--circle btn--accent" type="button" onClick={() => onClick()}>
     {text}
   </button>
 )

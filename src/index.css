@@ -13,6 +13,10 @@ html {
     font-family: Fira Code, Roboto Mono, monospace;
     font-size: 14px;
 }
+body {
+  background: #f5f5f5;
+  color: #222;
+}
 h1, h2, h3, h4, thead {
   font-family: Roboto, Helvetica neue, Helvetica, San Francisco, Segoe UI, Open Sans, sans-serif;
 }
@@ -30,10 +34,6 @@ h1, h2, h3, h4, thead {
     text-shadow: 0px 1px 0px var(--text-shadow-color);
     text-transform: uppercase;
     font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.btn:focus {
-  outline: none;
 }
 
 .btn.btn--big {
@@ -59,9 +59,17 @@ h1, h2, h3, h4, thead {
     background: #03a9f4;
     --text-shadow-color: #0288D1;
 }
+.btn.btn--accent {
+    background: #673AB7;
+    --text-shadow-color: #4527A0;
+}
 
 .text--success {
     color: #03a9f4
+}
+
+.text--accent {
+    color: #673AB7
 }
 
 .text--warn {

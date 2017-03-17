@@ -1,5 +1,4 @@
 .GameBoard {
-  background: white;
   display: block;
   width: 100%;
 }
@@ -8,7 +7,7 @@
   display: table;
 }
 .GameBoard .GameBoard__square {
-  background: white;
+  background: transparent;
   border-collapse: collapse;
   cursor: pointer;
   float: left;
@@ -25,28 +24,35 @@
   display: block;
   padding-bottom: 100%;
 }
+.GameBoard .GameBoard__square:focus {
+  outline: none;
+}
 .GameBoard .GameBoard__square:focus,
-.GameBoard .GameBoard__square:hover:empty,
+.GameBoard .GameBoard__square .container .wrapper .content:hover:empty,
 .GameBoard .GameBoard__square.GameBoard__square--winner {
   outline: none;
-  background-color: #81D4FA;
-  color: white;
+  color: #673AB7;
+  text-shadow: 1px 1px 5px rgba(0,0,0,.2);
+}
+.GameBoard .GameBoard__square .container .wrapper .content {
+  transition: background 150ms ease-out;
+  will-change: background;
 }
 
 .GameBoard .GameBoard__square.GameBoard__square--top .container .wrapper .content,
 .GameBoard .GameBoard__square.GameBoard__square--center .container .wrapper .content {
-  border-bottom: 2px solid #81D4FA;
+  border-bottom: 4px solid rgba(150,150,150,.6);
 }
 .GameBoard .GameBoard__square.GameBoard__square--left .container .wrapper .content,
 .GameBoard .GameBoard__square.GameBoard__square--center .container .wrapper .content {
-  border-right: 2px solid #81D4FA;
+  border-right: 4px solid rgba(150,150,150,.6);
 }
 .GameBoard .GameBoard__square.GameBoard__square--middle.GameBoard__square--center .container .wrapper .content,
 .GameBoard .GameBoard__square.GameBoard__square--right .container .wrapper .content {
   border-right: none;
 }
 .GameBoard .GameBoard__square.GameBoard__square--right .container .wrapper .content {
-  border-left: 2px solid #81D4FA;
+  border-left: 4px solid rgba(150,150,150,.6);
 }
 
 .GameBoard .GameBoard__square .container {

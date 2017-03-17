@@ -19,6 +19,6 @@ GameStatus.propTypes = {
 
 function computeCurrentPlayerClasses(winner) {
   const baseClases = 'GameStatus__current-player__player';
-  return winner ? `${baseClases} text--success` : baseClases;
+  return winner ? `${baseClases} text--accent` : baseClases;
 }
 export default GameStatus;
