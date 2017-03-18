@@ -71,3 +71,8 @@ export const LegalMoves = board =>
  * @returns {number}
  */
 export const RemainingMoves = board => LegalMoves(board).length;
+
+
+export const PlayAI = (board) => {
+  return LegalMoves(board)[0]
+}

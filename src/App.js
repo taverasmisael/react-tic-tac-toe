@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 import {
   Board,
+  CheckForWinner,
   MakeMove,
-  SwitchPlayers,
+  PlayAI,
   PLAYER_ONE_SYMBOL,
   PLAYER_TWO_SYMBOL,
   RemainingMoves,
-  CheckForWinner
+  SwitchPlayers,
 } from './functionality/tictactoe';
 
 import { eq } from './functionality/helpers';
@@ -43,7 +44,7 @@ export default class App extends Component {
           winner={this.state.winner}
           board={this.state.board}
           currentTurn={this.state.currentTurn}
-          onSelectSquare={square => this.MakeMovement(square)}
+          onSelectSquare={square => this.MakeMove(this.state, square, this.state.currentTurn)}
           onResetGame={() => this.ResetGame()}
         />
         <FAB
@@ -64,6 +65,12 @@ export default class App extends Component {
     this.FXPlayer = document.querySelector('#FXPlayer');
   }
 
+  componentWillUpdate(props, state, anys) {
+    if (eq(state.currentTurn, PLAYER_TWO_SYMBOL)) {
+      this.MakeAIMove(state);
+    }
+  }
+
   InitGame(player) {
     this.setState(
       Object.assign({}, this.InitialState, { currentTurn: player })
@@ -74,20 +81,20 @@ export default class App extends Component {
     this.setState(this.InitialState);
   }
 
-  MakeMovement(square) {
-    if (!this.state.winner) this.setState(this.UpdateGameStatus(square));
+  MakeMove(state, square, player) {
+    if (!state.winner) this.setState(this.UpdateGameStatus(state, square, player));
   }
 
-  UpdateGameStatus(squareIndex) {
+  UpdateGameStatus(state, squareIndex, player) {
     let newState = {};
 
     newState.board = MakeMove(
-      this.state.board,
+      state.board,
       squareIndex,
-      this.state.currentTurn
+      player
     );
 
-    if (eq(newState.board, this.state.board))
+    if (eq(newState.board, state.board))
       return {};
     else {
       const isWinner = CheckForWinner(newState.board);
@@ -95,14 +102,19 @@ export default class App extends Component {
         newState.winner = isWinner;
         this.PlayFx('applause.mp3');
       } else if (RemainingMoves(newState.board)) {
-        this.PlayPopEffect(this.state.currentTurn);
-        newState.currentTurn = SwitchPlayers(this.state.currentTurn);
+        this.PlayPopEffect(player);
+        newState.currentTurn = SwitchPlayers(player);
       } else {
         this.PlayFx('jeer.mp3');
       }
     }
 
     return newState;
+  }
+
+  MakeAIMove(game) {
+    const nextMove = PlayAI(game.board);
+    this.MakeMove(game, nextMove, game.currentTurn)
   }
 
   PlayPopEffect(player) {
