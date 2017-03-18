@@ -1,5 +1,17 @@
 import React, { Component } from "react";
 
+import {
+  Board,
+  MakeMove,
+  SwitchPlayers,
+  PLAYER_ONE_SYMBOL,
+  PLAYER_TWO_SYMBOL,
+  RemainingMoves,
+  CheckForWinner
+} from './functionality/tictactoe'
+
+import { eq } from './functionality/helpers'
+
 import Game from "./components/Game";
 import GamePlayerSelect from "./components/GamePlayerSelect";
 import FxPlayer from "./components/FxPlayer";
@@ -11,12 +23,10 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.InitialState = {
-      PLAYER_TWO_SYMBOL: "O",
-      PLAYER_ONE_SYMBOL: "X",
+      PLAYER_ONE_SYMBOL,
+      PLAYER_TWO_SYMBOL,
       currentTurn: "",
-      board: ["", "", "", "", "", "", "", "", ""],
-      modified: false,
-      winningOffset: 0,
+      board: new Board(),
       aboutVisible: false,
       winner: undefined,
       FX: {
@@ -63,68 +73,24 @@ export default class App extends Component {
   UpdateGameStatus(squareIndex) {
     let newState = {};
 
-    newState.board = this.state.board.map((square, index) => {
-      const currentSquareAvailable = index === squareIndex && square === "";
-      if (currentSquareAvailable) {
-        newState.modified = true;
-        newState.currentTurn = this.SwitchPlayers(this.state.currentTurn);
-        return this.state.currentTurn;
-      } else {
-        newState.modified = false;
-        return square;
-      }
-    });
+    newState.board = MakeMove(this.state.board, squareIndex, this.state.currentTurn);
 
-    newState.winner = this.CheckForWinner(newState.board);
-    if (newState.winner) {
-      newState.currentTurn = this.SwitchPlayers(newState.currentTurn);
-      this.PlayFx('applause.mp3')
-    } else if(this.remainingMoves(newState.board)) {
-      this.PlayPopEffect(newState.currentTurn);
-    } else {
-      this.PlayFx('jeer.mp3');
-      newState.currentTurn = '';
+    if(eq(newState.board, this.state.board)) return {};
+    else {
+      const isWinner = CheckForWinner(newState.board);
+      if(CheckForWinner(newState.board)) {
+        newState.winner = isWinner;
+        this.PlayFx('applause.mp3')
+      } else if (RemainingMoves(newState.board)) {
+        this.PlayPopEffect(this.state.currentTurn);
+        newState.currentTurn = SwitchPlayers(this.state.currentTurn);
+      }else {
+        this.PlayFx('jeer.mp3');
+        newState.currentTurn = '';
+      }
     }
+
     return newState;
-  }
-
-  /**
- * This function checks if any `winningCombo` is present in the board passed as parameter
- * @param {Array} board
- */
-  CheckForWinner(board) {
-    const winningCombos = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-
-    return winningCombos.find(combo => {
-      if (
-        board[combo[0]] === board[combo[1]] &&
-        board[combo[1]] === board[combo[2]]
-      ) {
-        return board[combo[0]];
-      } else {
-        return false;
-      }
-    });
-  }
-
-  /**
-   * This function will switch between returning the oposite player for the one passed
-   * @param {String} currentTurn
-   */
-  SwitchPlayers(currentTurn) {
-    const PlayerOneIsPlaying = currentTurn === this.state.PLAYER_ONE_SYMBOL;
-    const { PLAYER_TWO_SYMBOL, PLAYER_ONE_SYMBOL } = this.state;
-
-    return PlayerOneIsPlaying ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
   }
 
   PlayPopEffect(player) {
@@ -135,9 +101,5 @@ export default class App extends Component {
   PlayFx(currentFX) {
     this.FXPlayer.currentTime = 0;
     this.setState({FX: {currentFX}}, () => this.FXPlayer.play());
-  }
-
-  remainingMoves(board) {
-    return board.filter(square=> !square).length;
   }
 }
