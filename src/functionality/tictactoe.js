@@ -1,13 +1,13 @@
-import { eq, notIdentity } from './helpers'
+import { eq } from './helpers';
 
-export const PLAYER_ONE_SYMBOL = 'X'
-export const PLAYER_TWO_SYMBOL = 'O'
+export const PLAYER_ONE_SYMBOL = 'X';
+export const PLAYER_TWO_SYMBOL = 'O';
 
 export function Board() {
-  return ["", "", "", "", "", "", "", "", ""]
+  return ['', '', '', '', '', '', '', '', ''];
 }
 
-export const CurrentSquareAvailable = (square) => square === '';
+export const CurrentSquareAvailable = square => square === '';
 
 /**
  * This function recieve a Board Array and returns a new Board Array with the move applied
@@ -17,22 +17,24 @@ export const CurrentSquareAvailable = (square) => square === '';
  * @returns {Array<String>} The new Board with the move include
  */
 export const MakeMove = (board, index, player) =>
-  CurrentSquareAvailable(board[index]) ? board.map((square, idx) => eq(idx, index) ? player : square) : board;
+  CurrentSquareAvailable(board[index])
+    ? board.map((square, idx) => eq(idx, index) ? player : square)
+    : board;
 
 /**
  * This function will switch between returning the oposite player for the one passed
  * @param {String} player
  * @returns {String} the oposite player to the one passed
  */
-export const SwitchPlayers = (player) =>
+export const SwitchPlayers = player =>
   eq(player, PLAYER_ONE_SYMBOL) ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
 
- /**
+/**
  * This function checks if any `winningCombo` is present in the board passed as parameter
  * @param {Array} board
  * @returns {Array<Number>|false}
  */
-export const CheckForWinner = (board) => {
+export const CheckForWinner = board => {
   const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -54,12 +56,18 @@ export const CheckForWinner = (board) => {
       return false;
     }
   });
-}
+};
+
+/**
+ * This functions return an array filled with the index of LegalMoves in the passed board
+ * @param {Array<String>} board The board in wich we'll search the available moves
+ */
+export const LegalMoves = board =>
+  board.reduce((prev, curr, i) => !curr ? [...prev, i] : prev, []);
 
 /**
  * This function recieve a String Array and returns the ammount of moves remaining on this board
  * @param {Array<String>} board This is the board where we are going to check for available moves
  * @returns {number}
  */
-export const RemainingMoves = (board) =>
-  board.filter(notIdentity).length;
+export const RemainingMoves = board => LegalMoves(board).length;
