@@ -16,18 +16,20 @@ export const CurrentSquareAvailable = square => square === '';
  * @param {String} player The symbol will be placed in this position
  * @returns {Array<String>} The new Board with the move include
  */
-export const MakeMove = (board, index, player) =>
-  CurrentSquareAvailable(board[index])
+export const MakeMove = (board, index, player) => {
+  return CurrentSquareAvailable(board[index])
     ? board.map((square, idx) => eq(idx, index) ? player : square)
     : board;
+}
 
 /**
  * This function will switch between returning the oposite player for the one passed
  * @param {String} player
  * @returns {String} the oposite player to the one passed
  */
-export const SwitchPlayers = player =>
-  eq(player, PLAYER_ONE_SYMBOL) ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
+export const SwitchPlayers = player => {
+  return eq(player, PLAYER_ONE_SYMBOL) ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
+}
 
 /**
  * This function checks if any `winningCombo` is present in the board passed as parameter
@@ -62,8 +64,7 @@ export const CheckForWinner = board => {
  * This functions return an array filled with the index of LegalMoves in the passed board
  * @param {Array<String>} board The board in wich we'll search the available moves
  */
-export const LegalMoves = board =>
-  board.reduce((prev, curr, i) => !curr ? [...prev, i] : prev, []);
+export const LegalMoves = board => board.reduce((prev, curr, i) => !curr ? [...prev, i] : prev, []);
 
 /**
  * This function recieve a String Array and returns the ammount of moves remaining on this board
@@ -73,6 +74,56 @@ export const LegalMoves = board =>
 export const RemainingMoves = board => LegalMoves(board).length;
 
 
-export const PlayAI = (board) => {
-  return LegalMoves(board)[0]
+const RateBoard = (board) => {
+  let result;
+  if (CheckForWinner(board)) {
+    result = 10;
+  } else if (RemainingMoves(board)){
+    result = -10
+  } else {
+    result = 0
+  }
+  return result;
 }
+
+const GameOver = (board) => CheckForWinner(board) || !RemainingMoves(board);
+
+function MinScenario(board, player, depth) {
+  if(GameOver(board) || !depth) {
+    return RateBoard(board);
+  }
+  let bestScenario = Number.NEGATIVE_INFINITY;
+  const availableMoves = LegalMoves(board);
+  const nextPlayer = SwitchPlayers(player)
+  for (let move of availableMoves) {
+    const scenario = MaxScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1);
+    bestScenario = scenario > bestScenario ? move : bestScenario;
+  }
+
+
+  return bestScenario
+}
+
+function MaxScenario(board, player, depth) {
+  if(GameOver(board) || !depth) {
+    return RateBoard(board);
+  }
+  let bestScenario = Number.NEGATIVE_INFINITY;
+  const availableMoves = LegalMoves(board);
+  const nextPlayer = SwitchPlayers(player)
+  for (let move of availableMoves) {
+    const scenario = MinScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1);
+    bestScenario = scenario > bestScenario ? move : bestScenario;
+  }
+
+
+  return bestScenario
+}
+
+export const PlayAI = (board, depth, player, ia = true) => {
+  if(CheckForWinner(board)) return RateBoard(board);
+  const availableMoves = LegalMoves(board);
+  const bestMove = MinScenario(board, player, 2);
+  return bestMove
+}
+

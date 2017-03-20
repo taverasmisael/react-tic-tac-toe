@@ -113,7 +113,7 @@ export default class App extends Component {
   }
 
   MakeAIMove(game) {
-    const nextMove = PlayAI(game.board);
+    const nextMove = PlayAI(game.board, 2, game.currentTurn);
     this.MakeMove(game, nextMove, game.currentTurn)
   }
 
