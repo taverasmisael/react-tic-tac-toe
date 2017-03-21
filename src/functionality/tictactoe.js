@@ -75,11 +75,13 @@ export const RemainingMoves = board => LegalMoves(board).length;
 
 
 const RateBoard = (board) => {
+  const winner = CheckForWinner(board);
+  const availableMoves = RemainingMoves(board);
   let result;
-  if (CheckForWinner(board)) {
-    result = 10;
-  } else if (RemainingMoves(board)){
-    result = -10
+  if (winner) {
+    result = 10 + availableMoves;
+  } else if (availableMoves){
+    result = -10 + availableMoves
   } else {
     result = 0
   }
@@ -95,8 +97,9 @@ function MinScenario(board, player, depth) {
   let bestScenario = Number.NEGATIVE_INFINITY;
   const availableMoves = LegalMoves(board);
   const nextPlayer = SwitchPlayers(player)
+  const NextScenario = nextPlayer === PLAYER_TWO_SYMBOL ? MaxScenario : MinScenario
   for (let move of availableMoves) {
-    const scenario = MaxScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1);
+    const scenario = NextScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1)
     bestScenario = scenario > bestScenario ? move : bestScenario;
   }
 
@@ -111,8 +114,9 @@ function MaxScenario(board, player, depth) {
   let bestScenario = Number.NEGATIVE_INFINITY;
   const availableMoves = LegalMoves(board);
   const nextPlayer = SwitchPlayers(player)
+  const NextScenario = nextPlayer === PLAYER_TWO_SYMBOL ? MaxScenario : MinScenario
   for (let move of availableMoves) {
-    const scenario = MinScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1);
+    const scenario = NextScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1)
     bestScenario = scenario > bestScenario ? move : bestScenario;
   }
 
@@ -120,10 +124,10 @@ function MaxScenario(board, player, depth) {
   return bestScenario
 }
 
-export const PlayAI = (board, depth, player, ia = true) => {
+export const PlayAI = (board, depth, player) => {
   if(CheckForWinner(board)) return RateBoard(board);
   const availableMoves = LegalMoves(board);
-  const bestMove = MinScenario(board, player, 2);
+  const bestMove = availableMoves.includes(4) ? 4 : MinScenario(board, player, 2);
   return bestMove
 }
 
