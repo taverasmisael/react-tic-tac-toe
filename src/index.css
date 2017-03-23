@@ -99,3 +99,12 @@ td {
 tbody {
   color: rgba(0,0,0, .7)
 }
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.img--circular {
+  border-radius: 50%;
+}
