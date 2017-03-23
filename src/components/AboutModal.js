@@ -28,24 +28,29 @@ export const AboutModal = ({ isVisible, onClose }) => (
           <table>
             <thead>
               <tr>
+                <th></th>
                 <th>Nombre</th>
                 <th>Matrícula</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/misael-taveras.jpg" alt="MisaelTaveras" /></td>
                 <td>MisaelTaveras</td>
                 <td>13-EIST-1-017</td>
               </tr>
               <tr>
+                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/elvis-vanderpool.jpg" alt="Elvis Vanderpool" /></td>
                 <td>Elvis Vanderpool</td>
                 <td>13-EIST-1-058</td>
               </tr>
               <tr>
-                <td>Odani Eustaqui</td>
+                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/odani-esutaquio.jpg" alt="Odani Eustaquio" /></td>
+                <td>Odani Eustaquio</td>
                 <td>13-MISM-1-075</td>
               </tr>
               <tr>
+                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/.jpg" alt="Kelvin Maria Matos" /></td>
                 <td>Kelvin Maria Matos</td>
                 <td>11-SISN-1-107</td>
               </tr>
