@@ -63,6 +63,8 @@ export default class App extends Component {
 
   componentDidMount() {
     this.FXPlayer = document.querySelector('#FXPlayer');
+    document.addEventListener('keyup', this.onKeyUp.bind(this))
+
   }
 
   componentWillUpdate(props, state, anys) {
@@ -79,6 +81,10 @@ export default class App extends Component {
 
   ResetGame() {
     this.setState(this.InitialState);
+  }
+
+  onKeyUp({ keyCode }) {
+    if (keyCode === 27 && this.state.aboutVisible) this.setState({aboutVisible: false})
   }
 
   MakeMove(state, square, player) {
