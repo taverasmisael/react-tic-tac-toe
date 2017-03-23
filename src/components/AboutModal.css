@@ -69,3 +69,21 @@
     width: 50%;
   }
 }
+.AboutModal .profile-pic {
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.AboutModal .profile-pic:after {
+  background: #03a9f4;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
