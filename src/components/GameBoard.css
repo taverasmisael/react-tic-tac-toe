@@ -31,7 +31,7 @@
 .GameBoard .GameBoard__square .container .wrapper .content:hover:empty,
 .GameBoard .GameBoard__square.GameBoard__square--winner {
   outline: none;
-  color: #673AB7;
+  color: var(--winning-color);
   text-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
 .GameBoard .GameBoard__square .container .wrapper .content {

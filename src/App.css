@@ -1,18 +1,24 @@
 .App {
+  --winning-color: rgb(247, 112, 98);
+  background-color: rgb(223, 233, 243);
+  background-image: linear-gradient(to top, rgb(223, 233, 243) 0%, white 100%);
   will-change: background-color, background-image;
 }
 
 .App--bg-red {
+  --winning-color: rgb(223, 233, 243);
   background-color: rgb(247, 112, 98);
   background-image: linear-gradient(to top, rgb(247, 112, 98) 0%, rgb(254, 81, 150) 100%)
 }
 
 .App--bg-blue {
+  --winning-color: rgb(223, 233, 243);;
   background-color: rgb(146, 254, 157);
   background-image: linear-gradient(to right, rgb(146, 254, 157) 0%, rgb(0, 201, 255) 100%)
 }
 
 .App--bg-green {
+  --winning-color: rgb(223, 233, 243);
   background-color: rgb(72, 198, 239);
   background-image: linear-gradient(to top, rgb(72, 198, 239) 0%, rgb(111, 134, 214) 100%)
 }
