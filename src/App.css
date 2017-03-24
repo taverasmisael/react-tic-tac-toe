@@ -22,3 +22,8 @@
   background-color: rgb(72, 198, 239);
   background-image: linear-gradient(to top, rgb(72, 198, 239) 0%, rgb(111, 134, 214) 100%)
 }
+.App--bg-dark {
+  --winning-color: rgb(223, 233, 243);
+  background-color: rgb(41, 50, 60);
+  background-image: linear-gradient(60deg, rgb(41, 50, 60) 0%, rgb(72, 85, 99) 100%)
+}

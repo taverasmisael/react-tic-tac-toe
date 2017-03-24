@@ -4,6 +4,10 @@ import './ColorPicker.css';
 
 let ColorOptions = [
   {
+    title: 'Usar Fondo Oscuro',
+    className: ['circle-color', 'circle-color--dark'],
+    eventClass: 'dark'
+  }, {
     title: 'Usar Fondo Rojo',
     className: ['circle-color', 'circle-color--red'],
     eventClass: 'red'
