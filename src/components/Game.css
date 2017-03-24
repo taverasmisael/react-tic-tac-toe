@@ -1,7 +1,7 @@
 .Game {
     display: flex;
     flex-flow: row wrap;
-    padding: 2rem;
+    padding: 0 1rem;
 }
 
 .Game:after {

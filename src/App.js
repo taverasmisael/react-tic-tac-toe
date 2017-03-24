@@ -8,12 +8,13 @@ import {
   PLAYER_ONE_SYMBOL,
   PLAYER_TWO_SYMBOL,
   RemainingMoves,
-  SwitchPlayers,
+  SwitchPlayers
 } from './functionality/tictactoe';
 
 import { eq } from './functionality/helpers';
 
 import Game from './components/Game';
+import GameConfigBar from "./components/GameConfigBar";
 import FxPlayer from './components/FxPlayer';
 
 import AboutModal from './components/AboutModal';
@@ -40,12 +41,16 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
+        <GameConfigBar
+          winner={Boolean(this.state.winner)}
+          currentPlayer={this.state.currentTurn}
+          onResetGame={() => this.ResetGame()}
+        />
         <Game
           winner={this.state.winner}
           board={this.state.board}
-          currentTurn={this.state.currentTurn}
-          onSelectSquare={square => this.MakeMove(this.state, square, this.state.currentTurn)}
-          onResetGame={() => this.ResetGame()}
+          onSelectSquare={square =>
+            this.MakeMove(this.state, square, this.state.currentTurn)}
         />
         <FAB
           text="?"
@@ -63,8 +68,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this.FXPlayer = document.querySelector('#FXPlayer');
-    document.addEventListener('keyup', this.onKeyUp.bind(this))
-
+    document.addEventListener('keyup', this.onKeyUp.bind(this));
   }
 
   componentWillUpdate(props, state, anys) {
@@ -84,21 +88,19 @@ export default class App extends Component {
   }
 
   onKeyUp({ keyCode }) {
-    if (keyCode === 27 && this.state.aboutVisible) this.setState({aboutVisible: false})
+    if (keyCode === 27 && this.state.aboutVisible)
+      this.setState({ aboutVisible: false });
   }
 
   MakeMove(state, square, player) {
-    if (!state.winner) this.setState(this.UpdateGameStatus(state, square, player));
+    if (!state.winner)
+      this.setState(this.UpdateGameStatus(state, square, player));
   }
 
   UpdateGameStatus(state, squareIndex, player) {
     let newState = {};
 
-    newState.board = MakeMove(
-      state.board,
-      squareIndex,
-      player
-    );
+    newState.board = MakeMove(state.board, squareIndex, player);
 
     if (eq(newState.board, state.board))
       return {};
@@ -120,7 +122,7 @@ export default class App extends Component {
 
   MakeAIMove(game) {
     const nextMove = PlayAI(game.board, 2, game.currentTurn);
-    this.MakeMove(game, nextMove, game.currentTurn)
+    this.MakeMove(game, nextMove, game.currentTurn);
   }
 
   PlayPopEffect(player) {
