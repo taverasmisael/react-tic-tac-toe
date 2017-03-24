@@ -49,11 +49,6 @@ export const AboutModal = ({ isVisible, onClose }) => (
                 <td>Odani Eustaquio</td>
                 <td>13-MISM-1-075</td>
               </tr>
-              <tr>
-                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/.jpg" alt="Kelvin Maria Matos" /></td>
-                <td>Kelvin Maria Matos</td>
-                <td>11-SISN-1-107</td>
-              </tr>
             </tbody>
           </table>
         </div>
