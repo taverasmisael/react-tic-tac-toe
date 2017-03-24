@@ -10,7 +10,9 @@ const GameConfigBar = ({ currentPlayer, onResetGame, winner, onChangeColor, onSe
       <h4 className="config-block__header">
         {winner ? 'El ganador es' : 'Es el turno de'}:
       </h4>
-      <div className={computeCurrentPlayerClasses(winner)}>{currentPlayer}</div>
+      <div clasName="config-block__content ">
+        <p className={computeCurrentPlayerClasses(winner)}>{currentPlayer}</p>
+      </div>
     </div>
     <div className="config-block color-picker">
       <h4 className="config-block__header">Configuración de Sonido</h4>
@@ -46,6 +48,6 @@ GameConfigBar.propTypes = {
 export default GameConfigBar;
 
 function computeCurrentPlayerClasses(winner) {
-  const baseClases = 'config-block__content current-player__player';
+  const baseClases = 'current-player__player';
   return winner ? `${baseClases} text--accent` : baseClases;
 }
