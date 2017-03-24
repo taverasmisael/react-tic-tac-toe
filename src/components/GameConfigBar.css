@@ -35,7 +35,7 @@
 }
 
 
-@media (min-width: 720px) {
+@media (min-width: 769px) {
   .GameConfigBar {
     flex-flow: row nowrap;
 

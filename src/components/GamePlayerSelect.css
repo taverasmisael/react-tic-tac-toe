@@ -40,7 +40,7 @@
 }
 
 
-@media (min-width: 720px) {
+@media (min-width: 769px) {
   .GamePlayerSelect__selector {
     flex-flow: row nowrap;
     width: auto;

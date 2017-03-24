@@ -72,7 +72,7 @@
 .GameBoard .GameBoard__square .container .wrapper .content:hover:not(:empty) {
   cursor: not-allowed;
 }
-@media (min-width: 720px) {
+@media (min-width: 769px) {
     .GameBoard {
         width: 49%;
     }

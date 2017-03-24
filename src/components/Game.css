@@ -14,7 +14,7 @@
     order: 2;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 769px) {
     .GameBoard {
         order: 0;
     }
