@@ -10,7 +10,9 @@
 }
 
 html {
-    font-family: Fira Code, Roboto Mono, monospace;
+    --font-sans-serif: Roboto, Helvetica neue, Helvetica, San Francisco, Segoe UI, Open Sans, sans-serif;
+    --font-monospace: Fira Code, Roboto Mono, monospace;
+    font-family: var(--font-monospace);
     font-size: 14px;
 }
 body {
@@ -18,7 +20,7 @@ body {
   color: #222;
 }
 h1, h2, h3, h4, thead {
-  font-family: Roboto, Helvetica neue, Helvetica, San Francisco, Segoe UI, Open Sans, sans-serif;
+  font-family: var(--font-sans-serif);
 }
 .flex--spandex {
     flex: 1 0;
@@ -122,9 +124,9 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 0px;
   cursor: pointer;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: rgba(0, 0, 0, 0.21);
+  background: #03a9f4;
   border-radius: 0px;
-  border: 0.1px solid #03a9f4;
+  border: 1px solid #03a9f4;
 }
 input[type=range]::-webkit-slider-thumb {
   box-shadow: 2.4px 2.4px 0px rgba(0, 0, 0, 0.18), 0px 0px 2.4px rgba(13, 13, 13, 0.18);
@@ -145,9 +147,9 @@ input[type=range]::-moz-range-track {
   height: 0px;
   cursor: pointer;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: rgba(0, 0, 0, 0.21);
+  background: #03a9f4;
   border-radius: 0px;
-  border: 0.1px solid #03a9f4;
+  border: 1px solid #03a9f4;
 }
 input[type=range]::-moz-range-thumb {
   box-shadow: 2.4px 2.4px 0px rgba(0, 0, 0, 0.18), 0px 0px 2.4px rgba(13, 13, 13, 0.18);
@@ -167,14 +169,14 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: rgba(0, 0, 0, 0.21);
-  border: 0.1px solid #03a9f4;
+  background: #03a9f4;
+  border: 1px solid #03a9f4;
   border-radius: 0px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
 input[type=range]::-ms-fill-upper {
-  background: rgba(0, 0, 0, 0.21);
-  border: 0.1px solid #03a9f4;
+  background: #03a9f4;
+  border: 1px solid #03a9f4;
   border-radius: 0px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
@@ -189,7 +191,7 @@ input[type=range]::-ms-thumb {
   height: 0px;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: rgba(0, 0, 0, 0.21);
+  background: #03a9f4;
 }
 input[type=range]:focus::-ms-fill-upper {
   background: rgba(3, 3, 3, 0.21);
