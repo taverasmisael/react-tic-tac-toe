@@ -20,7 +20,9 @@ const GameConfigBar = ({currentPlayer, onResetGame, winner}) => (
       <span className="config-block__header">Color de Fondo</span>
       <span className="config-block__content">{new Date().getUTCDate()}</span>
     </div>
-    <button className="btn btn--big btn--warn" onClick={() => onResetGame()}>{winner ? 'Nueva Partida' : 'Reiniciar Partida'}</button>
+    <div className="config-block reset-game">
+      <button className="btn btn--big btn--warn" onClick={() => onResetGame()}>{winner ? 'Nueva Partida' : 'Reiniciar Partida'}</button>
+    </div>
   </header>
 )
 GameConfigBar.propTypes = {
