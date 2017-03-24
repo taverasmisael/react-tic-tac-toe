@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './App.css'
+
 import {
   Board,
   CheckForWinner,
@@ -30,6 +32,7 @@ export default class App extends Component {
       board: new Board(),
       aboutVisible: false,
       winner: undefined,
+      BGClass: '',
       FX: {
         currentFX: 'pop1.mp3'
       }
@@ -40,11 +43,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={`App ${this.state.BGClass}`}>
         <GameConfigBar
           winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
           onResetGame={() => this.ResetGame()}
+          onChangeColor={(color) => this.onChangeColor(color)}
         />
         <Game
           winner={this.state.winner}
@@ -90,6 +94,12 @@ export default class App extends Component {
   onKeyUp({ keyCode }) {
     if (keyCode === 27 && this.state.aboutVisible)
       this.setState({ aboutVisible: false });
+  }
+
+  onChangeColor(color) {
+    this.setState({
+      BGClass: color ? `App--bg-${color}` : ''
+    })
   }
 
   MakeMove(state, square, player) {
