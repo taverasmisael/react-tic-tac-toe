@@ -32,7 +32,7 @@ export default class App extends Component {
       board: new Board(),
       aboutVisible: false,
       winner: undefined,
-      BGClass: '',
+      BGColor: '',
       FX: {
         currentFX: 'pop1.mp3'
       }
@@ -43,7 +43,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={`App ${this.state.BGClass}`}>
+      <div className={`App ${this.state.BGColor}`}>
         <GameConfigBar
           winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
@@ -88,7 +88,7 @@ export default class App extends Component {
   }
 
   ResetGame() {
-    this.setState(this.InitialState);
+    this.setState(Object.assign({}, this.InitialState, {BGColor: this.state.BGColor}));
   }
 
   onKeyUp({ keyCode }) {
@@ -98,7 +98,7 @@ export default class App extends Component {
 
   onChangeColor(color) {
     this.setState({
-      BGClass: color ? `App--bg-${color}` : ''
+      BGColor: color ? `App--bg-${color}` : ''
     })
   }
 
