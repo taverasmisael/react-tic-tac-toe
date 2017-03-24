@@ -64,7 +64,7 @@
   text-align: justify;
 }
 
-@media (min-width: 769) {
+@media (min-width: 769px) {
   .AboutModal__content {
     width: 50%;
   }
