@@ -41,18 +41,18 @@
 
 .GameBoard .GameBoard__square.GameBoard__square--top .container .wrapper .content,
 .GameBoard .GameBoard__square.GameBoard__square--center .container .wrapper .content {
-  border-bottom: 4px solid #bcbcbc;
+  border-bottom: 4px solid rgba(188, 188, 188, 0.57)
 }
 .GameBoard .GameBoard__square.GameBoard__square--left .container .wrapper .content,
 .GameBoard .GameBoard__square.GameBoard__square--center .container .wrapper .content {
-  border-right: 4px solid #bcbcbc;
+  border-right: 4px solid rgba(188, 188, 188, 0.57)
 }
 .GameBoard .GameBoard__square.GameBoard__square--middle.GameBoard__square--center .container .wrapper .content,
 .GameBoard .GameBoard__square.GameBoard__square--right .container .wrapper .content {
   border-right: none;
 }
 .GameBoard .GameBoard__square.GameBoard__square--right .container .wrapper .content {
-  border-left: 4px solid #bcbcbc;
+  border-left: 4px solid rgba(188, 188, 188, 0.57)
 }
 
 .GameBoard .GameBoard__square .container {
