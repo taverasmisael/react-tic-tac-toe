@@ -1,6 +1,6 @@
 .GameConfigBar {
   align-items: center;
-  background: white;
+  background: rgba(255,255,255,.6);
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -20,6 +20,9 @@
   padding: 1rem 0;
   width: 100%;
 }
+.GameConfigBar .config-block .config-block__header{
+  margin-bottom: 1em;
+}
 .GameConfigBar .config-block:not(:last-child) {
   border-bottom: 1px solid rgba(0,0,0,.2);
   margin-bottom: .5rem;
@@ -34,6 +37,37 @@
   justify-content: flex-end;
 }
 
+.color-picker .config-block {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.circle-color {
+  background: rgba(0,0,0,.2);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2rem;
+  line-height: 1;
+  width: 2rem;
+}
+
+.circle-color:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.circle-color.circle-color--red {
+  background-color: rgb(247, 112, 98);
+  background-image: linear-gradient(to top, rgb(247, 112, 98) 0%, rgb(254, 81, 150) 100%)
+}
+
+.circle-color.circle-color--blue {
+  background-color: rgb(146, 254, 157);
+  background-image: linear-gradient(to right, rgb(146, 254, 157) 0%, rgb(0, 201, 255) 100%)
+}
+
+.circle-color.circle-color--green {
+  background-color: rgb(72, 198, 239);
+  background-image: linear-gradient(to top, rgb(72, 198, 239) 0%, rgb(111, 134, 214) 100%)
+}
 
 @media (min-width: 769px) {
   .GameConfigBar {

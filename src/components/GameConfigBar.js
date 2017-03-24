@@ -2,23 +2,30 @@ import React from 'react';
 
 import './GameConfigBar.css';
 
-const GameConfigBar = ({currentPlayer, onResetGame, winner}) => (
+const GameConfigBar = ({currentPlayer, onResetGame, winner, onChangeColor}) => (
   <header className="GameConfigBar">
     <div className="config-block current-player">
-      <span className="config-block__header">{ winner  ? 'El ganador es' : 'Es el turno de' }:</span>
-      <span className={computeCurrentPlayerClasses(winner)}>{ currentPlayer }</span>
+      <h4 className="config-block__header">{ winner  ? 'El ganador es' : 'Es el turno de' }:</h4>
+      <div className={computeCurrentPlayerClasses(winner)}>{ currentPlayer }</div>
     </div>
     <div className="config-block color-picker">
-      <span className="config-block__header">Configuración de Sonido</span>
-      <span className="config-block__content">{new Date().getUTCDate()}</span>
+      <h4 className="config-block__header">Configuración de Sonido</h4>
+      <div className="config-block__content">
+        <input type="range" min="0" max="1" step="0.1"/>
+      </div>
     </div>
     <div className="config-block timer">
-      <span className="config-block__header">Tiempo</span>
-      <span className="config-block__content">{new Date().getUTCDate()}</span>
+      <h4 className="config-block__header">Tiempo</h4>
+      <div className="config-block__content">{new Date().getUTCDate()}</div>
     </div>
     <div className="config-block color-picker">
-      <span className="config-block__header">Color de Fondo</span>
-      <span className="config-block__content">{new Date().getUTCDate()}</span>
+      <h4 className="config-block__header">Color de Fondo</h4>
+      <div className="config-block__content">
+        <button type="button" title="Usar Fondo Rojo" className="circle-color circle-color--red" onClick={() => onChangeColor('red')}></button>
+        <button type="button" title="Usar Fondo Azul" className="circle-color circle-color--blue" onClick={() => onChangeColor('blue')}></button>
+        <button type="button" title="Usar Fondo Verde" className="circle-color circle-color--green" onClick={() => onChangeColor('green')}></button>
+        <button type="button" title="Usar Fondo Predeterminado" className="circle-color" onClick={() => onChangeColor('')}></button>
+      </div>
     </div>
     <div className="config-block reset-game">
       <button className="btn btn--big btn--warn" onClick={() => onResetGame()}>{winner ? 'Nueva Partida' : 'Reiniciar Partida'}</button>
@@ -28,6 +35,7 @@ const GameConfigBar = ({currentPlayer, onResetGame, winner}) => (
 GameConfigBar.propTypes = {
   currentPlayer: React.PropTypes.string.isRequired,
   onResetGame: React.PropTypes.func.isRequired,
+  onChangeColor: React.PropTypes.func.isRequired,
   winner: React.PropTypes.bool.isRequired,
 }
 
