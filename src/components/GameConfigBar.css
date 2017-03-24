@@ -1,4 +1,5 @@
 .GameConfigBar {
+  font-family: var(--font-sans-serif);
   align-items: center;
   background: rgba(255,255,255,.6);
   display: flex;

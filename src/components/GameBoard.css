@@ -10,6 +10,7 @@
   background: transparent;
   border-collapse: collapse;
   cursor: pointer;
+  font-family: var(--font-monospace);
   float: left;
   font-size: 3.5rem;
   font-size: 6ch;
