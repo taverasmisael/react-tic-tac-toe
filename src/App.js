@@ -47,6 +47,7 @@ export default class App extends Component {
         <GameConfigBar
           winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
+          onSetVolume={(amount) => this.onSetVolume(amount)}
           onResetGame={() => this.ResetGame()}
           onChangeColor={(color) => this.onChangeColor(color)}
         />
@@ -94,6 +95,10 @@ export default class App extends Component {
   onKeyUp({ keyCode }) {
     if (keyCode === 27 && this.state.aboutVisible)
       this.setState({ aboutVisible: false });
+  }
+
+  onSetVolume(amount) {
+    this.FXPlayer.volume = amount;
   }
 
   onChangeColor(color) {

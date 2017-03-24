@@ -4,7 +4,7 @@ import './GameConfigBar.css';
 
 import ColorPicker from './ColorPicker';
 
-const GameConfigBar = ({ currentPlayer, onResetGame, winner, onChangeColor }) => (
+const GameConfigBar = ({ currentPlayer, onResetGame, winner, onChangeColor, onSetVolume }) => (
   <header className="GameConfigBar">
     <div className="config-block current-player">
       <h4 className="config-block__header">
@@ -15,7 +15,7 @@ const GameConfigBar = ({ currentPlayer, onResetGame, winner, onChangeColor }) =>
     <div className="config-block color-picker">
       <h4 className="config-block__header">Configuración de Sonido</h4>
       <div className="config-block__content">
-        <input type="range" min="0" max="1" step="0.1" />
+        <input type="range" min="0" max="1" step="0.1" onChange={({target}) => onSetVolume(target.value)}/>
       </div>
     </div>
     <div className="config-block timer">
@@ -39,6 +39,7 @@ GameConfigBar.propTypes = {
   currentPlayer: React.PropTypes.string.isRequired,
   onResetGame: React.PropTypes.func.isRequired,
   onChangeColor: React.PropTypes.func.isRequired,
+  onSetVolume: React.PropTypes.func.isRequired,
   winner: React.PropTypes.bool.isRequired
 };
 
