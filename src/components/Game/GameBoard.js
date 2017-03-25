@@ -2,7 +2,7 @@ import React from "react";
 
 import "./GameBoard.css";
 
-import { dynamicClass } from '../functionality/helpers'
+import { dynamicClass } from '../../functionality/helpers'
 
 const GameBoard = ({ board, winner, onSelectSquare }) => {
   const BoardSquares = board.map((square, index) => (

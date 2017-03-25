@@ -2,9 +2,9 @@ import React from 'react';
 
 import './GameConfigBar.css';
 
-import { dynamicClass } from '../functionality/helpers'
+import { dynamicClass } from '../../functionality/helpers'
 
-import ColorPicker from './ColorPicker';
+import ColorPicker from '../functional/ColorPicker';
 
 const GameConfigBar = ({ currentPlayer, onResetGame, winner, isVisible, onChangeColor, onSetVolume }) => (
   <header className={dynamicClass('GameConfigBar', ['GameConfigBar--visible'], isVisible)}>

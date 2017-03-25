@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './AboutModal.css';
 
-import AboutTable from './AboutTable';
-const members = require('../data/info.json').members;
+import AboutTable from '../ui/AboutTable';
+const members = require('../../data/info.json').members;
 
 export default class AboutModal extends Component {
   render() {

@@ -13,12 +13,12 @@ import {
 
 import { eq, dynamicClass } from './functionality/helpers';
 
-import Game from './components/Game';
-import GameConfigBar from './components/GameConfigBar';
-import FxPlayer from './components/FxPlayer';
+import Game from './components/Game/Game';
+import GameConfigBar from './components/Game/GameConfigBar';
+import FxPlayer from './components/ui/FxPlayer';
 
-import AboutModal from './components/AboutModal';
-import FAB from './components/FAB';
+import AboutModal from './components/functional/AboutModal';
+import FAB from './components/ui/FAB';
 
 export default class App extends Component {
   constructor(props) {

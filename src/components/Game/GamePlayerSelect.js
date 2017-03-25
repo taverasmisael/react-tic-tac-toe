@@ -2,7 +2,7 @@ import React from "react";
 
 import "./GamePlayerSelect.css";
 
-import { dynamicClass } from '../functionality/helpers'
+import { dynamicClass } from '../../functionality/helpers'
 
 export const GamePlayerSelect = ({ onPlayerSelect, isVisible }) => (
   <div className={dynamicClass('GamePlayerSelect', ['GamePlayerSelect--visible'], isVisible)}>
