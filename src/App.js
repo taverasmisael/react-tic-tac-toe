@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css'
+import './App.css';
 
 import {
   Board,
@@ -16,7 +16,7 @@ import {
 import { eq } from './functionality/helpers';
 
 import Game from './components/Game';
-import GameConfigBar from "./components/GameConfigBar";
+import GameConfigBar from './components/GameConfigBar';
 import FxPlayer from './components/FxPlayer';
 
 import AboutModal from './components/AboutModal';
@@ -32,6 +32,7 @@ export default class App extends Component {
       board: new Board(),
       aboutVisible: false,
       winner: undefined,
+      headerVisible: false,
       BGColor: '',
       FX: {
         currentFX: 'pop1.mp3'
@@ -44,12 +45,18 @@ export default class App extends Component {
   render() {
     return (
       <div className={`App ${this.state.BGColor}`}>
+        <button onClick={() => this.toggleHeader()} type="button" className={this.generateMenuClases()} >
+          <span className="hamburger-menu__line" />
+          <span className="hamburger-menu__line" />
+          <span className="hamburger-menu__line" />
+        </button>
         <GameConfigBar
+          isVisible={this.state.headerVisible}
           winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
-          onSetVolume={(amount) => this.onSetVolume(amount)}
+          onSetVolume={amount => this.onSetVolume(amount)}
           onResetGame={() => this.ResetGame()}
-          onChangeColor={(color) => this.onChangeColor(color)}
+          onChangeColor={color => this.onChangeColor(color)}
         />
         <Game
           winner={this.state.winner}
@@ -89,14 +96,19 @@ export default class App extends Component {
   }
 
   ResetGame() {
-    this.setState(Object.assign({}, this.InitialState, {BGColor: this.state.BGColor}));
+    this.setState(
+      Object.assign({}, this.InitialState, { BGColor: this.state.BGColor })
+    );
   }
 
   onKeyUp({ keyCode }) {
     if (keyCode === 27 && this.state.aboutVisible)
       this.setState({ aboutVisible: false });
   }
-
+  generateMenuClases() {
+    const baseClase = 'hamburger-menu';
+    return  `${baseClase} ${this.state.headerVisible ? 'hamburger-menu--open' : ''}`;
+  }
   onSetVolume(amount) {
     this.FXPlayer.volume = amount;
   }
@@ -104,6 +116,12 @@ export default class App extends Component {
   onChangeColor(color) {
     this.setState({
       BGColor: color ? `App--bg-${color}` : ''
+    });
+  }
+
+  toggleHeader() {
+    this.setState({
+      headerVisible: !this.state.headerVisible
     })
   }
 

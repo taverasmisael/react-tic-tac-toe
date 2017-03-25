@@ -2,12 +2,19 @@
   font-family: var(--font-sans-serif);
   align-items: center;
   background: rgba(255,255,255,.6);
-  display: flex;
+  display: none;
   flex-flow: column nowrap;
   justify-content: center;
   margin-bottom: 1rem;
+  opacity: 0;
   padding: 0 1rem;
+  transition: opacity 350ms ease;
+  will-change: opacity;
   width: 100%;
+}
+.GameConfigBar.GameConfigBar--visible {
+  display: flex;
+  opacity: 1;
 }
 .GameConfigBar > * {
   flex: 1 0 auto;
@@ -40,6 +47,8 @@
 
 @media (min-width: 769px) {
   .GameConfigBar {
+    display: flex;
+    opacity: 1;
     flex-flow: row nowrap;
 
   }

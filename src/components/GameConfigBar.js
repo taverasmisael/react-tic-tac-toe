@@ -4,8 +4,8 @@ import './GameConfigBar.css';
 
 import ColorPicker from './ColorPicker';
 
-const GameConfigBar = ({ currentPlayer, onResetGame, winner, onChangeColor, onSetVolume }) => (
-  <header className="GameConfigBar">
+const GameConfigBar = ({ currentPlayer, onResetGame, winner, isVisible, onChangeColor, onSetVolume }) => (
+  <header className={`GameConfigBar ${isVisible ? 'GameConfigBar--visible' : ''}`}>
     <div className="config-block current-player">
       <h4 className="config-block__header">
         {winner ? 'El ganador es' : 'Es el turno de'}:
@@ -42,7 +42,8 @@ GameConfigBar.propTypes = {
   onResetGame: React.PropTypes.func.isRequired,
   onChangeColor: React.PropTypes.func.isRequired,
   onSetVolume: React.PropTypes.func.isRequired,
-  winner: React.PropTypes.bool.isRequired
+  winner: React.PropTypes.bool.isRequired,
+  isVisible: React.PropTypes.bool.isRequired
 };
 
 export default GameConfigBar;
