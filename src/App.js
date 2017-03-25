@@ -73,7 +73,6 @@ export default class App extends Component {
 
   componentDidMount() {
     this.FXPlayer = document.querySelector('#FXPlayer');
-    document.addEventListener('keyup', this.onKeyUp.bind(this));
   }
 
   componentWillUpdate(props, state, anys) {
@@ -92,11 +91,6 @@ export default class App extends Component {
     this.setState(
       Object.assign({}, this.InitialState, { BGColor: this.state.BGColor })
     );
-  }
-
-  onKeyUp({ keyCode }) {
-    if (keyCode === 27 && this.state.aboutVisible)
-      this.setState({ aboutVisible: false });
   }
   generateMenuClases() {
     const baseClase = 'hamburger-menu';
