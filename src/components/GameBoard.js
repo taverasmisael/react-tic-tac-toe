@@ -2,6 +2,8 @@ import React from "react";
 
 import "./GameBoard.css";
 
+import { dynamicClass } from '../functionality/helpers'
+
 const GameBoard = ({ board, winner, onSelectSquare }) => {
   const BoardSquares = board.map((square, index) => (
     <button type="button"
@@ -39,11 +41,10 @@ const positionClasses = [
 ]
 
 function generateSquareClass(winner, index) {
-  const baseClass = 'GameBoard__square'
-  const posClass = positionClasses[index]
-  const fullClass = `${baseClass} ${posClass}`
-  return winner && winner.findIndex(el => el === index) >= 0
-    ? `${fullClass} ${baseClass}--winner`
-    : fullClass;
+  return dynamicClass(
+    `GameBoard__square ${positionClasses[index]}`,
+    ['GameBoard__square--winner'],
+    winner && winner.findIndex(el => el === index) >= 0
+  )
 }
 export default GameBoard;

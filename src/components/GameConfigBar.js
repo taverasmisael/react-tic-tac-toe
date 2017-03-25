@@ -2,16 +2,18 @@ import React from 'react';
 
 import './GameConfigBar.css';
 
+import { dynamicClass } from '../functionality/helpers'
+
 import ColorPicker from './ColorPicker';
 
 const GameConfigBar = ({ currentPlayer, onResetGame, winner, isVisible, onChangeColor, onSetVolume }) => (
-  <header className={`GameConfigBar ${isVisible ? 'GameConfigBar--visible' : ''}`}>
+  <header className={dynamicClass('GameConfigBar', ['GameConfigBar--visible'], isVisible)}>
     <div className="config-block current-player">
       <h4 className="config-block__header">
         {winner ? 'El ganador es' : 'Es el turno de'}:
       </h4>
       <div className="config-block__content ">
-        <p className={computeCurrentPlayerClasses(winner)}>{currentPlayer}</p>
+        <p className={dynamicClass('current-player__player', ['text--accent'], winner)}>{currentPlayer}</p>
       </div>
     </div>
     <div className="config-block color-picker">
@@ -47,8 +49,3 @@ GameConfigBar.propTypes = {
 };
 
 export default GameConfigBar;
-
-function computeCurrentPlayerClasses(winner) {
-  const baseClases = 'current-player__player';
-  return winner ? `${baseClases} text--accent` : baseClases;
-}

@@ -2,8 +2,10 @@ import React from "react";
 
 import "./GamePlayerSelect.css";
 
+import { dynamicClass } from '../functionality/helpers'
+
 export const GamePlayerSelect = ({ onPlayerSelect, isVisible }) => (
-  <div className={`GamePlayerSelect ${isVisible ? 'GamePlayerSelect--visible' : ''}`}>
+  <div className={dynamicClass('GamePlayerSelect', ['GamePlayerSelect--visible'], isVisible)}>
     <div className="GamePlayerSelect__container">
       <h1>Elegir al jugador 1</h1>
       <span className="flex--spandex" />

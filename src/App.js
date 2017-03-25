@@ -11,7 +11,7 @@ import {
   SwitchPlayers
 } from './functionality/tictactoe';
 
-import { eq } from './functionality/helpers';
+import { eq, dynamicClass } from './functionality/helpers';
 
 import Game from './components/Game';
 import GameConfigBar from './components/GameConfigBar';
@@ -38,7 +38,7 @@ export default class App extends Component {
   render() {
     return (
       <div className={`App ${this.state.BGColor}`}>
-        <button onClick={() => this.toggleHeader()} type="button" className={this.generateMenuClases()} >
+        <button onClick={() => this.toggleHeader()} type="button" className={dynamicClass('hamburger-menu', ['hamburger-menu--open'], this.state.headerVisible )} >
           <span className="hamburger-menu__line" />
           <span className="hamburger-menu__line" />
           <span className="hamburger-menu__line" />
