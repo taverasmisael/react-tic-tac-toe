@@ -10,7 +10,7 @@ const GameConfigBar = ({ currentPlayer, onResetGame, winner, isVisible, onChange
       <h4 className="config-block__header">
         {winner ? 'El ganador es' : 'Es el turno de'}:
       </h4>
-      <div clasName="config-block__content ">
+      <div className="config-block__content ">
         <p className={computeCurrentPlayerClasses(winner)}>{currentPlayer}</p>
       </div>
     </div>
