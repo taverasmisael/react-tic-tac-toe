@@ -27,7 +27,7 @@ let ColorOptions = [
 ];
 
 export const ColorPicker = ({ onChangeColor }) => {
-  function ColorSelected(id, color) {
+  const ColorSelected = (id, color) => {
     ColorOptions = ColorOptions.map((color, index) => {
       if(index === id) {
         return Object.assign({}, color, {className: [...color.className, 'circle-color--active']});
