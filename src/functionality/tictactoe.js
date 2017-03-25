@@ -131,3 +131,15 @@ export const PlayAI = (board, depth, player) => {
   return bestMove
 }
 
+/**
+ * This function creates a brand new State with the core parts of the Tic tac toe game
+ * And let you pass over any extra members you need in your state
+ * @param {Object} extras all extra options you need on your game
+ */
+export const GameState = (extras) => Object.assign({}, {
+  PLAYER_ONE_SYMBOL,
+  PLAYER_TWO_SYMBOL,
+  currentTurn: PLAYER_ONE_SYMBOL,
+  board: new Board(),
+  winner: undefined,
+}, extras)

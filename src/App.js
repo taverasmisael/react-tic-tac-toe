@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 
 import {
-  Board,
+  GameState,
   CheckForWinner,
   MakeMove,
   PlayAI,
-  PLAYER_ONE_SYMBOL,
-  PLAYER_TWO_SYMBOL,
   RemainingMoves,
   SwitchPlayers
 } from './functionality/tictactoe';
@@ -25,19 +23,14 @@ import FAB from './components/FAB';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.InitialState = {
-      PLAYER_ONE_SYMBOL,
-      PLAYER_TWO_SYMBOL,
-      currentTurn: 'X',
-      board: new Board(),
-      aboutVisible: false,
-      winner: undefined,
+    this.InitialState = new GameState({
       headerVisible: false,
+      aboutVisible: false,
       BGColor: '',
       FX: {
         currentFX: 'pop1.mp3'
       }
-    };
+    })
 
     this.state = this.InitialState;
   }
@@ -84,7 +77,7 @@ export default class App extends Component {
   }
 
   componentWillUpdate(props, state, anys) {
-    if (eq(state.currentTurn, PLAYER_TWO_SYMBOL)) {
+    if (eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL)) {
       this.MakeAIMove(state);
     }
   }
