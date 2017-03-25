@@ -1,6 +1,9 @@
 import React from 'react';
 import './AboutModal.css';
 
+import AboutTable from './AboutTable'
+const members = require('../data/info.json').members
+
 export const AboutModal = ({ isVisible, onClose }) => (
   <div className={`AboutModal ${isVisible ? 'AboutModal--is-visible' : ''}`}>
     <h1 className="AboutModal__title">Acerca de</h1>
@@ -25,32 +28,7 @@ export const AboutModal = ({ isVisible, onClose }) => (
       <div className="AboutModal__content__block">
         <h2 className="AboutModal__content_title">Desarrolladores</h2>
         <div className="AboutModal__instructions">
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Nombre</th>
-                <th>Matrícula</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/misael-taveras.jpg" alt="MisaelTaveras" /></td>
-                <td>MisaelTaveras</td>
-                <td>13-EIST-1-017</td>
-              </tr>
-              <tr>
-                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/elvis-vanderpool.jpg" alt="Elvis Vanderpool" /></td>
-                <td>Elvis Vanderpool</td>
-                <td>13-EIST-1-058</td>
-              </tr>
-              <tr>
-                <td><img className="profile-pic img-responsive img--circular" src="assets/images/profiles/odani-esutaquio.jpg" alt="Odani Eustaquio" /></td>
-                <td>Odani Eustaquio</td>
-                <td>13-MISM-1-075</td>
-              </tr>
-            </tbody>
-          </table>
+          <AboutTable members={members}></AboutTable>
         </div>
       </div>
     </div>
