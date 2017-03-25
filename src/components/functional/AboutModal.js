@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import './AboutModal.css';
 
-import AboutTable from '../ui/AboutTable';
+import { dynamicClass } from '../../functionality/helpers';
+
 const members = require('../../data/info.json').members;
+
+import AboutTable from '../ui/AboutTable';
 
 export default class AboutModal extends Component {
   render() {
     return (
       <div
-        className={
-          `AboutModal ${this.props.isVisible ? 'AboutModal--is-visible' : ''}`
-        }
+        className={dynamicClass(
+          'AboutModal',
+          ['AboutModal--is-visible'],
+          this.props.isVisible
+        )}
       >
-        <h1 className="AboutModal__title">Acerca de</h1>
+        <h1 className="AboutModal__title">
+          Acerca de {this.props.isVisible && '<xD>zcxvzxvzc</xD>'}
+        </h1>
         <button
           className="btn btn--transparent btn--circle AboutModal__btn-close"
           type="button"
@@ -44,7 +51,6 @@ export default class AboutModal extends Component {
   }
 }
 
-
 AboutModal.propTypes = {
   isVisible: React.PropTypes.bool.isRequired,
   onClose: React.PropTypes.func.isRequired
@@ -53,7 +59,6 @@ AboutModal.propTypes = {
 AboutModal.defaultProps = {
   isVisible: false
 };
-
 
 function gameInstructions() {
   return (
