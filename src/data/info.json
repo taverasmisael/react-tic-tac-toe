@@ -1,0 +1,17 @@
+{
+  "members": [
+    {
+      "name": "Misael Taveras",
+      "registration": "13-EIST-1-017",
+      "image": "assets/images/profiles/misael-taveras.jpg"
+    }, {
+      "name": "Elvis Vanderepool",
+      "registration": "13-EIST-1-058",
+      "image": "assets/images/profiles/elvis-vanderpool.jpg"
+    }, {
+      "name": "Odani Eustaquio",
+      "registration": "13-MISM-1-075",
+      "image": "assets/images/profiles/odani-eustaquio.jpg"
+    }
+  ]
+}
