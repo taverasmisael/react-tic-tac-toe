@@ -18,7 +18,7 @@ export default class AboutModal extends Component {
         )}
       >
         <h1 className="AboutModal__title">
-          Acerca de {this.props.isVisible && '<xD>zcxvzxvzc</xD>'}
+          Acerca de
         </h1>
         <button
           className="btn btn--transparent btn--circle AboutModal__btn-close"
