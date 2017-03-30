@@ -1,7 +1,7 @@
 .GameStadistics {
   background: #fff;
-  border-radius: .35rem;
-  box-shadow: .25rem .25rem 2rem .25rem rgba(0, 0, 0, .2);
+  border-radius: .15rem;
+  box-shadow: 0 7px 14px rgba(0,0,0,.25), 0 5px 5px rgba(0,0,0,.22);
   flex: 1 0 auto;
   margin: 2rem 0;
   max-height: 90vh;
