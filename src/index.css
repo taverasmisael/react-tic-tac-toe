@@ -160,6 +160,9 @@ table {
 table thead th {
   text-align: center;
 }
+.t-row--centered td {
+  text-align: center;
+}
 th,
 td {
   padding: 1em .5em;
