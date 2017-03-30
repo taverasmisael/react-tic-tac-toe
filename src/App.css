@@ -6,6 +6,11 @@
   will-change: background-color, background-image;
 }
 
+.App.modal--is-open {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 .App--bg-red {
   --winning-color: rgb(223, 233, 243);
   background-color: rgb(247, 112, 98);

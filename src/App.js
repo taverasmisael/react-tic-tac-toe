@@ -40,7 +40,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={`App ${this.state.BGColor}`}>
+      <div className={dynamicClass(`App ${this.state.BGColor}`, ['modal--is-open'], this.state.aboutVisible)}>
         <button
           onClick={() => this.toggleHeader()}
           type="button"
