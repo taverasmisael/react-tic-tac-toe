@@ -128,7 +128,7 @@ function MaxScenario(board, player, depth) {
 
 export const PlayAI = (board, depth, player) => {
   if(CheckForWinner(board)) return RateBoard(board);
-  const availableMoves = LegalMoves(board);
+//  const availableMoves = LegalMoves(board);
   const bestMove =  MinScenario(board, player, 2);
   return bestMove
 }
