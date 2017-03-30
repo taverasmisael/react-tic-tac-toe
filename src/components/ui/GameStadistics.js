@@ -35,7 +35,7 @@ GameStadistics.defaultProps = {
  */
 function generateTable(states) {
   return states.map((state, index) => (
-    <tr className="t-row--centered">
+    <tr key={index} className="t-row--centered">
       <td>{index}</td>
       <td>{state.winner}</td>
       <td>{state.time}</td>
