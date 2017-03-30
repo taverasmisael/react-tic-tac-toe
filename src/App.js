@@ -8,7 +8,8 @@ import {
   MakeMove,
   PlayAI,
   RemainingMoves,
-  SwitchPlayers
+  SwitchPlayers,
+  GenerateHistory
 } from './functionality/tictactoe';
 
 import { extend, eq, dynamicClass, inc } from './functionality/helpers';
@@ -127,7 +128,7 @@ export default class App extends Component {
       1000
     );
     this.setState(
-      extend(this.InitialState, { BGColor: this.state.BGColor })
+      extend(this.InitialState, { BGColor: this.state.BGColor, history: this.state.history })
     );
   }
   generateMenuClases() {
@@ -166,6 +167,7 @@ export default class App extends Component {
       const isWinner = CheckForWinner(newState.board);
       if (CheckForWinner(newState.board)) {
         newState.winner = isWinner;
+        newState.history = [...state.history, GenerateHistory(state.currentTurn, newState.board, state.times[state.currentTurn])]
         clearInterval(this.timer);
         this.PlayFx('applause.mp3');
       } else if (RemainingMoves(newState.board)) {
