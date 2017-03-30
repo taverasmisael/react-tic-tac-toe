@@ -9,7 +9,7 @@ export const GameStadistics = ({states}) => (
       <tr>
         <th>Partida</th>
         <th>Ganador</th>
-        <th>Tiempo</th>
+        <th>Tiempo <small>(segs)</small></th>
         <th>Puntaje</th>
       </tr>
     </thead>
