@@ -129,7 +129,7 @@ function MaxScenario(board, player, depth) {
 export const PlayAI = (board, depth, player) => {
   if(CheckForWinner(board)) return RateBoard(board);
   const availableMoves = LegalMoves(board);
-  const bestMove = availableMoves.includes(4) ? 4 : MinScenario(board, player, 2);
+  const bestMove =  MinScenario(board, player, 2);
   return bestMove
 }
 
@@ -142,14 +142,10 @@ export const PlayAI = (board, depth, player) => {
  * @returns {{winner: String, time: Number, score: Number}} this is the HistoryEntry
  */
 export const GenerateHistory = (winner, board, time) => {
-  const multipler = time / 5 <= 3 ? time / 5 : 3
+  const multipler = time / 5 <= 3 ? Math.round(time / 5) : 3
   const base = SCORES[multipler]
   const BoardScore = RateBoard(board)
-  let score;
-
-  if (multipler) score = BoardScore + (base * time)
-  score = BoardScore + (base + time)
-
+  let score = BoardScore * base;
   return {
     winner,
     time,
