@@ -86,7 +86,6 @@ export default class App extends Component {
     this.FXPlayer = document.querySelector('#FXPlayer');
     this.timer = setInterval(
       () => {
-        console.log(this.state.times)
         const player = this.state.currentTurn;
         const newTimes = extend(this.state.times, {
           [player]: inc(this.state.times[player])
