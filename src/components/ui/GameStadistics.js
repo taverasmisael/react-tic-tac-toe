@@ -31,7 +31,7 @@ GameStadistics.defaultProps = {
 
 /**
  *
- * @param {Array<Object>} states
+ * @param {Array<{winner: String, time: Number, score: Number}>} states
  */
 function generateTable(states) {
   return states.map((state, index) => (

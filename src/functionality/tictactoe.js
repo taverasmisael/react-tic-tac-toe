@@ -133,7 +133,14 @@ export const PlayAI = (board, depth, player) => {
   return bestMove
 }
 
-
+/**
+ * This function return an history entry calculating the score based on time, board
+ * and some multiplier. If the time === 0 you get the max score
+ * @param {String} winner The symbol of the winner player
+ * @param {Array<String>} board The current board in the moment the game is over
+ * @param {Number} time The ammount of time the winner player took to win
+ * @returns {{winner: String, time: Number, score: Number}} this is the HistoryEntry
+ */
 export const GenerateHistory = (winner, board, time) => {
   const multipler = time / 5 <= 3 ? time / 5 : 3
   const base = SCORES[multipler]
