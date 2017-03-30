@@ -11,7 +11,7 @@ import {
   SwitchPlayers
 } from './functionality/tictactoe';
 
-import { eq, dynamicClass } from './functionality/helpers';
+import { extend, eq, dynamicClass, inc } from './functionality/helpers';
 
 import Game from './components/Game/Game';
 import GameConfigBar from './components/Game/GameConfigBar';
@@ -30,7 +30,9 @@ export default class App extends Component {
       FX: {
         currentFX: 'pop1.mp3'
       }
-    })
+    });
+
+    this.clock = 0;
 
     this.state = this.InitialState;
   }
@@ -38,13 +40,22 @@ export default class App extends Component {
   render() {
     return (
       <div className={`App ${this.state.BGColor}`}>
-        <button onClick={() => this.toggleHeader()} type="button" className={dynamicClass('hamburger-menu', ['hamburger-menu--open'], this.state.headerVisible )} >
+        <button
+          onClick={() => this.toggleHeader()}
+          type="button"
+          className={dynamicClass(
+            'hamburger-menu',
+            ['hamburger-menu--open'],
+            this.state.headerVisible
+          )}
+        >
           <span className="hamburger-menu__line" />
           <span className="hamburger-menu__line" />
           <span className="hamburger-menu__line" />
         </button>
         <GameConfigBar
           isVisible={this.state.headerVisible}
+          times={this.state.times}
           winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
           onSetVolume={amount => this.onSetVolume(amount)}
@@ -73,6 +84,17 @@ export default class App extends Component {
 
   componentDidMount() {
     this.FXPlayer = document.querySelector('#FXPlayer');
+    this.timer = setInterval(
+      () => {
+        console.log(this.state.times)
+        const player = this.state.currentTurn;
+        const newTimes = extend(this.state.times, {
+          [player]: inc(this.state.times[player])
+        });
+        this.setState({ times: newTimes });
+      },
+      1000
+    );
   }
 
   componentWillUpdate(props, state, anys) {
@@ -81,20 +103,36 @@ export default class App extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   InitGame(player) {
     this.setState(
-      Object.assign({}, this.InitialState, { currentTurn: player })
+      extend(this.InitialState, { currentTurn: player })
     );
   }
 
   ResetGame() {
+    clearInterval(this.timer)
+    this.timer = setInterval(
+      () => {
+        this.setState({
+          times: extend(this.state.times, {
+            [this.state.currentTurn]: this.state.times[this.state.currentTurn] +
+              1
+          })
+        });
+      },
+      1000
+    );
     this.setState(
-      Object.assign({}, this.InitialState, { BGColor: this.state.BGColor })
+      extend(this.InitialState, { BGColor: this.state.BGColor })
     );
   }
   generateMenuClases() {
     const baseClase = 'hamburger-menu';
-    return  `${baseClase} ${this.state.headerVisible ? 'hamburger-menu--open' : ''}`;
+    return `${baseClase} ${this.state.headerVisible ? 'hamburger-menu--open' : ''}`;
   }
   onSetVolume(amount) {
     this.FXPlayer.volume = amount;
@@ -109,7 +147,7 @@ export default class App extends Component {
   toggleHeader() {
     this.setState({
       headerVisible: !this.state.headerVisible
-    })
+    });
   }
 
   MakeMove(state, square, player) {
@@ -128,11 +166,13 @@ export default class App extends Component {
       const isWinner = CheckForWinner(newState.board);
       if (CheckForWinner(newState.board)) {
         newState.winner = isWinner;
+        clearInterval(this.timer);
         this.PlayFx('applause.mp3');
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player);
         newState.currentTurn = SwitchPlayers(player);
       } else {
+        clearInterval(this.timer);
         this.PlayFx('jeer.mp3');
       }
     }
