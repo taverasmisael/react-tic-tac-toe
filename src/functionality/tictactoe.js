@@ -1,5 +1,7 @@
 import { eq } from './helpers';
 
+const SCORES = [500, 20, 10, 5]
+
 export const PLAYER_ONE_SYMBOL = 'X';
 export const PLAYER_TWO_SYMBOL = 'O';
 
@@ -129,6 +131,23 @@ export const PlayAI = (board, depth, player) => {
   const availableMoves = LegalMoves(board);
   const bestMove = availableMoves.includes(4) ? 4 : MinScenario(board, player, 2);
   return bestMove
+}
+
+
+export const GenerateHistory = (winner, board, time) => {
+  const multipler = time / 5 <= 3 ? time / 5 : 3
+  const base = SCORES[multipler]
+  const BoardScore = RateBoard(board)
+  let score;
+
+  if (multipler) score = BoardScore + (base * time)
+  score = BoardScore + (base + time)
+
+  return {
+    winner,
+    time,
+    score
+  }
 }
 
 /**
