@@ -1,4 +1,14 @@
 .GameStadistics {
-  flex: 1;
-  margin: 0 2rem;
+  flex: 1 0 auto;
+  margin: 2rem 0;
+  max-height: 90vh;
+  order: 2;
+  overflow: auto;
+}
+@media (min-width: 769px) {
+
+  .GameStadistics {
+    flex: 1;
+  }
+
 }
