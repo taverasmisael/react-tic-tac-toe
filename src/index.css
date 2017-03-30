@@ -157,7 +157,9 @@ table {
   margin-bottom: .25em;
   border-collapse: collapse;
 }
-
+table thead th {
+  text-align: center;
+}
 th,
 td {
   padding: 1em .5em;
