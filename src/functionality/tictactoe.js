@@ -142,6 +142,7 @@ export const GameState = (extras) => Object.assign({}, {
   currentTurn: PLAYER_ONE_SYMBOL,
   board: new Board(),
   winner: undefined,
+  history: [],
   times: {
     [PLAYER_ONE_SYMBOL]: 0,
     [PLAYER_TWO_SYMBOL]: 0,

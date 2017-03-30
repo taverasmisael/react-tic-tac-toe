@@ -65,6 +65,7 @@ export default class App extends Component {
         <Game
           winner={this.state.winner}
           board={this.state.board}
+          history={this.state.history}
           onSelectSquare={square =>
             this.MakeMove(this.state, square, this.state.currentTurn)}
         />
