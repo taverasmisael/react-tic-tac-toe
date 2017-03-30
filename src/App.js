@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import * as cornify from 'cornified';
+
 import './App.css';
 
 import {
@@ -127,6 +129,7 @@ export default class App extends Component {
       },
       1000
     );
+    if(cornify.count() >= 3) cornify.clear();
     this.setState(
       extend(this.InitialState, { BGColor: this.state.BGColor, history: this.state.history })
     );
@@ -169,6 +172,7 @@ export default class App extends Component {
         newState.winner = isWinner;
         newState.history = [...state.history, GenerateHistory(state.currentTurn, newState.board, state.times[state.currentTurn])]
         clearInterval(this.timer);
+        cornify.add();
         this.PlayFx('applause.mp3');
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player);
