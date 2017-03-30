@@ -24,22 +24,6 @@ const GameConfigBar = (
       isVisible
     )}
   >
-    <div className="config-block current-player">
-      <h4 className="config-block__header">
-        {winner ? 'El ganador es' : 'Es el turno de'}:
-      </h4>
-      <div className="config-block__content ">
-        <p
-          className={dynamicClass(
-            'current-player__player',
-            ['text--accent'],
-            winner
-          )}
-        >
-          {currentPlayer}
-        </p>
-      </div>
-    </div>
     <div className="config-block color-picker">
       <h4 className="config-block__header">Configuración de Sonido</h4>
       <div className="config-block__content">
@@ -53,7 +37,7 @@ const GameConfigBar = (
       </div>
     </div>
     <div className="config-block timer">
-      <h4 className="config-block__header">Tiempo</h4>
+      <h4 className="config-block__header">Turno de {currentPlayer}</h4>
       <div className="config-block__content">{times[currentPlayer] + ' segs'}</div>
     </div>
     <div className="config-block color-picker">
