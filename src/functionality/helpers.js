@@ -11,3 +11,20 @@ export const notIdentity = el => !identity(el);
  */
 export const dynamicClass = (base, extra, predicate) =>
   predicate ? `${base} ${extra.join(' ')}` : base;
+
+/**
+ * This function increments by one the passed value
+ * @param {Number} x Any valid Integer
+ * @returns {Number} x + 1
+ */
+export const inc = (x) => x + 1
+
+/**
+ * This function is syntax sugar for Object.assign but for objects only
+ * You must be careful with the order you pass the options, the lasts objects
+ * will overwrite the firsts
+ * @param {Object} base The main object upon which will build the new one
+ * @param {...Object} options Individual objects wich  will mutate the base
+ * @returns{Object} this is the combination of the base mutated by the options
+ */
+export const extend = (base, ...options) => Object.assign({}, base, ...options)
