@@ -1,21 +1,16 @@
 .Game {
-    display: flex;
-    flex-flow: row wrap;
-    padding: 0 1rem;
-}
-
-.Game:after {
-    content: "";
-    display: table;
-    clear: both;
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 1rem;
 }
 
 .GameBoard {
-    order: 2;
+  order: 2;
 }
 
 @media (min-width: 769px) {
-    .GameBoard {
-        order: 0;
-    }
+  .GameBoard {
+    order: 0;
+  }
 }
