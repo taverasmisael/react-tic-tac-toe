@@ -157,9 +157,7 @@ table {
   margin-bottom: .25em;
   border-collapse: collapse;
 }
-table thead th {
-  text-align: center;
-}
+
 .t-row--centered td {
   text-align: center;
 }
