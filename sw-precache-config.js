@@ -3,6 +3,7 @@ module.exports = {
   staticFileGlobs: [
     'build/*.html',
     'build/**/*.png',
+    'build/**/*.jpg',
     'build/**/*.mp3',
     'build/manifest.json',
     'build/static/**/!(*map*)'
