@@ -10,8 +10,7 @@ import {
   MakeMove,
   PlayAI,
   RemainingMoves,
-  SwitchPlayers,
-  GenerateHistory
+  SwitchPlayers
 } from './functionality/tictactoe';
 
 import { extend, eq, dynamicClass, inc } from './functionality/helpers';
@@ -68,7 +67,7 @@ export default class App extends Component {
         <Game
           winner={this.state.winner}
           board={this.state.board}
-          history={this.state.history}
+          history={this.state.history.getHistory()}
           onSelectSquare={square =>
             this.MakeMove(this.state, square, this.state.currentTurn)}
         />
@@ -170,7 +169,7 @@ export default class App extends Component {
       const isWinner = CheckForWinner(newState.board);
       if (CheckForWinner(newState.board)) {
         newState.winner = isWinner;
-        newState.history = [...state.history, GenerateHistory(state.currentTurn, newState.board, state.times[state.currentTurn])]
+        this.state.history.GenerateHistory(state.currentTurn, newState.board, state.times[state.currentTurn]);
         clearInterval(this.timer);
         cornify.add();
         this.PlayFx('applause.mp3');
