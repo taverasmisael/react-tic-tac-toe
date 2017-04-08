@@ -1,6 +1,6 @@
 import { eq } from './helpers';
 
-const SCORES = [500, 20, 10, 5]
+import GameHistory from './history'
 
 export const PLAYER_ONE_SYMBOL = 'X';
 export const PLAYER_TWO_SYMBOL = 'O';
@@ -141,26 +141,6 @@ export const PlayAI = (board, depth, player) => {
 }
 
 /**
- * This function return an history entry calculating the score based on time, board
- * and some multiplier. If the time === 0 you get the max score
- * @param {String} winner The symbol of the winner player
- * @param {Array<String>} board The current board in the moment the game is over
- * @param {Number} time The ammount of time the winner player took to win
- * @returns {{winner: String, time: Number, score: Number}} this is the HistoryEntry
- */
-export const GenerateHistory = (winner, board, time) => {
-  const multipler = time / 5 <= 3 ? Math.round(time / 5) : 3
-  const base = SCORES[multipler]
-  const BoardScore = RateBoard(board)
-  let score = BoardScore * base;
-  return {
-    winner,
-    time,
-    score
-  }
-}
-
-/**
  * This function creates a brand new State with the core parts of the Tic tac toe game
  * And let you pass over any extra members you need in your state
  * @param {Object} extras all extra options you need on your game
@@ -171,7 +151,7 @@ export const GameState = (extras) => Object.assign({}, {
   currentTurn: PLAYER_ONE_SYMBOL,
   board: new Board(),
   winner: undefined,
-  history: [],
+  history: new GameHistory(),
   times: {
     [PLAYER_ONE_SYMBOL]: 0,
     [PLAYER_TWO_SYMBOL]: 0,
