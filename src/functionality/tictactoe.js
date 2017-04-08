@@ -75,8 +75,15 @@ export const LegalMoves = board => board.reduce((prev, curr, i) => !curr ? [...p
  */
 export const RemainingMoves = board => LegalMoves(board).length;
 
-
-const RateBoard = (board) => {
+/**
+ * This function takes a Board and Evaluates it if is a winned board and calculates
+ * the available moves and the remainings. Based on these  variables it assigns a value to the current
+ * board given the highest score to a wining board and a 0 to a lose one. The total score depends if
+ * the table is won, raw or lose and on each case (except if it's lose) it calculates based on the
+ * remainingMoves
+ * @param {Array<string>} board This is the board wich we want to obtain the value
+ */
+export const RateBoard = (board) => {
   const winner = CheckForWinner(board);
   const availableMoves = RemainingMoves(board);
   let result;
