@@ -107,12 +107,12 @@ export default class App extends Component {
   }
 
   componentWillUnmount() {
-    this.stopGameTimer();
+    this.StopGameTimer();
   }
 
   InitGame(mode) {
     const gameStarted = mode === undefined ? false : true;
-    this.stopGameTimer();
+    this.StopGameTimer();
     this.setState(
       extend(this.InitialState, {
         gameStarted,
@@ -121,10 +121,10 @@ export default class App extends Component {
         history: this.state.history
       })
     );
-    if (gameStarted) this.setGameTimer();
+    if (gameStarted) this.SetGameTimer();
   }
 
-  setGameTimer() {
+  SetGameTimer() {
     this.timer = setInterval(
       () => {
         const player = this.state.currentTurn;
@@ -137,7 +137,7 @@ export default class App extends Component {
     );
   }
 
-  stopGameTimer() {
+  StopGameTimer() {
     clearInterval(this.timer);
   }
 
@@ -178,14 +178,14 @@ export default class App extends Component {
           newState.board,
           state.times[state.currentTurn]
         );
-        this.stopGameTimer();
+        this.StopGameTimer();
         this.PlayFx('applause.mp3');
         newState.gameStarted = false;
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player);
         newState.currentTurn = SwitchPlayers(player);
       } else {
-        this.stopGameTimer();
+        this.StopGameTimer();
         this.PlayFx('jeer.mp3');
       }
     }
