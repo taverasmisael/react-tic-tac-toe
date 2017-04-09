@@ -33,8 +33,6 @@ export default class App extends Component {
       }
     });
 
-    this.clock = 0;
-
     this.state = this.InitialState;
   }
 
@@ -109,12 +107,12 @@ export default class App extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    this.stopGameTimer();
   }
 
   InitGame(mode) {
     const gameStarted = mode === undefined ? false : true;
-    clearInterval(this.timer);
+    this.stopGameTimer();
     this.setState(
       extend(this.InitialState, {
         gameStarted,
@@ -123,7 +121,6 @@ export default class App extends Component {
         history: this.state.history
       })
     );
-    console.log(`GS ${gameStarted}`)
     if (gameStarted) this.setGameTimer();
   }
 
@@ -138,6 +135,10 @@ export default class App extends Component {
       },
       1000
     );
+  }
+
+  stopGameTimer() {
+    clearInterval(this.timer);
   }
 
   onSetVolume(amount) {
@@ -166,25 +167,25 @@ export default class App extends Component {
 
     newState.board = MakeMove(state.board, squareIndex, player);
 
-    if (eq(newState.board, state.board))
+    if (eq(newState.board, state.board)) {
       return {};
-    else {
+    } else {
       const isWinner = CheckForWinner(newState.board);
-      if (CheckForWinner(newState.board)) {
+      if (isWinner) {
         newState.winner = isWinner;
         this.state.history.GenerateHistory(
           state.currentTurn,
           newState.board,
           state.times[state.currentTurn]
         );
-        clearInterval(this.timer);
+        this.stopGameTimer();
         this.PlayFx('applause.mp3');
         newState.gameStarted = false;
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player);
         newState.currentTurn = SwitchPlayers(player);
       } else {
-        clearInterval(this.timer);
+        this.stopGameTimer();
         this.PlayFx('jeer.mp3');
       }
     }
