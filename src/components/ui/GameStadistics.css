@@ -5,8 +5,9 @@
   flex: 1 0 auto;
   margin: 2rem 0;
   max-height: 90vh;
+  max-width: 100%;
   order: 2;
-  overflow: auto;
+  overflow: hidden;
 }
 .GameStadistics table thead th {
   background: #ECEFF1;
