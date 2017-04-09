@@ -153,6 +153,7 @@ export const GameState = (extras) => Object.assign({}, {
   winner: undefined,
   history: new GameHistory(),
   vsComputer: true,
+  gameStarted: false,
   times: {
     [PLAYER_ONE_SYMBOL]: 0,
     [PLAYER_TWO_SYMBOL]: 0,
