@@ -11,7 +11,11 @@ export const GameStadistics = ({states, onResetScores}) => (
         <th>Ganador</th>
         <th>Tiempo <small>(segs)</small></th>
         <th>Puntaje</th>
-        <th><button className="btn btn--circle btn--warn" onClick={() => onResetScores()}>R</button></th>
+        <th>
+          <button className="btn btn--circle btn--warn" title="Borrar Puntajes" onClick={() => onResetScores()}>
+            <i className="material-icons">delete_sweep</i>
+          </button>
+        </th>
       </tr>
     </thead>
     <tbody>
