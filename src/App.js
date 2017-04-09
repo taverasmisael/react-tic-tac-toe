@@ -101,7 +101,7 @@ export default class App extends Component {
   }
 
   componentWillUpdate(props, state, anys) {
-    if (eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL)) {
+    if (eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL) && eq(state.vsComputer, true)) {
       this.MakeAIMove(state);
     }
   }
