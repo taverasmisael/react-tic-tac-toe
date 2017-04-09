@@ -4,14 +4,14 @@ import GameBoard from "./GameBoard";
 import GameStadistics from "../ui/GameStadistics";
 import "./Game.css";
 
-export const Game = ({winner, board, onSelectSquare, history}) => (
+export const Game = ({winner, board, onSelectSquare, history, onResetScores}) => (
   <div className="Game">
     <GameBoard
       board={board}
       winner={winner}
       onSelectSquare={(square) => onSelectSquare(square)}
     />
-    <GameStadistics states={history} />
+    <GameStadistics onResetScores={() => onResetScores()} states={history} />
   </div>
 );
 

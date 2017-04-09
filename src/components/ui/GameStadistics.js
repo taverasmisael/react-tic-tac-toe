@@ -2,7 +2,7 @@ import React from 'react';
 
 import './GameStadistics.css';
 
-export const GameStadistics = ({states}) => (
+export const GameStadistics = ({states, onResetScores}) => (
   <div className="GameStadistics">
     <table>
     <thead>
@@ -11,6 +11,7 @@ export const GameStadistics = ({states}) => (
         <th>Ganador</th>
         <th>Tiempo <small>(segs)</small></th>
         <th>Puntaje</th>
+        <th><button className="btn btn--circle btn--warn" onClick={() => onResetScores()}>R</button></th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +24,8 @@ export const GameStadistics = ({states}) => (
 export default GameStadistics;
 
 GameStadistics.propTypes = {
-  states: React.PropTypes.array.isRequired
+  states: React.PropTypes.array.isRequired,
+  onResetScores: React.PropTypes.func.isRequired
 }
 GameStadistics.defaultProps = {
   states: []
@@ -39,7 +41,7 @@ function generateTable(states) {
       <td>{index + 1}</td>
       <td>{state.winner}</td>
       <td>{state.time}</td>
-      <td>{state.score}</td>
+      <td colSpan="2">{state.score}</td>
     </tr>
   ))
 }

@@ -68,6 +68,7 @@ export default class App extends Component {
           winner={this.state.winner}
           board={this.state.board}
           history={this.state.history.getHistory()}
+          onResetScores={() => this.state.history.resetScores()}
           onSelectSquare={square =>
             this.MakeMove(this.state, square, this.state.currentTurn)}
         />
