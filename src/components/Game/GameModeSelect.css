@@ -1,4 +1,4 @@
-.GamePlayerSelect {
+.GameModeSelect {
   background: rgba(79, 79, 79, 0.5);
   color: white;
   font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,11 +11,11 @@
   width: 100vw;
 }
 
-.GamePlayerSelect.GamePlayerSelect--visible {
+.GameModeSelect.GameModeSelect--visible {
   transform: translateY(0);
 }
 
-.GamePlayerSelect__container {
+.GameModeSelect__container {
   align-items: center;
   display: flex;
   flex-flow: column nowrap;
@@ -24,28 +24,28 @@
   margin: 2rem 0 0;
 }
 
-.GamePlayerSelect__selector {
+.GameModeSelect__selector {
   display: flex;
   flex-flow: column nowrap;
   margin: 2rem 0;
   width: 100%;
 }
-.GamePlayerSelect__panel {
+.GameModeSelect__panel {
   margin: .5rem 0;
 }
-.GamePlayerSelect__panel.btn {
+.GameModeSelect__panel.btn {
   border-radius: 0;
-  font-size: 5rem;
+  font-size: 2.5rem;
   padding: .5em;
 }
 
 
 @media (min-width: 769px) {
-  .GamePlayerSelect__selector {
+  .GameModeSelect__selector {
     flex-flow: row nowrap;
     width: auto;
   }
-  .GamePlayerSelect__panel {
+  .GameModeSelect__panel {
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -56,12 +56,12 @@
     transition: all 150ms ease-in;
     width: 50%;
   }
-  .GamePlayerSelect__panel:after {
+  .GameModeSelect__panel:after {
     content: "";
     display: block;
     padding-bottom: 100%;
   }
-  .GamePlayerSelect__panel.btn {
-    font-size: 10rem;
+  .GameModeSelect__panel.btn {
+    font-size: 5rem;
   }
 }
