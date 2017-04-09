@@ -140,10 +140,6 @@ export default class App extends Component {
     );
   }
 
-  generateMenuClases() {
-    const baseClase = 'hamburger-menu';
-    return `${baseClase} ${this.state.headerVisible ? 'hamburger-menu--open' : ''}`;
-  }
   onSetVolume(amount) {
     this.FXPlayer.volume = amount;
   }
