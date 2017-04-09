@@ -120,8 +120,8 @@ export default class App extends Component {
     if (cornify.count() >= 3) cornify.clear();
     this.setState(
       extend(this.InitialState, {
-        vsComputer: mode,
         gameStarted,
+        vsComputer: mode,
         BGColor: this.state.BGColor,
         history: this.state.history
       })
