@@ -36,6 +36,10 @@ export default class GameHistory {
   }
 
 
+  resetScores() {
+    this.Store.clear();
+  }
+
   /**
    * This function wraps the LocalStorage and handle the procces of updating without
    * overwrite the currentHistory that already exists
