@@ -17,6 +17,7 @@ import { extend, eq, dynamicClass, inc } from './functionality/helpers';
 
 import Game from './components/Game/Game';
 import GameConfigBar from './components/Game/GameConfigBar';
+import GameModeSelect from './components/Game/GameModeSelect';
 import FxPlayer from './components/ui/FxPlayer';
 
 import AboutModal from './components/functional/AboutModal';
@@ -41,7 +42,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={dynamicClass(`App ${this.state.BGColor}`, ['modal--is-open'], this.state.aboutVisible)}>
+      <div
+        className={dynamicClass(
+          `App ${this.state.BGColor}`,
+          ['modal--is-open'],
+          this.state.aboutVisible
+        )}
+      >
         <button
           onClick={() => this.toggleHeader()}
           type="button"
@@ -61,7 +68,7 @@ export default class App extends Component {
           winner={Boolean(this.state.winner)}
           currentPlayer={this.state.currentTurn}
           onSetVolume={amount => this.onSetVolume(amount)}
-          onResetGame={() => this.ResetGame()}
+          onResetGame={() => this.InitGame()}
           onChangeColor={color => this.onChangeColor(color)}
         />
         <Game
@@ -78,6 +85,10 @@ export default class App extends Component {
           onClick={() => this.setState({ aboutVisible: true })}
         />
         <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
+        <GameModeSelect
+          isVisible={!this.state.gameStarted}
+          onModeSelect={mode => this.InitGame(mode)}
+        />
         <AboutModal
           isVisible={this.state.aboutVisible}
           onClose={() => this.setState({ aboutVisible: false })}
@@ -88,6 +99,38 @@ export default class App extends Component {
 
   componentDidMount() {
     this.FXPlayer = document.querySelector('#FXPlayer');
+  }
+
+  componentWillUpdate(props, state, anys) {
+    if (
+      eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL) &&
+      eq(state.vsComputer, true)
+    ) {
+      this.MakeAIMove(state);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  InitGame(mode) {
+    const gameStarted = mode === undefined ? false : true;
+    clearInterval(this.timer);
+    if (cornify.count() >= 3) cornify.clear();
+    this.setState(
+      extend(this.InitialState, {
+        vsComputer: mode,
+        gameStarted,
+        BGColor: this.state.BGColor,
+        history: this.state.history
+      })
+    );
+    console.log(`GS ${gameStarted}`)
+    if (gameStarted) this.setGameTimer();
+  }
+
+  setGameTimer() {
     this.timer = setInterval(
       () => {
         const player = this.state.currentTurn;
@@ -100,40 +143,6 @@ export default class App extends Component {
     );
   }
 
-  componentWillUpdate(props, state, anys) {
-    if (eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL) && eq(state.vsComputer, true)) {
-      this.MakeAIMove(state);
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  InitGame(player) {
-    this.setState(
-      extend(this.InitialState, { currentTurn: player })
-    );
-  }
-
-  ResetGame() {
-    clearInterval(this.timer)
-    this.timer = setInterval(
-      () => {
-        this.setState({
-          times: extend(this.state.times, {
-            [this.state.currentTurn]: this.state.times[this.state.currentTurn] +
-              1
-          })
-        });
-      },
-      1000
-    );
-    if(cornify.count() >= 3) cornify.clear();
-    this.setState(
-      extend(this.InitialState, { BGColor: this.state.BGColor, history: this.state.history })
-    );
-  }
   generateMenuClases() {
     const baseClase = 'hamburger-menu';
     return `${baseClase} ${this.state.headerVisible ? 'hamburger-menu--open' : ''}`;
@@ -170,10 +179,15 @@ export default class App extends Component {
       const isWinner = CheckForWinner(newState.board);
       if (CheckForWinner(newState.board)) {
         newState.winner = isWinner;
-        this.state.history.GenerateHistory(state.currentTurn, newState.board, state.times[state.currentTurn]);
+        this.state.history.GenerateHistory(
+          state.currentTurn,
+          newState.board,
+          state.times[state.currentTurn]
+        );
         clearInterval(this.timer);
         cornify.add();
         this.PlayFx('applause.mp3');
+        newState.gameStarted = false;
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player);
         newState.currentTurn = SwitchPlayers(player);
