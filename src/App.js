@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import * as cornify from 'cornified';
-
 import './App.css';
 
 import {
@@ -117,7 +115,6 @@ export default class App extends Component {
   InitGame(mode) {
     const gameStarted = mode === undefined ? false : true;
     clearInterval(this.timer);
-    if (cornify.count() >= 3) cornify.clear();
     this.setState(
       extend(this.InitialState, {
         gameStarted,
@@ -185,7 +182,6 @@ export default class App extends Component {
           state.times[state.currentTurn]
         );
         clearInterval(this.timer);
-        cornify.add();
         this.PlayFx('applause.mp3');
         newState.gameStarted = false;
       } else if (RemainingMoves(newState.board)) {
