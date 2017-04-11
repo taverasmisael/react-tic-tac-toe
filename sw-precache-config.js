@@ -2,6 +2,7 @@ module.exports = {
   stripPrefix: 'build/',
   staticFileGlobs: [
     'build/*.html',
+    'build/**/*.{woff,woff2,wtf,ott}',
     'build/**/*.png',
     'build/**/*.jpg',
     'build/**/*.mp3',
