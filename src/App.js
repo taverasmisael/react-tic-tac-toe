@@ -171,10 +171,15 @@ export default class App extends Component {
       return {};
     } else {
       const isWinner = CheckForWinner(newState.board);
+      const computerWon = isWinner &&
+        (state.vsComputer && state.currentTurn === state.PLAYER_TWO_SYMBOL);
       if (isWinner) {
         newState.winner = isWinner;
+        const winnerName = computerWon
+          ? 'ComputerXO'
+          : (prompt('Ingrese su nombre', 'Player 1') || 'Player 1');
         this.state.history.GenerateHistory(
-          state.currentTurn,
+          `${winnerName} (${state.currentTurn})`,
           newState.board,
           state.times[state.currentTurn]
         );
