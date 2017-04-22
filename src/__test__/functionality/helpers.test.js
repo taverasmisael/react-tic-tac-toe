@@ -92,5 +92,10 @@ describe('Simple Helpers', () => {
       expect(dynamicClass(base, extras, false)).toMatch(base);
       expect(dynamicClass(base, extras, false)).not.toMatch(extras.join(' '));
     })
+    test('It should only apply extra as string not array is predicate is true', () => {
+      expect(dynamicClass(base, 'extras', true)).toMatch('extras');
+      expect(dynamicClass(base, 'extras', false)).toMatch(base);
+      expect(dynamicClass(base, 'extras', false)).not.toMatch('extras');
+    })
   })
 });
