@@ -87,7 +87,7 @@ describe('Simple Helpers', () => {
       expect(dynamicClass(base, extras, true)).toMatch(base);
       expect(dynamicClass(base, extras, false)).toMatch(base);
     })
-    test('It should only apply extas is predicate is true', () => {
+    test('It should only apply extras is predicate is true', () => {
       expect(dynamicClass(base, extras, true)).toMatch(extras.join(' '));
       expect(dynamicClass(base, extras, false)).toMatch(base);
       expect(dynamicClass(base, extras, false)).not.toMatch(extras.join(' '));
