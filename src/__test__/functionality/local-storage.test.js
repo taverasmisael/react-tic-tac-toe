@@ -3,17 +3,19 @@ import LocalStorage from '../../functionality/local-storage';
 describe('LocalStorage', () => {
   test('It should generate keys using your prefix', () => {
     const LSD = new LocalStorage();
-    const LSC = new LocalStorage('OVO')
+    const LSC = new LocalStorage('OVO');
     expect(LSD.GenerateKey('records')).toBe('XO-records')
     expect(LSC.GenerateKey('records')).toBe('OVO-records')
   });
 
-  test('It should return all Key/value pairs with my prefix', () => {
+  test('It should remove an especific key', () => {
     const LSD = new LocalStorage();
-    LSD.set('numbers', [0, 1, 2]);
-    LSD.set('person', [{name: 'Joe Doe'}]);
+    LSD.set('crew', ['NAV', 'The Weeknd']);
+    LSD.set('leader', 'The Weeknd');
+    LSD.remove('leader');
+    expect(LSD.get('leader')).toBeNull()
+    expect(LSD.get('crew')).toEqual(['NAV', 'The Weeknd'])
 
-    expect(LSD.list()).toEqual([0,1,2]);
   })
 
   describe('Parsing', () => {
