@@ -23,8 +23,8 @@ describe('LocalStorage', () => {
     beforeAll(() => LSD = new LocalStorage());
 
     describe('Stringify', () => {
-      test('It should return String|Number as they are', () => {
-        expect(LSD.Stringify(5)).toBe(5);
+      test('It should return String|Number as strings', () => {
+        expect(LSD.Stringify('5')).toBe('5');
         expect(LSD.Stringify('5')).toBe('5');
       })
       test('It should convert to String any Object|Array', () => {
