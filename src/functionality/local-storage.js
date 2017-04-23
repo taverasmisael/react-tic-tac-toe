@@ -5,22 +5,6 @@ export default class LocalStorage {
     this.secretprefix = prefix;
   }
 
-  list() {
-    let items = [];
-    for (let key in localStorage) {
-      if (key.includes(this.secretprefix)) {
-        items = [
-          ...items,
-          {
-            [key]: this.Parse(this.get(key))
-          }
-        ];
-      }
-    }
-
-    return items;
-  }
-
   set(key, value) {
     const item = this.GenerateKey(key);
 
