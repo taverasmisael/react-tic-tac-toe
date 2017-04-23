@@ -68,6 +68,8 @@ export default class LocalStorage {
       } catch (exception) {
         return '';
       }
+    } else {
+      return '';
     }
   }
 }
