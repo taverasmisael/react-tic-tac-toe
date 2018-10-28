@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 import GameBoard from "./GameBoard";
 import GameStadistics from "../ui/GameStadistics";
@@ -16,10 +17,10 @@ export const Game = ({winner, board, onSelectSquare, history, onResetScores}) =>
 );
 
 Game.propTypes = {
-  winner: React.PropTypes.array,
-  board: React.PropTypes.array.isRequired,
-  history: React.PropTypes.array.isRequired,
-  onSelectSquare: React.PropTypes.func.isRequired,
+  winner: PropTypes.array,
+  board: PropTypes.array.isRequired,
+  history: PropTypes.array.isRequired,
+  onSelectSquare: PropTypes.func.isRequired,
 }
 
 export default Game;

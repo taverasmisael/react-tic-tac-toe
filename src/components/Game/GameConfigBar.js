@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import './GameConfigBar.css';
 
@@ -54,13 +55,13 @@ const GameConfigBar = (
   </header>
 );
 GameConfigBar.propTypes = {
-  currentPlayer: React.PropTypes.string.isRequired,
-  onResetGame: React.PropTypes.func.isRequired,
-  onChangeColor: React.PropTypes.func.isRequired,
-  onSetVolume: React.PropTypes.func.isRequired,
-  winner: React.PropTypes.bool.isRequired,
-  times: React.PropTypes.object,
-  isVisible: React.PropTypes.bool.isRequired
+  currentPlayer: PropTypes.string.isRequired,
+  onResetGame: PropTypes.func.isRequired,
+  onChangeColor: PropTypes.func.isRequired,
+  onSetVolume: PropTypes.func.isRequired,
+  winner: PropTypes.bool.isRequired,
+  times: PropTypes.object,
+  isVisible: PropTypes.bool.isRequired
 };
 
 GameConfigBar.defaultProps = {

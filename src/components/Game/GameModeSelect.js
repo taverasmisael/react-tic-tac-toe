@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 import "./GameModeSelect.css";
 
@@ -28,8 +29,8 @@ export const GameModeSelect = ({ onModeSelect, isVisible }) => (
 );
 
 GameModeSelect.propTypes = {
-  onModeSelect: React.PropTypes.func.isRequired,
-  isVisible: React.PropTypes.bool.isRequired
+  onModeSelect: PropTypes.func.isRequired,
+  isVisible: PropTypes.bool.isRequired
 };
 
 export default GameModeSelect;

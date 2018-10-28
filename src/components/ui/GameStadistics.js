@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import './GameStadistics.css';
 
@@ -28,8 +29,8 @@ export const GameStadistics = ({states, onResetScores}) => (
 export default GameStadistics;
 
 GameStadistics.propTypes = {
-  states: React.PropTypes.array.isRequired,
-  onResetScores: React.PropTypes.func.isRequired
+  states: PropTypes.array.isRequired,
+  onResetScores: PropTypes.func.isRequired
 }
 GameStadistics.defaultProps = {
   states: []
