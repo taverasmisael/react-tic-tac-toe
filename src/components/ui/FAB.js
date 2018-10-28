@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import './FAB.css'
 
 export const FAB = ({onClick, text, title}) => (
@@ -10,7 +12,7 @@ export const FAB = ({onClick, text, title}) => (
 export default FAB;
 
 FAB.propTypes = {
-  onClick: React.PropTypes.func.isRequired,
-  text: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }

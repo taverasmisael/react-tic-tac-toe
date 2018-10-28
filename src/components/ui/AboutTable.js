@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import './AboutTable.css'
 
@@ -20,7 +21,7 @@ export const AboutTable = ({ members }) => (
 export default AboutTable;
 
 AboutTable.propTypes = {
-  members: React.PropTypes.array
+  members: PropTypes.array
 }
 
 AboutTable.defaultProps = {

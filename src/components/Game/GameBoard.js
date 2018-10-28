@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 import "./GameBoard.css";
 
@@ -29,9 +30,9 @@ const GameBoard = ({ board, winner, onSelectSquare }) => {
 };
 
 GameBoard.propTypes = {
-  winner: React.PropTypes.array,
-  board: React.PropTypes.array.isRequired,
-  onSelectSquare: React.PropTypes.func.isRequired
+  winner: PropTypes.array,
+  board: PropTypes.array.isRequired,
+  onSelectSquare: PropTypes.func.isRequired
 };
 
 const positionClasses = [

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import './ColorPicker.css';
 
@@ -49,5 +50,5 @@ export const ColorPicker = ({ onChangeColor }) => {
 export default ColorPicker;
 
 ColorPicker.propTypes = {
-  onChangeColor: React.PropTypes.func.isRequired
+  onChangeColor: PropTypes.func.isRequired
 };
