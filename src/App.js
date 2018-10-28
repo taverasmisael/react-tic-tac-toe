@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react'
 
-import './App.css';
+import './App.css'
 
 import {
   GameState,
@@ -8,32 +8,35 @@ import {
   MakeMove,
   PlayAI,
   RemainingMoves,
-  SwitchPlayers
-} from './functionality/tictactoe';
+  SwitchPlayers,
+} from './functionality/tictactoe'
 
-import { extend, eq, dynamicClass, inc } from './functionality/helpers';
+import { extend, eq, dynamicClass, inc } from './functionality/helpers'
 
-import Game from './components/Game/Game';
-import GameConfigBar from './components/Game/GameConfigBar';
-import GameModeSelect from './components/Game/GameModeSelect';
-import FxPlayer from './components/ui/FxPlayer';
+import Game from './components/Game/Game'
+import GameConfigBar from './components/Game/GameConfigBar'
+import GameModeSelect from './components/Game/GameModeSelect'
+import FxPlayer from './components/ui/FxPlayer'
 
-import AboutModal from './components/functional/AboutModal';
-import FAB from './components/ui/FAB';
+import AboutModal from './components/functional/AboutModal'
+import FAB from './components/ui/FAB'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.InitialState = new GameState({
       headerVisible: false,
       aboutVisible: false,
       BGColor: '',
       FX: {
-        currentFX: 'pop1.mp3'
-      }
-    });
+        currentFX: 'pop1.mp3',
+      },
+    })
 
-    this.state = this.InitialState;
+    this.state = this.InitialState
+    this.FXPlayer = createRef()
+    this.FXPlayer1 = createRef()
+    this.FXPlayer2 = createRef()
   }
 
   render() {
@@ -73,14 +76,17 @@ export default class App extends Component {
           history={this.state.history.getHistory()}
           onResetScores={() => this.state.history.resetScores()}
           onSelectSquare={square =>
-            this.MakeMove(this.state, square, this.state.currentTurn)}
+            this.MakeMove(this.state, square, this.state.currentTurn)
+          }
         />
         <FAB
           text="?"
           title="Ayuda"
           onClick={() => this.setState({ aboutVisible: true })}
         />
-        <FxPlayer mediaSrc={this.state.FX.currentFX} mediaType="mp3" />
+        <FxPlayer ref={this.FXPlayer} mediaSrc={this.state.FX.currentFX} />
+        <FxPlayer ref={this.FXPlayer1} mediaSrc={'pop1.mp3'} />
+        <FxPlayer ref={this.FXPlayer2} mediaSrc={'pop2.mp3'} />
         <GameModeSelect
           isVisible={!this.state.gameStarted}
           onModeSelect={mode => this.InitGame(mode)}
@@ -90,11 +96,7 @@ export default class App extends Component {
           onClose={() => this.setState({ aboutVisible: false })}
         />
       </div>
-    );
-  }
-
-  componentDidMount() {
-    this.FXPlayer = document.querySelector('#FXPlayer');
+    )
   }
 
   componentWillUpdate(props, state, anys) {
@@ -102,114 +104,138 @@ export default class App extends Component {
       eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL) &&
       eq(state.vsComputer, true)
     ) {
-      this.MakeAIMove(state);
+      this.MakeAIMove(state)
     }
   }
 
   componentWillUnmount() {
-    this.StopGameTimer();
+    this.StopGameTimer()
   }
 
   InitGame(mode) {
-    const gameStarted = mode === undefined ? false : true;
-    this.StopGameTimer();
+    const gameStarted = mode === undefined ? false : true
+    this.StopGameTimer()
     this.setState(
       extend(this.InitialState, {
         gameStarted,
         vsComputer: mode,
         BGColor: this.state.BGColor,
-        history: this.state.history
+        history: this.state.history,
       })
-    );
-    if (gameStarted) this.SetGameTimer();
+    )
+    if (gameStarted) this.SetGameTimer()
   }
 
   SetGameTimer() {
-    this.timer = setInterval(
-      () => {
-        const player = this.state.currentTurn;
-        const newTimes = extend(this.state.times, {
-          [player]: inc(this.state.times[player])
-        });
-        this.setState({ times: newTimes });
-      },
-      1000
-    );
+    this.timer = setInterval(() => {
+      const player = this.state.currentTurn
+      const newTimes = extend(this.state.times, {
+        [player]: inc(this.state.times[player]),
+      })
+      this.setState({ times: newTimes })
+    }, 1000)
   }
 
   StopGameTimer() {
-    clearInterval(this.timer);
+    clearInterval(this.timer)
   }
 
   onSetVolume(amount) {
-    this.FXPlayer.volume = amount;
+    this.FXPlayer.volume = amount
   }
 
   onChangeColor(color) {
     this.setState({
-      BGColor: color ? `App--bg-${color}` : ''
-    });
+      BGColor: color ? `App--bg-${color}` : '',
+    })
   }
 
   toggleHeader() {
     this.setState({
-      headerVisible: !this.state.headerVisible
-    });
+      headerVisible: !this.state.headerVisible,
+    })
   }
 
   MakeMove(state, square, player) {
     if (!state.winner)
-      this.setState(this.UpdateGameStatus(state, square, player));
+      this.setState(this.UpdateGameStatus(state, square, player))
   }
 
   UpdateGameStatus(state, squareIndex, player) {
-    let newState = {};
+    let newState = {}
 
-    newState.board = MakeMove(state.board, squareIndex, player);
+    newState.board = MakeMove(state.board, squareIndex, player)
 
     if (eq(newState.board, state.board)) {
-      return {};
+      return {}
     } else {
-      const isWinner = CheckForWinner(newState.board);
-      const computerWon = isWinner &&
-        (state.vsComputer && state.currentTurn === state.PLAYER_TWO_SYMBOL);
+      const isWinner = CheckForWinner(newState.board)
+      const computerWon =
+        isWinner &&
+        (state.vsComputer && state.currentTurn === state.PLAYER_TWO_SYMBOL)
       if (isWinner) {
-        newState.winner = isWinner;
+        newState.winner = isWinner
         const winnerName = computerWon
-          ? 'ComputerXO'
-          : (prompt('Ingrese su nombre', 'Player 1') || 'Player 1');
+        ? 'ComputerXO'
+        : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
         this.state.history.GenerateHistory(
           `${winnerName} (${state.currentTurn})`,
           newState.board,
           state.times[state.currentTurn]
-        );
-        this.StopGameTimer();
-        this.PlayFx('applause.mp3');
-        newState.gameStarted = false;
+          )
+          this.StopGameTimer()
+          this.PlayFx('applause.mp3')
+          newState.gameStarted = false
       } else if (RemainingMoves(newState.board)) {
-        this.PlayPopEffect(player);
-        newState.currentTurn = SwitchPlayers(player);
+        this.PlayPopEffect(player)
+        newState.currentTurn = SwitchPlayers(player)
       } else {
-        this.StopGameTimer();
-        this.PlayFx('jeer.mp3');
+        this.StopGameTimer()
+        this.PlayFx('jeer.mp3')
       }
     }
 
-    return newState;
+    return newState
   }
 
   MakeAIMove(game) {
-    const nextMove = PlayAI(game.board, 2, game.currentTurn);
-    this.MakeMove(game, nextMove, game.currentTurn);
+    const nextMove = PlayAI(game.board, 2, game.currentTurn)
+    this.MakeMove(game, nextMove, game.currentTurn)
   }
 
   PlayPopEffect(player) {
-    if (player === this.state.PLAYER_ONE_SYMBOL) this.PlayFx('pop2.mp3');
-    if (player === this.state.PLAYER_TWO_SYMBOL) this.PlayFx('pop1.mp3');
+    if (player === this.state.PLAYER_ONE_SYMBOL)
+      this.PlayFxPlayer(this.FXPlayer1)
+    if (
+      player === this.state.PLAYER_TWO_SYMBOL &&
+      !eq(this.state.vsComputer, true)
+    )
+      this.PlayFxPlayer(this.FXPlayer2)
   }
 
   PlayFx(currentFX) {
-    this.FXPlayer.currentTime = 0;
-    this.setState({ FX: { currentFX } }, () => this.FXPlayer.play());
+    const { current: Player } = this.FXPlayer
+
+    this.setState({ FX: { currentFX } }, () => {
+      this.PlaySound(Player)
+    })
+  }
+
+  PlayFxPlayer(FxPlayer) {
+    const { current: Player } = FxPlayer
+    this.PlaySound(Player)
+  }
+
+  /**
+   *
+   * @param {HTMLAudioElement} Player Any Player, with a source
+   */
+  PlaySound(Player) {
+    Player.currentTime = 0
+    Player.volume = 0.5
+    const promise = Player.play()
+    if (promise !== undefined) {
+      promise.then(_ => (Player.volume = 1)).catch(console.error.bind(console))
+    }
   }
 }
