@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["apple-touch-icon-57x57.png","1e2e99d33472f176185299fe1435ca37"],["apple-touch-icon.png","1e2e99d33472f176185299fe1435ca37"],["assets/audio/fx/applause.mp3","4705b3f19fe0485d8932799a8047d7d9"],["assets/audio/fx/jeer.mp3","9e511fd9d07aad01717267c4c7f2d4a8"],["assets/audio/fx/pop1.mp3","6f49743bc6a71a9d4156b7ec61010f87"],["assets/audio/fx/pop2.mp3","1a98bda64c96f138ee8b3a828cb5f077"],["assets/fonts/material-icons.woff2","c77332f603c38a787040215d965ac5c4"],["assets/images/profiles/elvis-vanderpool.jpg","3e816b19285a4ab49c2ba758db0cc856"],["assets/images/profiles/misael-taveras.jpg","b2bcc67f0ed0c7b76a319f69e6984eb0"],["assets/images/profiles/odani-eustaquio.jpg","76a7f72898e3f2149896ae8619ec3e32"],["favicon.png","1e2e99d33472f176185299fe1435ca37"],["images/largetile.png","6dde85ea9dcda0c1ed3273de55338d7a"],["images/mediumtile.png","3d19471d59278cd9818384ba87609686"],["images/smalltile.png","58b0be6cc08b88e98032747a3dba18db"],["images/touch/homescreen144.png","2b17a698d84e0bd1da6cecd489dfec58"],["images/touch/homescreen168.png","39a95b34e08f412a7d327d8c41ec4578"],["images/touch/homescreen192.png","1e3b4dac5fe1039fa415fd6fe736f1e5"],["images/touch/homescreen256.png","d0a159801d685e37772001fe091ce132"],["images/touch/homescreen384.png","71e3cf8e8fb48cd85c3c4a1cfee66cfd"],["images/touch/homescreen48.png","b4fd8247cf228bffbb1f1d7c387f26e8"],["images/touch/homescreen512.png","bca635be8485f30b4a661242704895b0"],["images/touch/homescreen72.png","2938a1d905d5087a61da30d7f063a16a"],["images/touch/homescreen96.png","e049dff7b2dfb96e9727b9a9822280f9"],["images/widetile.png","3a4f42b51ad6e1884967cef0f2670841"],["index.html","7a10f034f421e1bda125930c0d025095"],["manifest.json","a3f381398363f956f293355b889e3c6c"],["startup.png","1e2e99d33472f176185299fe1435ca37"],["static/css/main.f531088e.css","877adc247f4a5265ee246e74b850875c"],["static/js/main.fda10e5c.js","74cf3973e775e6ce532bb94508c1f292"],["touch-icon-ipad.png","2938a1d905d5087a61da30d7f063a16a"],["touch-icon-iphone4.png","61a49a001bd8e8d8359cabe3e44fde7e"]];
+var precacheConfig = [["apple-touch-icon-57x57.png","1e2e99d33472f176185299fe1435ca37"],["apple-touch-icon.png","1e2e99d33472f176185299fe1435ca37"],["assets/audio/fx/applause.mp3","4705b3f19fe0485d8932799a8047d7d9"],["assets/audio/fx/jeer.mp3","9e511fd9d07aad01717267c4c7f2d4a8"],["assets/audio/fx/pop1.mp3","6f49743bc6a71a9d4156b7ec61010f87"],["assets/audio/fx/pop2.mp3","1a98bda64c96f138ee8b3a828cb5f077"],["assets/fonts/material-icons.woff2","c77332f603c38a787040215d965ac5c4"],["assets/images/profiles/elvis-vanderpool.jpg","3e816b19285a4ab49c2ba758db0cc856"],["assets/images/profiles/misael-taveras.jpg","b2bcc67f0ed0c7b76a319f69e6984eb0"],["assets/images/profiles/odani-eustaquio.jpg","76a7f72898e3f2149896ae8619ec3e32"],["favicon.png","1e2e99d33472f176185299fe1435ca37"],["images/largetile.png","6dde85ea9dcda0c1ed3273de55338d7a"],["images/mediumtile.png","3d19471d59278cd9818384ba87609686"],["images/smalltile.png","58b0be6cc08b88e98032747a3dba18db"],["images/touch/homescreen144.png","2b17a698d84e0bd1da6cecd489dfec58"],["images/touch/homescreen168.png","39a95b34e08f412a7d327d8c41ec4578"],["images/touch/homescreen192.png","1e3b4dac5fe1039fa415fd6fe736f1e5"],["images/touch/homescreen256.png","d0a159801d685e37772001fe091ce132"],["images/touch/homescreen384.png","71e3cf8e8fb48cd85c3c4a1cfee66cfd"],["images/touch/homescreen48.png","b4fd8247cf228bffbb1f1d7c387f26e8"],["images/touch/homescreen512.png","bca635be8485f30b4a661242704895b0"],["images/touch/homescreen72.png","2938a1d905d5087a61da30d7f063a16a"],["images/touch/homescreen96.png","e049dff7b2dfb96e9727b9a9822280f9"],["images/widetile.png","3a4f42b51ad6e1884967cef0f2670841"],["index.html","aefa1c89eb0d54a9dabe0a8dab58c493"],["manifest.json","6ab7c327a83d38eb49ce920ece341007"],["startup.png","1e2e99d33472f176185299fe1435ca37"],["static/css/main.5e194119.chunk.css","2710d49c3a599dae7e3425fcb8e929a2"],["static/js/1.b4e6f051.chunk.js","ecd0c6689e65bd11f5018dfae63f054a"],["static/js/main.8cc9a70e.chunk.js","567fa4a83817f06aa91d4222dfb6cccc"],["static/js/runtime~main.87d698cc.js","24b94eed9b672d8a9c143bb3c89f2d43"],["touch-icon-ipad.png","2938a1d905d5087a61da30d7f063a16a"],["touch-icon-iphone4.png","61a49a001bd8e8d8359cabe3e44fde7e"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -45,7 +45,7 @@ var ignoreUrlParametersMatching = [/^utm_/];
 
 
 
-var addDirectoryIndex = function (originalUrl, index) {
+var addDirectoryIndex = function(originalUrl, index) {
     var url = new URL(originalUrl);
     if (url.pathname.slice(-1) === '/') {
       url.pathname += index;
@@ -53,7 +53,7 @@ var addDirectoryIndex = function (originalUrl, index) {
     return url.toString();
   };
 
-var cleanResponse = function (originalResponse) {
+var cleanResponse = function(originalResponse) {
     // If this is not a redirected response, then we don't have to do anything.
     if (!originalResponse.redirected) {
       return Promise.resolve(originalResponse);
@@ -75,7 +75,7 @@ var cleanResponse = function (originalResponse) {
     });
   };
 
-var createCacheKey = function (originalUrl, paramName, paramValue,
+var createCacheKey = function(originalUrl, paramName, paramValue,
                            dontCacheBustUrlsMatching) {
     // Create a new URL object to avoid modifying originalUrl.
     var url = new URL(originalUrl);
@@ -91,7 +91,7 @@ var createCacheKey = function (originalUrl, paramName, paramValue,
     return url.toString();
   };
 
-var isPathWhitelisted = function (whitelist, absoluteUrlString) {
+var isPathWhitelisted = function(whitelist, absoluteUrlString) {
     // If the whitelist is empty, then consider all URLs to be whitelisted.
     if (whitelist.length === 0) {
       return true;
@@ -104,9 +104,11 @@ var isPathWhitelisted = function (whitelist, absoluteUrlString) {
     });
   };
 
-var stripIgnoredUrlParameters = function (originalUrl,
+var stripIgnoredUrlParameters = function(originalUrl,
     ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
+    // Remove the hash; see https://github.com/GoogleChrome/sw-precache/issues/290
+    url.hash = '';
 
     url.search = url.search.slice(1) // Exclude initial '?'
       .split('&') // Split into an array of 'key=value' strings
@@ -212,8 +214,8 @@ self.addEventListener('fetch', function(event) {
     // handlers a chance to handle the request if need be.
     var shouldRespond;
 
-    // First, remove all the ignored parameter and see if we have that URL
-    // in our cache. If so, great! shouldRespond will be true.
+    // First, remove all the ignored parameters and hash fragment, and see if we
+    // have that URL in our cache. If so, great! shouldRespond will be true.
     var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
     shouldRespond = urlsToCacheKeys.has(url);
 
