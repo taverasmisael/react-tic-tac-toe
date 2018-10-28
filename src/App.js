@@ -176,16 +176,16 @@ export default class App extends Component {
       if (isWinner) {
         newState.winner = isWinner
         const winnerName = computerWon
-          ? 'ComputerXO'
-          : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
+        ? 'ComputerXO'
+        : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
         this.state.history.GenerateHistory(
           `${winnerName} (${state.currentTurn})`,
           newState.board,
           state.times[state.currentTurn]
-        )
-        this.StopGameTimer()
-        this.PlayFx('applause.mp3')
-        newState.gameStarted = false
+          )
+          this.StopGameTimer()
+          this.PlayFx('applause.mp3')
+          newState.gameStarted = false
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player)
         newState.currentTurn = SwitchPlayers(player)
@@ -206,7 +206,10 @@ export default class App extends Component {
   PlayPopEffect(player) {
     if (player === this.state.PLAYER_ONE_SYMBOL)
       this.PlayFxPlayer(this.FXPlayer1)
-    if (player === this.state.PLAYER_TWO_SYMBOL)
+    if (
+      player === this.state.PLAYER_TWO_SYMBOL &&
+      !eq(this.state.vsComputer, true)
+    )
       this.PlayFxPlayer(this.FXPlayer2)
   }
 
@@ -229,15 +232,10 @@ export default class App extends Component {
    */
   PlaySound(Player) {
     Player.currentTime = 0
-    Player.volume = 1
+    Player.volume = 0.5
     const promise = Player.play()
     if (promise !== undefined) {
-      promise
-        .then(_ => {
-          Player.volume = 0.8
-          setTimeout(_ => Player.pause(), 250)
-        })
-        .catch(console.error.bind(console))
+      promise.then(_ => (Player.volume = 1)).catch(console.error.bind(console))
     }
   }
 }
