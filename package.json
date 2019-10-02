@@ -4,17 +4,16 @@
   "private": true,
   "homepage": "https://taverasmisael.github.io/react-tic-tac-toe",
   "devDependencies": {
-    "enzyme": "^3.7.0",
-    "gh-pages": "^2.0.1",
+    "enzyme": "^3.10.0",
+    "gh-pages": "^2.1.1",
     "react-addons-test-utils": "^15.6.2",
-    "react-scripts": "2.0.5"
+    "react-scripts": "3.1.2"
   },
   "dependencies": {
-    "cornified": "^1.1.0",
-    "lodash": "^4.17.11",
-    "prop-types": "^15.6.2",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
     "sw-precache": "^5.2.1"
   },
   "scripts": {
