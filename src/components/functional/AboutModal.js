@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
+
 import './AboutModal.css'
 
 import AboutTable from '../ui/AboutTable'
-import { dynamicClass } from '../../functionality/helpers'
 
 import { members } from '../../data/info.json'
 
@@ -11,11 +12,9 @@ export default class AboutModal extends Component {
   render() {
     return (
       <div
-        className={dynamicClass(
-          'AboutModal',
-          ['AboutModal--is-visible'],
-          this.props.isVisible
-        )}
+        className={classnames('AboutModal', {
+          'AboutModal--is-visible': this.props.isVisible,
+        })}
       >
         <h1 className="AboutModal__title">Acerca de</h1>
         <button

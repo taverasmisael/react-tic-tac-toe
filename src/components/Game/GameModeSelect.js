@@ -1,12 +1,15 @@
-import React from "react";
+import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
-import "./GameModeSelect.css";
-
-import { dynamicClass } from '../../functionality/helpers'
+import './GameModeSelect.css'
 
 export const GameModeSelect = ({ onModeSelect, isVisible }) => (
-  <div className={dynamicClass('GameModeSelect', ['GameModeSelect--visible'], isVisible)}>
+  <div
+    className={classnames('GameModeSelect', {
+      'GameModeSelect--visible': isVisible,
+    })}
+  >
     <div className="GameModeSelect__container">
       <h1>Elegir al jugador 1</h1>
       <span className="flex--spandex" />
@@ -26,11 +29,11 @@ export const GameModeSelect = ({ onModeSelect, isVisible }) => (
       </div>
     </div>
   </div>
-);
+)
 
 GameModeSelect.propTypes = {
   onModeSelect: PropTypes.func.isRequired,
-  isVisible: PropTypes.bool.isRequired
-};
+  isVisible: PropTypes.bool.isRequired,
+}
 
-export default GameModeSelect;
+export default GameModeSelect

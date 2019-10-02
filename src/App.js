@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react'
+import classnames from 'classnames'
 
 import './App.css'
 
@@ -10,8 +11,6 @@ import {
   RemainingMoves,
   SwitchPlayers,
 } from './functionality/tictactoe'
-
-import { extend, eq, dynamicClass, inc } from './functionality/helpers'
 
 import Game from './components/Game/Game'
 import GameConfigBar from './components/Game/GameConfigBar'
@@ -32,7 +31,7 @@ export default class App extends Component {
         currentFX: 'pop1.mp3',
       },
     })
-
+    this.state = this.InitialState
     this.state = this.InitialState
     this.FXPlayer = createRef()
     this.FXPlayer1 = createRef()
@@ -42,20 +41,16 @@ export default class App extends Component {
   render() {
     return (
       <div
-        className={dynamicClass(
-          `App ${this.state.BGColor}`,
-          ['modal--is-open'],
-          this.state.aboutVisible
-        )}
+        className={classnames(`App ${this.state.BGColor}`, {
+          'modal--is-open': this.state.aboutVisible,
+        })}
       >
         <button
           onClick={() => this.toggleHeader()}
           type="button"
-          className={dynamicClass(
-            'hamburger-menu',
-            ['hamburger-menu--open'],
-            this.state.headerVisible
-          )}
+          className={classnames('hamburger-menu', {
+            'hamburger-menu--open': this.state.headerVisible,
+          })}
         >
           <span className="hamburger-menu__line" />
           <span className="hamburger-menu__line" />
@@ -101,8 +96,8 @@ export default class App extends Component {
 
   componentWillUpdate(props, state, anys) {
     if (
-      eq(state.currentTurn, this.state.PLAYER_TWO_SYMBOL) &&
-      eq(state.vsComputer, true)
+      state.currentTurn === this.state.PLAYER_TWO_SYMBOL &&
+      state.vsComputer === true
     ) {
       this.MakeAIMove(state)
     }
@@ -115,23 +110,24 @@ export default class App extends Component {
   InitGame(mode) {
     const gameStarted = mode === undefined ? false : true
     this.StopGameTimer()
-    this.setState(
-      extend(this.InitialState, {
-        gameStarted,
-        vsComputer: mode,
-        BGColor: this.state.BGColor,
-        history: this.state.history,
-      })
-    )
+    this.setState({
+      ...this.InitialState,
+      gameStarted,
+      vsComputer: mode,
+      BGColor: this.state.BGColor,
+      history: this.state.history,
+    })
+
     if (gameStarted) this.SetGameTimer()
   }
 
   SetGameTimer() {
     this.timer = setInterval(() => {
       const player = this.state.currentTurn
-      const newTimes = extend(this.state.times, {
-        [player]: inc(this.state.times[player]),
-      })
+      const newTimes = {
+        ...this.state.times,
+        [player]: this.state.times[player] + 1,
+      }
       this.setState({ times: newTimes })
     }, 1000)
   }
@@ -166,7 +162,7 @@ export default class App extends Component {
 
     newState.board = MakeMove(state.board, squareIndex, player)
 
-    if (eq(newState.board, state.board)) {
+    if (newState.board === state.board) {
       return {}
     } else {
       const isWinner = CheckForWinner(newState.board)
@@ -176,16 +172,16 @@ export default class App extends Component {
       if (isWinner) {
         newState.winner = isWinner
         const winnerName = computerWon
-        ? 'ComputerXO'
-        : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
+          ? 'ComputerXO'
+          : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
         this.state.history.GenerateHistory(
           `${winnerName} (${state.currentTurn})`,
           newState.board,
           state.times[state.currentTurn]
-          )
-          this.StopGameTimer()
-          this.PlayFx('applause.mp3')
-          newState.gameStarted = false
+        )
+        this.StopGameTimer()
+        this.PlayFx('applause.mp3')
+        newState.gameStarted = false
       } else if (RemainingMoves(newState.board)) {
         this.PlayPopEffect(player)
         newState.currentTurn = SwitchPlayers(player)
@@ -208,7 +204,7 @@ export default class App extends Component {
       this.PlayFxPlayer(this.FXPlayer1)
     if (
       player === this.state.PLAYER_TWO_SYMBOL &&
-      !eq(this.state.vsComputer, true)
+      this.state.vsComputer !== true
     )
       this.PlayFxPlayer(this.FXPlayer2)
   }

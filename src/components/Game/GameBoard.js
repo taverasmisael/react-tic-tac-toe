@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import './GameBoard.css'
 
-import { dynamicClass } from '../../functionality/helpers'
-
-const GameBoard = ({ board, winner, onSelectSquare }) => {
+const GameBoard = memo(({ board, winner, onSelectSquare }) => {
   const BoardSquares = board.map((square, index) => (
     <button
       type="button"
@@ -24,7 +23,7 @@ const GameBoard = ({ board, winner, onSelectSquare }) => {
       <div className="GameBoard__content">{BoardSquares}</div>
     </div>
   )
-}
+})
 
 GameBoard.propTypes = {
   winner: PropTypes.array,
@@ -45,10 +44,9 @@ const positionClasses = [
 ]
 
 function generateSquareClass(winner, index) {
-  return dynamicClass(
-    `GameBoard__square ${positionClasses[index]}`,
-    ['GameBoard__square--winner'],
-    winner && winner.findIndex(el => el === index) >= 0
-  )
+  return classnames(`GameBoard__square ${positionClasses[index]}`, {
+    'GameBoard__square--winner':
+      winner && winner.findIndex(el => el === index) >= 0,
+  })
 }
 export default GameBoard

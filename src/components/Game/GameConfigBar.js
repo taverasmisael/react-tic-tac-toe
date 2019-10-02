@@ -1,29 +1,24 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
-import './GameConfigBar.css';
+import './GameConfigBar.css'
 
-import { dynamicClass } from '../../functionality/helpers';
+import ColorPicker from '../functional/ColorPicker'
 
-import ColorPicker from '../functional/ColorPicker';
-
-const GameConfigBar = (
-  {
-    times,
-    currentPlayer,
-    onResetGame,
-    winner,
-    isVisible,
-    onChangeColor,
-    onSetVolume
-  }
-) => (
+const GameConfigBar = ({
+  times,
+  currentPlayer,
+  onResetGame,
+  winner,
+  isVisible,
+  onChangeColor,
+  onSetVolume,
+}) => (
   <header
-    className={dynamicClass(
-      'GameConfigBar',
-      ['GameConfigBar--visible'],
-      isVisible
-    )}
+    className={classnames('GameConfigBar', {
+      'GameConfigBar--visible': isVisible,
+    })}
   >
     <div className="config-block color-picker">
       <h4 className="config-block__header">Configuración de Sonido</h4>
@@ -39,7 +34,9 @@ const GameConfigBar = (
     </div>
     <div className="config-block timer">
       <h4 className="config-block__header">Turno de {currentPlayer}</h4>
-      <div className="config-block__content">{times[currentPlayer] + ' segs'}</div>
+      <div className="config-block__content">
+        {times[currentPlayer] + ' segs'}
+      </div>
     </div>
     <div className="config-block color-picker">
       <h4 className="config-block__header">Color de Fondo</h4>
@@ -53,7 +50,7 @@ const GameConfigBar = (
       </button>
     </div>
   </header>
-);
+)
 GameConfigBar.propTypes = {
   currentPlayer: PropTypes.string.isRequired,
   onResetGame: PropTypes.func.isRequired,
@@ -61,11 +58,11 @@ GameConfigBar.propTypes = {
   onSetVolume: PropTypes.func.isRequired,
   winner: PropTypes.bool.isRequired,
   times: PropTypes.object,
-  isVisible: PropTypes.bool.isRequired
-};
-
-GameConfigBar.defaultProps = {
-  times: {}
+  isVisible: PropTypes.bool.isRequired,
 }
 
-export default GameConfigBar;
+GameConfigBar.defaultProps = {
+  times: {},
+}
+
+export default GameConfigBar
