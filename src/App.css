@@ -14,22 +14,38 @@
 .App--bg-red {
   --winning-color: rgb(223, 233, 243);
   background-color: rgb(247, 112, 98);
-  background-image: linear-gradient(to top, rgb(247, 112, 98) 0%, rgb(254, 81, 150) 100%)
+  background-image: linear-gradient(
+    to top,
+    rgb(247, 112, 98) 0%,
+    rgb(254, 81, 150) 100%
+  );
 }
 
 .App--bg-blue {
-  --winning-color: rgb(223, 233, 243);;
+  --winning-color: rgb(223, 233, 243);
   background-color: rgb(146, 254, 157);
-  background-image: linear-gradient(to right, rgb(146, 254, 157) 0%, rgb(0, 201, 255) 100%)
+  background-image: linear-gradient(
+    to right,
+    rgb(146, 254, 157) 0%,
+    rgb(0, 201, 255) 100%
+  );
 }
 
 .App--bg-green {
   --winning-color: rgb(223, 233, 243);
   background-color: rgb(72, 198, 239);
-  background-image: linear-gradient(to top, rgb(72, 198, 239) 0%, rgb(111, 134, 214) 100%)
+  background-image: linear-gradient(
+    to top,
+    rgb(72, 198, 239) 0%,
+    rgb(111, 134, 214) 100%
+  );
 }
 .App--bg-dark {
   --winning-color: rgb(223, 233, 243);
   background-color: rgb(41, 50, 60);
-  background-image: linear-gradient(60deg, rgb(41, 50, 60) 0%, rgb(72, 85, 99) 100%)
+  background-image: linear-gradient(
+    60deg,
+    rgb(41, 50, 60) 0%,
+    rgb(72, 85, 99) 100%
+  );
 }
