@@ -3,9 +3,7 @@ import GameHistory from './history'
 export const PLAYER_ONE_SYMBOL = 'X'
 export const PLAYER_TWO_SYMBOL = 'O'
 
-export function Board() {
-  return ['', '', '', '', '', '', '', '', '']
-}
+export const createBoard = () => Array(9).fill('')
 
 export const CurrentSquareAvailable = square => square === ''
 
@@ -105,31 +103,9 @@ function MinScenario(board, player, depth) {
   let bestScenario = Number.NEGATIVE_INFINITY
   const availableMoves = LegalMoves(board)
   const nextPlayer = SwitchPlayers(player)
-  const NextScenario =
-    nextPlayer === PLAYER_TWO_SYMBOL ? MaxScenario : MinScenario
-  for (let move of availableMoves) {
-    const scenario = NextScenario(
-      MakeMove(board, move, nextPlayer),
-      nextPlayer,
-      depth - 1
-    )
-    bestScenario = scenario > bestScenario ? move : bestScenario
-  }
 
-  return bestScenario
-}
-
-function MaxScenario(board, player, depth) {
-  if (GameOver(board) || !depth) {
-    return RateBoard(board)
-  }
-  let bestScenario = Number.NEGATIVE_INFINITY
-  const availableMoves = LegalMoves(board)
-  const nextPlayer = SwitchPlayers(player)
-  const NextScenario =
-    nextPlayer === PLAYER_TWO_SYMBOL ? MaxScenario : MinScenario
   for (let move of availableMoves) {
-    const scenario = NextScenario(
+    const scenario = MinScenario(
       MakeMove(board, move, nextPlayer),
       nextPlayer,
       depth - 1
@@ -155,7 +131,7 @@ export const GameState = extras => ({
   PLAYER_ONE_SYMBOL,
   PLAYER_TWO_SYMBOL,
   currentTurn: PLAYER_ONE_SYMBOL,
-  board: new Board(),
+  board: createBoard(),
   winner: undefined,
   history: new GameHistory(),
   vsComputer: true,

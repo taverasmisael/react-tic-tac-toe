@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import classnames from 'classnames'
 import compare from 'just-compare'
 
@@ -20,7 +20,7 @@ import GameModeSelect from './components/Game/GameModeSelect'
 import AboutModal from './components/functional/AboutModal'
 import FAB from './components/ui/FAB'
 
-export default class App extends Component {
+export default class App extends PureComponent {
   InitialState = new GameState({
     aboutVisible: false,
     currentColor: '',
