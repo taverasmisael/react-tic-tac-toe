@@ -1,15 +1,11 @@
-import { eq } from './helpers';
-
 import GameHistory from './history'
 
-export const PLAYER_ONE_SYMBOL = 'X';
-export const PLAYER_TWO_SYMBOL = 'O';
+export const PLAYER_ONE_SYMBOL = 'X'
+export const PLAYER_TWO_SYMBOL = 'O'
 
-export function Board() {
-  return ['', '', '', '', '', '', '', '', ''];
-}
+export const createBoard = () => Array(9).fill('')
 
-export const CurrentSquareAvailable = square => square === '';
+export const CurrentSquareAvailable = square => square === ''
 
 /**
  * This function recieve a Board Array and returns a new Board Array with the move applied
@@ -20,8 +16,8 @@ export const CurrentSquareAvailable = square => square === '';
  */
 export const MakeMove = (board, index, player) => {
   return CurrentSquareAvailable(board[index])
-    ? board.map((square, idx) => eq(idx, index) ? player : square)
-    : board;
+    ? board.map((square, idx) => (idx === index ? player : square))
+    : board
 }
 
 /**
@@ -30,7 +26,7 @@ export const MakeMove = (board, index, player) => {
  * @returns {String} the oposite player to the one passed
  */
 export const SwitchPlayers = player => {
-  return eq(player, PLAYER_ONE_SYMBOL) ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL;
+  return player === PLAYER_ONE_SYMBOL ? PLAYER_TWO_SYMBOL : PLAYER_ONE_SYMBOL
 }
 
 /**
@@ -47,33 +43,34 @@ export const CheckForWinner = board => {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
-  ];
+    [2, 4, 6],
+  ]
 
   return winningCombos.find(combo => {
     if (
-      eq(board[combo[0]], board[combo[1]]) &&
-      eq(board[combo[1]], board[combo[2]])
+      board[combo[0]] === board[combo[1]] &&
+      board[combo[1]] === board[combo[2]]
     ) {
-      return board[combo[0]];
+      return board[combo[0]]
     } else {
-      return false;
+      return false
     }
-  });
-};
+  })
+}
 
 /**
  * This functions return an array filled with the index of LegalMoves in the passed board
  * @param {Array<String>} board The board in wich we'll search the available moves
  */
-export const LegalMoves = board => board.reduce((prev, curr, i) => !curr ? [...prev, i] : prev, []);
+export const LegalMoves = board =>
+  board.reduce((prev, curr, i) => (!curr ? [...prev, i] : prev), [])
 
 /**
  * This function recieve a String Array and returns the ammount of moves remaining on this board
  * @param {Array<String>} board This is the board where we are going to check for available moves
  * @returns {number}
  */
-export const RemainingMoves = board => LegalMoves(board).length;
+export const RemainingMoves = board => LegalMoves(board).length
 
 /**
  * This function takes a Board and Evaluates it if is a winned board and calculates
@@ -83,60 +80,45 @@ export const RemainingMoves = board => LegalMoves(board).length;
  * remainingMoves
  * @param {Array<string>} board This is the board wich we want to obtain the value
  */
-export const RateBoard = (board) => {
-  const winner = CheckForWinner(board);
-  const availableMoves = RemainingMoves(board);
-  let result;
+export const RateBoard = board => {
+  const winner = CheckForWinner(board)
+  const availableMoves = RemainingMoves(board)
+  let result
   if (winner) {
-    result = 10 + availableMoves;
-  } else if (availableMoves){
+    result = 10 + availableMoves
+  } else if (availableMoves) {
     result = -10 + availableMoves
   } else {
     result = 0
   }
-  return result;
+  return result
 }
 
-const GameOver = (board) => CheckForWinner(board) || !RemainingMoves(board);
+const GameOver = board => CheckForWinner(board) || !RemainingMoves(board)
 
 function MinScenario(board, player, depth) {
-  if(GameOver(board) || !depth) {
-    return RateBoard(board);
+  if (GameOver(board) || !depth) {
+    return RateBoard(board)
   }
-  let bestScenario = Number.NEGATIVE_INFINITY;
-  const availableMoves = LegalMoves(board);
+  let bestScenario = Number.NEGATIVE_INFINITY
+  const availableMoves = LegalMoves(board)
   const nextPlayer = SwitchPlayers(player)
-  const NextScenario = nextPlayer === PLAYER_TWO_SYMBOL ? MaxScenario : MinScenario
+
   for (let move of availableMoves) {
-    const scenario = NextScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1)
-    bestScenario = scenario > bestScenario ? move : bestScenario;
+    const scenario = MinScenario(
+      MakeMove(board, move, nextPlayer),
+      nextPlayer,
+      depth - 1
+    )
+    bestScenario = scenario > bestScenario ? move : bestScenario
   }
-
-
-  return bestScenario
-}
-
-function MaxScenario(board, player, depth) {
-  if(GameOver(board) || !depth) {
-    return RateBoard(board);
-  }
-  let bestScenario = Number.NEGATIVE_INFINITY;
-  const availableMoves = LegalMoves(board);
-  const nextPlayer = SwitchPlayers(player)
-  const NextScenario = nextPlayer === PLAYER_TWO_SYMBOL ? MaxScenario : MinScenario
-  for (let move of availableMoves) {
-    const scenario = NextScenario(MakeMove(board, move, nextPlayer), nextPlayer, depth -1)
-    bestScenario = scenario > bestScenario ? move : bestScenario;
-  }
-
 
   return bestScenario
 }
 
 export const PlayAI = (board, depth, player) => {
-  if(CheckForWinner(board)) return RateBoard(board);
-//  const availableMoves = LegalMoves(board);
-  const bestMove =  MinScenario(board, player, 2);
+  if (CheckForWinner(board)) return RateBoard(board)
+  const bestMove = MinScenario(board, player, depth)
   return bestMove
 }
 
@@ -145,11 +127,11 @@ export const PlayAI = (board, depth, player) => {
  * And let you pass over any extra members you need in your state
  * @param {Object} extras all extra options you need on your game
  */
-export const GameState = (extras) => Object.assign({}, {
+export const GameState = extras => ({
   PLAYER_ONE_SYMBOL,
   PLAYER_TWO_SYMBOL,
   currentTurn: PLAYER_ONE_SYMBOL,
-  board: new Board(),
+  board: createBoard(),
   winner: undefined,
   history: new GameHistory(),
   vsComputer: true,
@@ -157,5 +139,6 @@ export const GameState = (extras) => Object.assign({}, {
   times: {
     [PLAYER_ONE_SYMBOL]: 0,
     [PLAYER_TWO_SYMBOL]: 0,
-  }
-}, extras)
+  },
+  ...extras,
+})

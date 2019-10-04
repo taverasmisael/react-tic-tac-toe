@@ -1,83 +1,85 @@
 .GameBoard {
-  display: block;
-  width: 100%;
-}
-.GameBoard:before {
-  content: " ";
-  display: table;
-}
-.GameBoard .GameBoard__square {
-  background: transparent;
-  border-collapse: collapse;
-  cursor: pointer;
-  font-family: var(--font-monospace);
-  float: left;
-  font-size: 3.5rem;
-  font-size: 6ch;
-  line-height: 1;
+  margin: 0 1em;
   position: relative;
-  transition: all 150ms ease-in;
-  width: 33.3333%;
+  width: calc(100% - 2em);
 }
 
-.GameBoard .GameBoard__square:before {
-  content: "";
+.GameBoard:after {
+  content: '';
   display: block;
   padding-bottom: 100%;
 }
+.GameBoard .GameBoard__content {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.GameBoard .GameBoard__square {
+  border-collapse: collapse;
+  background: transparent;
+  font-size: 3rem;
+  position: relative;
+  width: 100%;
+}
+
 .GameBoard .GameBoard__square:focus {
   outline: none;
 }
 .GameBoard .GameBoard__square:focus,
-.GameBoard .GameBoard__square .container .wrapper .content:hover:empty,
+.GameBoard .GameBoard__square .content:hover:empty,
 .GameBoard .GameBoard__square.GameBoard__square--winner {
   outline: none;
-  color: var(--winning-color);
-  text-shadow: 1px 1px 5px rgba(0,0,0,.2);
+  background: var(--winning-color);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
-.GameBoard .GameBoard__square .container .wrapper .content {
+.GameBoard .GameBoard__square {
   transition: background 150ms ease-out;
   will-change: background;
 }
 
-.GameBoard .GameBoard__square.GameBoard__square--top .container .wrapper .content,
-.GameBoard .GameBoard__square.GameBoard__square--center .container .wrapper .content {
-  border-bottom: 4px solid rgba(188, 188, 188, 0.57)
+.GameBoard .GameBoard__square.GameBoard__square--top,
+.GameBoard .GameBoard__square.GameBoard__square--center {
+  border-bottom: 4px solid rgba(188, 188, 188, 0.57);
 }
-.GameBoard .GameBoard__square.GameBoard__square--left .container .wrapper .content,
-.GameBoard .GameBoard__square.GameBoard__square--center .container .wrapper .content {
-  border-right: 4px solid rgba(188, 188, 188, 0.57)
+.GameBoard .GameBoard__square.GameBoard__square--left,
+.GameBoard .GameBoard__square.GameBoard__square--center {
+  border-right: 4px solid rgba(188, 188, 188, 0.57);
 }
-.GameBoard .GameBoard__square.GameBoard__square--middle.GameBoard__square--center .container .wrapper .content,
-.GameBoard .GameBoard__square.GameBoard__square--right .container .wrapper .content {
+.GameBoard
+  .GameBoard__square.GameBoard__square--middle.GameBoard__square--center,
+.GameBoard .GameBoard__square.GameBoard__square--right {
   border-right: none;
 }
-.GameBoard .GameBoard__square.GameBoard__square--right .container .wrapper .content {
-  border-left: 4px solid rgba(188, 188, 188, 0.57)
+.GameBoard .GameBoard__square.GameBoard__square--right {
+  border-left: 4px solid rgba(188, 188, 188, 0.57);
 }
 
 .GameBoard .GameBoard__square .container {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
-.GameBoard .GameBoard__square .container .wrapper {
-  display: table;
-  width: 100%;
-  height: 100%;
+
+.GameBoard .GameBoard__square .content.content-color--x {
+  color: red;
 }
-.GameBoard .GameBoard__square .container .wrapper .content {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+
+.GameBoard .GameBoard__square .content.content-color--o {
+  color: blue;
 }
-.GameBoard .GameBoard__square .container .wrapper .content:hover:not(:empty) {
+
+.GameBoard .GameBoard__square .content:hover:not(:empty) {
   cursor: not-allowed;
 }
 @media (min-width: 769px) {
-    .GameBoard {
-        width: 49%;
-    }
-    .GameBoard .GameBoard__square {
-      width: 32%;
-    }
+  .GameBoard {
+    width: 48%;
+  }
 }

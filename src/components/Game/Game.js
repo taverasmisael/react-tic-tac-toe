@@ -1,20 +1,26 @@
-import React from "react";
+import React from 'react'
 import PropTypes from 'prop-types'
 
-import GameBoard from "./GameBoard";
-import GameStadistics from "../ui/GameStadistics";
-import "./Game.css";
+import GameBoard from './GameBoard'
+import GameStadistics from '../ui/GameStadistics'
+import './Game.css'
 
-export const Game = ({winner, board, onSelectSquare, history, onResetScores}) => (
+export const Game = ({
+  winner,
+  board,
+  onSelectSquare,
+  history,
+  onResetScores,
+}) => (
   <div className="Game">
     <GameBoard
       board={board}
       winner={winner}
-      onSelectSquare={(square) => onSelectSquare(square)}
+      onSelectSquare={square => onSelectSquare(square)}
     />
     <GameStadistics onResetScores={() => onResetScores()} states={history} />
   </div>
-);
+)
 
 Game.propTypes = {
   winner: PropTypes.array,
@@ -23,4 +29,4 @@ Game.propTypes = {
   onSelectSquare: PropTypes.func.isRequired,
 }
 
-export default Game;
+export default Game

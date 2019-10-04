@@ -1,7 +1,7 @@
 .GameStadistics {
   background: #fff;
-  border-radius: .15rem;
-  box-shadow: 0 7px 14px rgba(0,0,0,.25), 0 5px 5px rgba(0,0,0,.22);
+  border-radius: 0.15rem;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   flex: 1 0 auto;
   margin: 2rem 0;
   max-height: 90vh;
@@ -10,9 +10,9 @@
   overflow: hidden;
 }
 .GameStadistics table thead th {
-  background: #ECEFF1;
-  border: 1px solid #ECEFF1;
-  padding: 1.5rem .5rem;
+  background: #eceff1;
+  border: 1px solid #eceff1;
+  padding: 1.5rem 0.5rem;
   text-align: center;
 }
 

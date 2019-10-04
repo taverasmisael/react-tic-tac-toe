@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import './AboutTable.css'
@@ -9,33 +9,33 @@ export const AboutTable = ({ members }) => (
       <tr>
         <th />
         <th>Nombre</th>
-        <th>Matrícula</th>
       </tr>
     </thead>
-    <tbody>
-      {generateMembersCells(members)}
-    </tbody>
+    <tbody>{generateMembersCells(members)}</tbody>
   </table>
-);
+)
 
-export default AboutTable;
+export default AboutTable
 
 AboutTable.propTypes = {
-  members: PropTypes.array
+  members: PropTypes.array,
 }
 
 AboutTable.defaultProps = {
-  members: []
+  members: [],
 }
 
 function generateMembersCells(members) {
   return members.map(member => (
     <tr key={member.registration}>
       <td>
-        <img className="img--circular img--responsive profile-pic" src={member.image} alt={member.name} />
+        <img
+          className="img--circular img--responsive profile-pic"
+          src={member.image}
+          alt={member.name}
+        />
       </td>
       <td>{member.name}</td>
-      <td>{member.registration}</td>
     </tr>
-  ));
+  ))
 }

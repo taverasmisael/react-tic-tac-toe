@@ -1,7 +1,7 @@
 .GameConfigBar {
   font-family: var(--font-sans-serif);
   align-items: center;
-  background: rgba(255,255,255,.6);
+  background: rgba(255, 255, 255, 0.6);
   display: none;
   flex-flow: column nowrap;
   justify-content: center;
@@ -28,12 +28,12 @@
   padding: 1rem 0;
   width: 100%;
 }
-.GameConfigBar .config-block .config-block__header{
+.GameConfigBar .config-block .config-block__header {
   margin-bottom: 1em;
 }
 .GameConfigBar .config-block:not(:last-child) {
-  border-bottom: 1px solid rgba(0,0,0,.2);
-  margin-bottom: .5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 0.5rem;
 }
 
 .GameConfigBar .timer {
@@ -50,20 +50,19 @@
     display: flex;
     opacity: 1;
     flex-flow: row nowrap;
-
   }
   .GameConfigBar .config-block {
     flex-flow: column nowrap;
     width: auto;
-    padding: 1rem .5rem;
+    padding: 1rem 0.5rem;
     margin: 0;
     margin-right: 1rem;
   }
-   .GameConfigBar .config-block:not(:last-child) {
-     border: none;
-     border-right: 1px solid rgba(0,0,0,.2);
-   }
-   .GameConfigBar .reset-game {
-     justify-content: center;
-   }
+  .GameConfigBar .config-block:not(:last-child) {
+    border: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .GameConfigBar .reset-game {
+    justify-content: center;
+  }
 }

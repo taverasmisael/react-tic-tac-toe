@@ -1,7 +1,8 @@
 .GameModeSelect {
   background: rgba(79, 79, 79, 0.5);
   color: white;
-  font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Roboto, Open Sans, 'Segoe UI', Tahoma, Geneva, Verdana,
+    sans-serif;
   height: 100vh;
   position: fixed;
   text-align: center;
@@ -31,14 +32,13 @@
   width: 100%;
 }
 .GameModeSelect__panel {
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 .GameModeSelect__panel.btn {
   border-radius: 0;
   font-size: 2.5rem;
-  padding: .5em;
+  padding: 0.5em;
 }
-
 
 @media (min-width: 769px) {
   .GameModeSelect__selector {
@@ -57,7 +57,7 @@
     width: 50%;
   }
   .GameModeSelect__panel:after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
   }

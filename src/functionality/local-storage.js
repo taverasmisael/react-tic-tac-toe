@@ -1,9 +1,8 @@
-// @flow
 export default class LocalStorage {
-  static secretPrefix;
+  static secretPrefix
 
   constructor(prefix = 'XO') {
-    this.secretprefix = prefix;
+    this.secretprefix = prefix
   }
 
   /**
@@ -13,11 +12,11 @@ export default class LocalStorage {
    * @param {Any} value Any value will be {LocalStorage.Strigify}\
    * @returns {Any}
    */
-  set(key, value) {
-    const item = this.GenerateKey(key);
+  set = (key, value) => {
+    const item = this.GenerateKey(key)
 
-    localStorage.setItem(item, this.Stringify(value));
-    return this.get(key);
+    localStorage.setItem(item, this.Stringify(value))
+    return this.get(key)
   }
 
   /**
@@ -26,10 +25,10 @@ export default class LocalStorage {
    * @param {String} key The Object Key wich saved the object. It can contain the secretPrefix or not
    * @returns {Any|null}
    */
-  get(key) {
-    const item = key.includes(this.secretprefix) ? key : this.GenerateKey(key);
+  get = key => {
+    const item = key.includes(this.secretprefix) ? key : this.GenerateKey(key)
 
-    return this.Parse(localStorage.getItem(item));
+    return this.Parse(localStorage.getItem(item))
   }
 
   /**
@@ -37,17 +36,17 @@ export default class LocalStorage {
    * @param {String} key The Object key wich store the value
    * @returns {undefined}
    */
-  remove(key) {
-    const item = this.GenerateKey(key);
-    return localStorage.removeItem(item);
+  remove = key => {
+    const item = this.GenerateKey(key)
+    return localStorage.removeItem(item)
   }
 
   /**
    * This function will delete ALL entries in localStorage wich contains our secret prefix
    */
-  clear() {
+  clear = () => {
     for (let key in localStorage) {
-      if (key.includes(this.secretprefix)) localStorage.removeItem(key);
+      if (key.includes(this.secretprefix)) localStorage.removeItem(key)
     }
   }
 
@@ -58,15 +57,13 @@ export default class LocalStorage {
    * @param {String} key The basic key without our secretPrefix
    * @returns {String}
    */
-  GenerateKey(key) {
-    return `${this.secretprefix}-${key}`;
-  }
+  GenerateKey = key => `${this.secretprefix}-${key}`
 
-  Parse(value) {
+  Parse = value => {
     try {
-      return JSON.parse(value);
+      return JSON.parse(value)
     } catch (exception) {
-      return '';
+      return ''
     }
   }
 
@@ -75,17 +72,17 @@ export default class LocalStorage {
    * @param {Any} value This is the value we will stringify
    * @return {String}
    */
-  Stringify(value) {
+  Stringify = value => {
     if (typeof value === 'string' || typeof value === 'number') {
-      return value.toString();
+      return value.toString()
     } else if (typeof value === 'object') {
       try {
-        return JSON.stringify(value);
+        return JSON.stringify(value)
       } catch (exception) {
-        return '';
+        return ''
       }
     } else {
-      return '';
+      return ''
     }
   }
 }
