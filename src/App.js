@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import compare from 'just-compare'
 
 import './App.css'
 
@@ -22,14 +23,14 @@ import FAB from './components/ui/FAB'
 export default class App extends Component {
   InitialState = new GameState({
     aboutVisible: false,
-    BGColor: '',
+    currentColor: '',
   })
   state = this.InitialState
   state = this.InitialState
 
   render() {
     const {
-      BGColor,
+      currentColor,
       times,
       winner,
       currentTurn,
@@ -39,10 +40,13 @@ export default class App extends Component {
       gameStarted,
     } = this.state
 
+    const backgroundClass = `App--bg-${currentColor}`
+
     return (
       <div
-        className={classnames(`App ${BGColor}`, {
+        className={classnames('App', {
           'modal--is-open': aboutVisible,
+          [backgroundClass]: currentColor,
         })}
       >
         <GameConfigBar
@@ -51,6 +55,7 @@ export default class App extends Component {
           currentPlayer={currentTurn}
           onResetGame={this.InitGame}
           onChangeColor={this.onChangeColor}
+          currentColor={currentColor}
         />
         <Game
           winner={winner}
@@ -95,7 +100,7 @@ export default class App extends Component {
       ...this.InitialState,
       gameStarted,
       vsComputer: mode,
-      BGColor: state.BGColor,
+      currentColor: state.currentColor,
       history: state.history,
     }))
 
@@ -118,8 +123,7 @@ export default class App extends Component {
 
   StopGameTimer = () => clearInterval(this.timer)
 
-  onChangeColor = color =>
-    this.setState({ BGColor: color ? `App--bg-${color}` : '' })
+  onChangeColor = color => this.setState({ currentColor: color })
 
   MakeMove = (state, square, player) => {
     if (!state.winner)
@@ -127,41 +131,45 @@ export default class App extends Component {
   }
 
   UpdateGameStatus = (state, squareIndex, player) => {
-    let newState = {}
+    const newBoard = MakeMove(state.board, squareIndex, player)
 
-    newState.board = MakeMove(state.board, squareIndex, player)
-
-    if (newState.board === state.board) {
+    if (compare(newBoard, state.board)) {
       return {}
-    } else {
-      const isWinner = CheckForWinner(newState.board)
-      const computerWon =
-        isWinner &&
-        (state.vsComputer && state.currentTurn === state.PLAYER_TWO_SYMBOL)
-      if (isWinner) {
-        newState.winner = isWinner
-        const winnerName = computerWon
-          ? 'ComputerXO'
-          : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
-        this.state.history.GenerateHistory(
-          `${winnerName} (${state.currentTurn})`,
-          newState.board,
-          state.times[state.currentTurn]
-        )
-        this.StopGameTimer()
-        newState.gameStarted = false
-      } else if (RemainingMoves(newState.board)) {
-        newState.currentTurn = SwitchPlayers(player)
-      } else {
-        this.StopGameTimer()
-      }
     }
 
-    return newState
+    const isComputerPlaying =
+      state.vsComputer && state.currentTurn === state.PLAYER_TWO_SYMBOL
+    const playerTime = state.times[state.currentTurn]
+    const winner = CheckForWinner(newBoard)
+    const computerWon = winner && isComputerPlaying
+    const gameStarted = !winner
+    const noMoreMoves = !RemainingMoves(newBoard)
+    const nextTurn = noMoreMoves ? player : SwitchPlayers(player)
+
+    if (winner) {
+      const winnerName = computerWon
+        ? 'ComputerXO'
+        : prompt('Ingrese su nombre', 'Player 1') || 'Player 1'
+      this.state.history.GenerateHistory(
+        `${winnerName} (${state.currentTurn})`,
+        newBoard,
+        playerTime
+      )
+      this.StopGameTimer()
+    } else if (noMoreMoves) {
+      this.StopGameTimer()
+    }
+
+    return {
+      winner,
+      gameStarted,
+      currentTurn: nextTurn,
+      board: newBoard,
+    }
   }
 
   MakeAIMove = game => {
-    const nextMove = PlayAI(game.board, 2, game.currentTurn)
+    const nextMove = PlayAI(game.board, 10, game.currentTurn)
     this.MakeMove(game, nextMove, game.currentTurn)
   }
 }
