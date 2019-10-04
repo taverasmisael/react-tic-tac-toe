@@ -12,6 +12,7 @@ const GameConfigBar = ({
   onResetGame,
   winner,
   onChangeColor,
+  currentColor,
 }) => {
   const [headerVisible, setHeaderVisible] = useState(false)
   const toggleHeader = () => setHeaderVisible(state => !state)
@@ -31,7 +32,10 @@ const GameConfigBar = ({
         <div className="config-block color-picker">
           <h4 className="config-block__header">Color de Fondo</h4>
           <div className="config-block__content">
-            <ColorPicker onChangeColor={color => onChangeColor(color)} />
+            <ColorPicker
+              currentColor={currentColor}
+              onChangeColor={color => onChangeColor(color)}
+            />
           </div>
         </div>
         <div className="config-block reset-game">
@@ -58,6 +62,7 @@ const GameConfigBar = ({
   )
 }
 GameConfigBar.propTypes = {
+  currentColor: PropTypes.string,
   currentPlayer: PropTypes.string.isRequired,
   onResetGame: PropTypes.func.isRequired,
   onChangeColor: PropTypes.func.isRequired,

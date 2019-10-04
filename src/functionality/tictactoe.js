@@ -142,8 +142,7 @@ function MaxScenario(board, player, depth) {
 
 export const PlayAI = (board, depth, player) => {
   if (CheckForWinner(board)) return RateBoard(board)
-  //  const availableMoves = LegalMoves(board);
-  const bestMove = MinScenario(board, player, 2)
+  const bestMove = MinScenario(board, player, depth)
   return bestMove
 }
 
@@ -152,22 +151,18 @@ export const PlayAI = (board, depth, player) => {
  * And let you pass over any extra members you need in your state
  * @param {Object} extras all extra options you need on your game
  */
-export const GameState = extras =>
-  Object.assign(
-    {},
-    {
-      PLAYER_ONE_SYMBOL,
-      PLAYER_TWO_SYMBOL,
-      currentTurn: PLAYER_ONE_SYMBOL,
-      board: new Board(),
-      winner: undefined,
-      history: new GameHistory(),
-      vsComputer: true,
-      gameStarted: false,
-      times: {
-        [PLAYER_ONE_SYMBOL]: 0,
-        [PLAYER_TWO_SYMBOL]: 0,
-      },
-    },
-    extras
-  )
+export const GameState = extras => ({
+  PLAYER_ONE_SYMBOL,
+  PLAYER_TWO_SYMBOL,
+  currentTurn: PLAYER_ONE_SYMBOL,
+  board: new Board(),
+  winner: undefined,
+  history: new GameHistory(),
+  vsComputer: true,
+  gameStarted: false,
+  times: {
+    [PLAYER_ONE_SYMBOL]: 0,
+    [PLAYER_TWO_SYMBOL]: 0,
+  },
+  ...extras,
+})
