@@ -6,6 +6,7 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "gh-pages": "^2.1.1",
+    "prettier": "^1.18.2",
     "react-addons-test-utils": "^15.6.2",
     "react-scripts": "3.1.2"
   },
@@ -23,7 +24,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "lint": "eslint src",
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|md|graphql|mdx)\"",
+    "format": "npm run prettier -- --write"
   },
   "browserslist": [
     ">0.2%",

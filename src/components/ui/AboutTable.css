@@ -7,7 +7,7 @@
 .AboutTable .profile-pic:after {
   background: #03a9f4;
   bottom: 0;
-  content: "";
+  content: '';
   display: block;
   height: 100%;
   left: 0;

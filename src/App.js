@@ -67,10 +67,11 @@ export default class App extends Component {
           }
         />
         <FAB
-          text="?"
           title="Ayuda"
           onClick={() => this.setState({ aboutVisible: true })}
-        />
+        >
+          ?
+        </FAB>
         <GameModeSelect isVisible={!gameStarted} onModeSelect={this.InitGame} />
         <AboutModal
           isVisible={aboutVisible}

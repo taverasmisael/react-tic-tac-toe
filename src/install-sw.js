@@ -1,10 +1,10 @@
-if ("serviceWorker" in navigator) {
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register("./service-worker.js", { scope: "/react-tic-tac-toe/" })
+    .register('./service-worker.js', { scope: '/react-tic-tac-toe/' })
     .then(function(registration) {
-      console.log("Service Worker Registered");
-    });
+      console.log('Service Worker Registered')
+    })
   navigator.serviceWorker.ready.then(function(registration) {
-    console.log("Service Worker Ready");
-  });
+    console.log('Service Worker Ready')
+  })
 }
